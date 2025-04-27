@@ -1,0 +1,11 @@
+Title,Link,Answered,Score
+Can nagios be configured to send notifications using web services?,https://stackoverflow.com/questions/33025621/can-nagios-be-configured-to-send-notifications-using-web-services,True,-2
+"nagios check_http HTTP CRITICAL - Unable to open TCP socket, works fine from command line",https://stackoverflow.com/questions/56656043/nagios-check-http-http-critical-unable-to-open-tcp-socket-works-fine-from-com,False,1
+How to retrive Macros Value of a host from nagios core?,https://stackoverflow.com/questions/76283101/how-to-retrive-macros-value-of-a-host-from-nagios-core,False,0
+Nagios alert in PagerDuty fails to line break,https://stackoverflow.com/questions/79227278/nagios-alert-in-pagerduty-fails-to-line-break,False,0
+why my http redirect don&#39;t work with nagios?,https://stackoverflow.com/questions/65470634/why-my-http-redirect-dont-work-with-nagios,True,0
+Display hosts/services from Nagios XI to Thruk,https://stackoverflow.com/questions/78750222/display-hosts-services-from-nagios-xi-to-thruk,False,0
+Nagios Check_nrpe no output returned from plugin in Nagios but works in the terminal,https://stackoverflow.com/questions/10219341/nagios-check-nrpe-no-output-returned-from-plugin-in-nagios-but-works-in-the-term,True,2
+convert a nagios config file to csv,https://stackoverflow.com/questions/18274592/convert-a-nagios-config-file-to-csv,True,1
+Nagios: Disable Host notifcation but enable service notification for local printers,https://stackoverflow.com/questions/33274782/nagios-disable-host-notifcation-but-enable-service-notification-for-local-print,True,1
+Compile or install HariSekhon/Nagios-Plugins on ARM,https://stackoverflow.com/questions/78061703/compile-or-install-harisekhon-nagios-plugins-on-arm,True,0

@@ -1,0 +1,90 @@
+What is network monitoring?
+
+What is network monitoring?
+
+Network monitoring means using network monitoring software to monitor acomputer network’s ongoing health and reliability. Network performance monitoring (NPM) systems typically generate topology maps and actionable insights, based on the performance data collected and analyzed.
+
+As a result of this network mapping, IT teams gain complete visibility into network components, application performance monitoring and relatedIT infrastructure. This visibility allows them to track the overall network health, spot red flags and optimize data flow.
+
+A network monitoring system watches for malfunctioning network devices and overloaded resources. The system does this regardless of whether the network resources are on-premises, in a data center, hosted by a cloud services provider or part of a hybrid ecosystem. For example, it may find overloaded CPUs on servers, high error rates on switches and routers, or sudden spikes in network traffic. A key feature of NPM software is alerting network administrators when a performance issue is spotted.
+
+Network monitoring systems also collect data to analyze traffic flow and measure performance and availability. One method of monitoring for performance issues and bottlenecks is configuring thresholds, so that you receive instant alerts when there is a threshold violation. Some thresholds are simple static thresholds. However, modern NPM systems use machine learning (ML) to determine normal performance across all of a network’s metrics based on time of day and day of the week. NPM systems with such ML-driven baselines create alerts that are typically more actionable.
+
+Organizations often perform network monitoring within anetwork operations center(NOC), which monitors network devices and the connections between all dependencies without end-users knowing the NOC is operating behind the scenes.
+
+The latest AI News + Insights
+
+Discover expertly curated insights and news on AI, cloud and more in the weekly Think Newsletter.
+
+Why is network monitoring necessary?
+
+Network failures can lead to business disruptions, which can mean a loss of customers, employee productivity and money. In fact, 91% of mid-sized and large enterprises report that a single hour of IT downtime costs them at least USD 300,000 per hour. Almost half of that group said it costs in the millions.
+
+Investing in network monitoring software, whether commercial or open source, means taking a proactive approach to keeping your network infrastructure healthy and maximizing uptime. This approach prevents waiting for an end-user to report network problems.
+
+Infrastructure monitoringlets you know precisely where a network problem occurs, allowing for troubleshooting before the situation leads to an outage. Early identification and resolution of a problem’s root cause can reduce response time, improve customer satisfaction, save money and protect a company’s reputation.
+
+Types of network monitoring tools
+
+There are three primary types of network monitoring tools.
+
+1.SNMP-based toolsuse Simple Network Management Protocol (SNMP) to interact with network hardware. These tools track the real-time status and use of resources, such as CPU stats, memory consumption, bytes transmitted and received, and other metrics. SNMP is one of the most widely used monitoring protocols, along with Microsoft Windows Management Instrumentation (WMI) for Windows servers and Secure Shell (SSH) for Unix and Linux servers.
+
+2.Flow-based toolsmonitor traffic flow to provide statistics about protocols and users. Some also inspect packet sequences to identify performance issues between two IP addresses. These flow tools capture traffic flow data and send them to a central collector for processing and storage.
+
+3.Active network monitoring solutionsinject packets into the network and measure end-to-end reachability, round-trip time, bandwidth, packet loss, link utilization and more. By conducting and measuring real-time transactions from a user’s perspective, these solutions enable faster and more reliable detection of outages and performance degradation.
+
+There are also both agent and agentless network monitoring methods. Agent-based monitoring involves installing an agent, a small application or piece of software, onto the monitored device. Agent-less monitoring (using SNMP and SSH protocols) requires no installation; instead, network monitoring software logs directly into the monitored device.
+
+How network monitoring tools work
+
+When using a network monitoring tool, the first step is to determine which network devices to monitor and establish performance metrics. Then, decide on a monitoring interval that makes sense for your situation. Router, switch and server monitoring are generally done more often because such network devices are more business-critical.
+
+Once in place, network monitoring tools scan for network issues. Methods can be as simple as a ping to ensure that a host is available. They can also be more extensive, such as monitoring firewall access, bandwidth usage, resource consumption, uptime and unexpected changes in network traffic. These tools make sure that switches, routers, servers, firewalls and other endpoints have an acceptable level of throughput. The tools also performload balancingand monitor for high error rates.
+
+These tools offer visualization of the entire network infrastructure with customizable dashboards. The dashboards provide real-time performance graphs and other reports showing how the components look and whether there are unusual parameters requiring further investigation.
+
+Network monitoring solutions send email or SMS notifications to network administrators when they find problems needing attention. They also share alert notifications with various IT operational tools, such as AIOps systems.
+
+Benefits of network monitoring software
+
+The primary benefit of network monitoring tools is straightforward and easy-to-understand visibility into an entire network’s connected devices and how data moves between them. Modern network performance monitoring systems provide baseline information that lets you automatically compare data and identify any network performance degradation. Seeing all this information on a dashboard means that your network administrators can quickly pinpoint issues anywhere within the network, identify the root cause, and determine who needs to fix it.
+
+An NPM solution requires less time to fix network performance problems. Detecting an issue earlier means you can troubleshoot and fix it much faster, saving time and money. Network monitoring helps businesses optimize efficiency by catching and repairing problems before they impact operations and customers. That, in turn, reduces downtime, ensures that employees always have access to the resources they need, and boosts the availability of APIs and webpages—so customers have access when they need it. Network performance monitoring also provides historical data and allows the troubleshooting of past network problems so you can avoid similar issues in the future.
+
+Network monitoring solutions give you reliable and flexible management tools and capabilities, including pre-configured templates for specific vendors such as Cisco, Juniper, Arista and Aruba, among others. These templates help ensure all is working well. They help you comply with industry standards and government regulations. They can point out anomalies that may be early signs of a cyberattack. Monitoring tools can also help you track and benchmark your network’s performance metrics, which aid in goal-setting and improving network performance. All this helps you get ahead.
+
+Modern network monitoring systems go a step further by supporting next-generation, software-defined networks deployed to run modern apps. Such new, modern networks require vastly different ways of collecting and analyzing performance data using APIs while also supporting existing methods such as SNMP. Supporting both new and existing networks helps network operations and engineering teams properly plan transitions to next-generation networks.
+
+Network performance monitoring also lets you keep track of networks that are changing, growing and becoming more complex over time. With the rise of IoT devices, which allow networks to connect thousands of IoT devices or more, IT networks are becoming enormous and complex.
+
+Reducing your IT team’s manual work throughnetwork monitoring automationenables them to spend their time on other business-critical projects and means you’re using your resources wisely.
+
+The difference between network monitoring and network security monitoring
+
+Network monitoring is not the same asnetwork securitymonitoring. Organizations use network security monitoring to protect a network from unauthorized access, misuse and theft. In contrast, a network monitoring solution is primarily used to optimize network availability and overall performance.
+
+While security is not the primary goal of network monitoring, the best network performance monitoring tools can help you find out that your security devices are functioning effectively. Some network monitoring tools include configuration management software, which helps improve your network security and reliability by offering fully automated configurations for network devices and interfaces.
+
+Having visibility into and knowing how your network works can bring attention to early signs of compromise or attack. When network monitoring software points to performance anomalies, your IT team can more easily identify network threats and address data breaches and other attacks.
+
+Enable your enterprise to be always on with enterprisewide intelligent automation and create an uninterrupted value stream to customers.
+
+Resources
+
+IBM NS1 Connect offers a robust DNS management service designed to improve network reliability, security and performance. Enhance your DNS infrastructure with advanced features to ensure optimal application delivery and minimize downtime.
+
+IBM Cloud Networking Solutions offer secure, scalable and high-performance options to enhance your business’s connectivity. Protect your cloud infrastructure, improve application performance and scale with ease.
+
+Network monitoring ensures the ongoing health and performance of your IT infrastructure. Discover the tools and benefits of monitoring, and learn how they can improve network reliability, security and operational efficiency.
+
+IBM Cloud VPC is now live, offering enhanced security, flexibility and control for your workloads. Start building with powerful, scalable tools today.
+
+IBM SevOne Network Performance Management is monitoring and analytics software that provides real-time visibility and insights into complex networks.
+
+Cloud networking solutions from IBM provide high-performing connectivity to power your apps and business.
+
+Modernize your applications and navigate industry requirements with IBM Consulting.
+
+Transform your network into a business accelerator with IBM’s high-performance networking solutions.
+

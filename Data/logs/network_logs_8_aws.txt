@@ -1,0 +1,115 @@
+AWS open guide: https://github.com/open-guides/og-aws
+
+EC2
+    Get metadata of the current EC2 instance
+    https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html
+        Amazon Linux ships with ec2-metadata tool:
+            $ /opt/aws/bin/ec2-metadata
+        Magic endpoint "169.254.169.254" gives metadata of the current instance:
+            $ curl http://169.254.169.254/latest/meta-data/
+
+ECS: EC2 container service
+    The "primitive" for distributed applications: task (job)
+    Think about "pool of resources" (cluster...), _not_ machines.
+    https://github.com/aws/amazon-ecs-cli
+        "Run applications locally or on ECS using the same Docker Compose file
+        format and familiar Compose commands."
+
+    Task
+    https://forums.aws.amazon.com/thread.jspa?threadID=175819
+    "When creating a task, you can omit the 'Host port' option (or set it to 0)
+    and a port will automatically be chosen when it's started. You can find out
+    which port was chosen by describing the running task."
+        Container:
+            easy example Docker image: https://hub.docker.com/r/nginxdemos/hello/
+
+ssm, sessionmanager
+    ssm without ssh:
+        aws ssm start-session --target …
+    ssm with ssh:
+        ~/.ssh/config:
+            Match Host i-*
+            ProxyCommand ssh-ssm.sh %h %r
+        https://github.com/elpy1/ssh-over-ssm
+            key feature: copies public key to remote so that ssh works seamlessly. https://github.com/elpy1/ssh-over-ssm/blob/fbe6773a6aa7cd87f64fed3fa0abd1289575c34f/ssh-ssm.sh#L26-L33
+
+
+DevOps at amazon:
+    key characteristics of Amazon SOA:
+        - tools have *best-practices* baked-in, in order to improve
+          *discoverability* and self-service (naming conventions, common
+          protocols, failure modes, ...)
+        - tools (services) must be self-service (tool should *not* require
+          hand-holding for other teams to implement)
+        - tools (services) must be decoupled from other tools (otherwise SOA is
+          pointless)
+    SOA is not effective unless it is combined with organizational changes:
+        - small teams (6-8)
+        - teams have full ownership and accountability
+        - incentives are aligned within a given team
+
+CloudTrail
+    S3 for medium-term storage; glacier for long-term.
+    use pre-defined CloudFormation template
+
+    Aggregate multiple AWS accounts to a _single_ S3 bucket.
+        Enable CloudTrail in all accounts.
+        Configure S3 bucket policy to authorize CloudTrail requests from the
+        AWS accounts.
+
+CloudTrail vs CloudWatch vs Config
+    ^         ^             ^config change management
+    |         `alert unusual activity
+    `logs API calls
+
+
+Lambda
+    - Don't need to worry about: servers, capacity, deployment, scaling,
+      fault-tolerance, OS/stack updates, metrics/logging
+    - Never pay for idle
+    Built-in support for CloudWatch metrics/logs
+    Lambda blueprints: templates/quickstarts
+    Scheduled Lambdas (cron)
+    Extensions:
+        https://github.com/aws-samples/aws-lambda-extensions/blob/main/python-example-extension/python-example-extension/extension.py
+        https://aws.amazon.com/blogs/compute/introducing-aws-lambda-extensions-in-preview/
+        hook into more of the Lambda lifecycle
+        install as Layers
+        example:
+            requests.post(
+                url=f"http://{os.environ['AWS_LAMBDA_RUNTIME_API']}/2020-01-01/extension/register",
+                json={
+                    'events': [ 'INVOKE', 'SHUTDOWN' ],
+                },
+                headers=headers
+            )
+
+Glacier
+    Lifecycle rules: automatically archive S3 data after expiration.
+    Best practices: Store the filename in the Description field.
+
+Xray
+    Trace: end-to-end data related to a single request across all services
+    Segments: trace fragment corresponding to a single service.
+
+AWS Config: visibility into configuration changes
+    configuration item (CI): standard config format
+        metadata
+        common attributes (resource ID, type, ARN, zone)
+        relationships
+        current config
+        related events: GUID that defines CloudTrail event
+    CI and diff delivered to SNS on every change
+    Config Rules: built upon AWS Config
+        AWS-managed rules (pre-built)
+            "All resources must be tagged"
+        custom rules (lambda)
+
+Network trouble / cannot connect
+    "If you associate an IPv6 CIDR block with your VPC and subnets, your route
+    tables must include separate routes for IPv6 traffic."
+    http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Scenario2.html
+
+    502 Bad Gateway
+        If the ALB considers all instances "unhealthy", it will route to "all",
+        and you will get random 502 errors depending on which node was routed-to.

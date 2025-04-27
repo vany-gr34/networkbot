@@ -1,0 +1,1131 @@
+=====================================================================
+
+BELOW IS A RUNNING STREAM OF NOTES WHICH DON'T HAVE TO MAKE ANY SENSE
+
+=====================================================================
+
+I/O is serialized with timing data
+
+IIIIIIiiIIIIIIIiOOOOOoooOOOOooIIIIIiiIIII
+|              ||     ||     ||         |
+
+needs splitting the timing:
+    both pieces start at the same time, but different messages, keeping order
+    needs tracking absolute time of each piece to put in the next message
+    can't format timing data right away, only when writing
+
+    OR
+
+    store last whitespace time, input/output position
+
+    >25
+    IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+                 ^
+    ^
+
+We'd better not cut anything for the start
+
+
+
+write window to log
+write output to log
+write input to log
+
+read window from terminal
+write window to slave
+
+write output to terminal
+write input to slave
+
+read input from terminal
+read output from slave
+
+why do we even need to be terminated by a signal?
+1. because we need to handle out-of-band SIGWINCH when waiting for output and
+   waiting for input to be consumed
+2. because we need to handle SIGINT, SIGTERM and SIGHUP timely to restore
+   terminal, instead of simply dying
+
+Can we suspend I/O transfer for writing the log entry?
+We should - this provides flow control
+
+However, if we delay data transfer, SIGWINCH might go out of sync with the
+data. So some data in the kernel buffer and pending write on the slave will
+be counting on one window size, while the actual window size will be different.
+
+Do we really care about window size? Really?
+Yes we do care about transferring it, so we might as well record it. *** Delay
+with the transfer should coincide with delay in the log. *** But can it? We
+have no idea if the slave has read all of its input buffers when it gets
+SIGWINCH. So it will be out of sync. Still screen handles this anyway.
+
+Can we do all this without terminating on a signal? With poll even on write?
+Would it work on terminals?
+
+
+WE NEED TO HANDLE INTERRUPTED I/O BECAUSE WE NEED TO HANDLE LATENCY LIMIT
+TIMER
+
+Log is always in UTF-8
+Convert any other encoding to UTF-8
+Write character counts in timing
+Keep incomplete characters to the next write - don't flush them?
+Or assume characters are always complete? THAT IS NOT TRUE!
+OR WAIT! Perhaps it's our code breaking on incomplete characters?
+VERIFY THIS!
+
+Anyway, we can't be sure, we can have a buffer size which won't fit the
+characters.
+
+We have to assume I/O is encoded somehow and for UTF-8 it means multibyte
+characters.
+
+Valid UTF-8 is a smaller subset of arbitrary binary stream. Thus we can't
+represent everything that's being pushed to the terminal.
+
+However, if we need to have our terminal logs searcheable, we need that data
+in a format that ElasticSearch can understand.
+
+What if we add two more timing record types: binary input and binary output?
+Have them encoded in base64?
+
+
+Write both streams while delay is under 0, then flush their timing
+What to do with interleaved binary data? We should keep the pieces before
+flushing, or rather we should flush them as we switch forks.
+
+Delay is put in by code above streams. Data lengths are put in by streams.
+
+So when a new piece of input comes in, check if delay is still within zero.
+If it is more than zero:
+    Ask both streams to flush timing, giving them control of timing buffer,
+    then append delay.
+Hand off the newly received data to the corresponding stream giving it control
+of remaining length and timing buffer
+
+What should the stream reserve space for? Only "cutting" or "flushing" as well?
+Only cutting, flushing will need more space.
+
+if invalid byte encountered
+    if sequence is empty
+        write one byte from input buffer to binary fork
+    else
+        write binary sequence from utf8 buffer
+else
+    if sequence is incomplete
+        add another byte
+        if not added
+            break
+    else
+        write text sequence from utf8 buffer
+
+sequence incomplete and no invalid byte encountered: collecting sequence
+or
+invalid byte encountered: writing non-text sequence: either from utf8 buffer or one byte from the input buffer
+or
+sequence complete: writing text sequence from utf8 buffer
+
+[ ] [ ] [ ] [ ] [ ]
+
+
+ended   valid
+
+0       0           sequence in progress
+
+0       1           impossible
+
+1       0           sequence terminated by invalid byte
+
+1       1           sequence completed
+
+
+ended   complete
+0       0           sequence in progress
+0       0           impossible
+1       0           seqence terminated by invalid byte
+1       1           sequence completed
+
+
+sequence of bytes
+    /      \
+   /        \
+ text     binary
+
+
+while true
+    if the sequence has ended
+        If it is valid UTF-8
+            finish writing it to text fork
+        else
+            finish writing it to binary fork
+    get a sequence
+
+the sequence:
+binary or text
+length
+how much is written
+
+What if we rename the current utf-8 object to a sequence object?
+Then it doesn't have to contain only UTF-8 bytes. But would that be useful?
+
+We only need to keep incomplete sequences between calls because UTF-8
+characters are multi-byte and need to be written atomically.
+
+What if we extend our sequence object to keeping words atomically?
+We'll need to add word length limit as well. Otherwise the rest of the
+machinery will be there already.
+
+So, an incomplete text sequence can be kept between write calls, and can be
+force-flushed.
+
+
+------
+Can we define the sequence?
+
+A sequence can be started.
+A sequence can be ended.
+
+A sequence can be:
+
+    binary,
+    partial character (binary when incomplete),
+    text (partial character when incomplete?),
+    word (text when incomplete
+
+A byte can belong to word, text, binary or unknown (partial character) sequence.
+
+
+Sequence:
+
+        __________________ character
+      /              _____ word
+     /              /
+d0 b0 d0 b1 d0 b2 0a 32
+
+a word is a character sequence
+a character sequence is a binary sequence
+
+------
+
+        __________________ character
+      /             ______ word
+     /             /
+d0 b0  d0 b1  d0 b2  0a
+
+
+do we flush incomplete words?
+do we flush incomplete characters?
+
+store last position of a complete sequence type?
+
+
+
+ff      binary started
+        character not started
+        word not started
+
+d0      binary started
+        character started
+        word not started
+
+Oa      binary started
+        character complete
+        word not started
+
+d0 b0   binary started
+        character complete
+        word started
+
+d0 b0  d0   binary started
+            character started
+            word started
+
+d0 b0  d0 b1  d0 b2     binary started
+                        character complete
+                        word started
+
+d0 b0  d0 b1  d0 b2     binary                  a0
+                        character complete
+                        word ended
+
+
+A binary sequence is a sequence of any bytes
+
+Non-character sequence is a binary sequence that doesn't contain a valid UTF-8
+character.
+
+Character sequence is a binary sequence that is a UTF-8 character.
+
+Text sequence is a sequence of character sequences.
+
+Word sequence is a text sequence that doesn't contain word-break characters.
+
+
+--------------------------
+
+How do we want to use it?
+
+
+forever
+    until we have a complete sequence
+        add a byte to sequence
+    write the sequence
+
+
+        byte          character
+atom    sequence      sequence
+
+byte --- Non-character
+     --- Character --- Non-word
+                   --- Word
+
+So, there are two dimensions: sequencing and alternating.
+
+We can start with the first (byte) sequencing level and leave the second
+(character) sequencing level for later.
+
+A two level solution can be like this:
+
+until we have a complete character sequence
+    forever
+        until the byte sequence ends
+            add a byte to the sequence
+        if it is a character
+            add the character to the character sequence
+            break
+        write the bytes to binary fork
+        empty the byte sequence
+write the character sequence to the text fork
+empty the character sequence
+
+
+So a sequence object provides binary output: valid/non-valid, but only if the
+sequence has ended.
+
+top level stream writing functions return amount of data actually written
+they write to their forks and also to global metadata
+inside they need to do some atomic writes, sometimes to both forks at once
+
+These second level functions can also accept the location for the remaining
+length and write to the buffers opportunistically. However, when atomic
+writing to a few buffers is necessary, we can have intermediate storage for
+meta pointer and remaining length to ensure that we can roll-back the write
+accounting
+
+So on the second level at the moment we're writing a character, which can be
+valid or invalid. A valid character is simply an atomic write to the text
+fork. An invalid character is an atomic write both to text and to binary fork.
+Either of them can write meta records when switching between valid and invalid
+runs. These writes should also account for the necessary meta records, but not
+write them. If the meta record cannot be fit the writing should say that no
+data was written.
+
+We need these operations:
+    streams:
+        tlog_stream_cut             write withheld incomplete characters
+        tlog_stream_flush           write meta and reset runs
+    io:
+        tlog_io_cut                 write withheld incomplete stream characters
+        tlog_io_flush               flush streams
+    sink:
+        tlog_sink_io_cut            write withheld incomplete I/O characters
+        tlog_sink_io_flush          flush I/O and write it as a message
+
+Abstract transaction:
+
+    change some fields
+    if some action changed
+        rollback changes
+        abort
+
+Should we implement single transaction interface?
+I.e. if a transaction started on upper levels, we don't start another one?
+So there is no sub-transaction support? Would that be right? I.e. would there
+ever be a transaction trying some sub-transaction variants, aborting them and
+then settling on one variant, proceeding, and then aborting on a later action?
+Nevertheless, can't we do this with a single transaction storage anyway?
+
+An object should save only what makes sense to rollback according to all the
+possible operations.
+
+So, a tlog_io_write can look like this:
+    tlog_io_trx_start(io)
+        tlog_stream_trx_start(input)
+        tlog_stream_trx_start(output)
+    try writing delay to timing
+    if failed:
+        tlog_io_trx_abort(io)
+            tlog_stream_trx_abort(input)
+            tlog_stream_trx_abort(output)
+    try writing stream
+    if failed:
+        tlog_io_trx_abort(io)
+            tlog_stream_trx_abort(input)
+            tlog_stream_trx_abort(output)
+    tlog_io_trx_commit(io)
+        tlog_stream_trx_commit(input)
+        tlog_stream_trx_commit(output)
+
+
+Copying the state should happen only at the top level transaction start.
+Restoring the state should happen only at the top level transaction abort.
+But this way we can't do sub-transactions. Yeah, and anyway, if we're doing
+sub-transactions we're supposed to have another set of fields saved, so we can
+roll-back properly. So, let's not try to support sub-transactions for now.
+Let's just assume that only top level transactions save/rollback. So, we'll
+need a transaction nesting counter. Any level can call start increasing it, or
+abort/commit decreasing it. But only the top level will actually act on the
+decision (abort/commit). Perhaps we can come up with a facility to make adding
+transaction support to an object easier.
+
+Ah, it seems we need sub-transactions for writing characters / binary pieces
+atomically in streams. Or do we? Yeah, pretty much. We abort character /
+binary piece writing, but we commit pieces written before these. I.e. we're
+not aborting the whole stack.
+
+Another challenge: pmeta. It's not a part of stream object, it's passed into
+functions, all of them. But perhaps it should be? Then we can save it in a
+transaction as well. The same about prem. Shan't we try implementing that
+first? Hmm. It's not like they ever change, after all.
+
+Ah, nope. While we can have these pointers kept in the stream objects for ease
+of calling the object functions, we can't snapshot them as part of streams.
+They're a part of I/O object and need to be preserved as part of its own
+transactions, in tlog_io_write.
+
+Alright, then the needed depth of the transaction stack is determined by the
+upper layers. If they need a copy for their transactions, they're supposed to
+allocate and own it. We shouldn't need to allocate anything dynamically.
+Shall they be stored on the stack, then?
+
+So let's store them on the stack, but copy there only if we need a
+a new, or sub-transaction.
+
+Let's define transaction storage type for each object type, which can simply
+be the object type. Also let's define backup/restore operations for each
+object, which can simply be a memcpy. Still, that storage type should be an
+aggregate for the nested objects.
+
+If a function can't fail, it shouldn't accept a transaction pointer.
+If a function doesn't need to make backups and rollbacks, it shouldn't accept
+a transaction pointer. However, every type expected to support transactions
+should define backup/restore functions.
+
+On a closer examination and attempting to do it, we'd better not pass pmeta
+and prem to streams at creation time. This turns out to be more obscure and
+harder to reason about.
+
+If we remove separate window message, then we don't need separate packet type
+- just supply window size each time, make the sink code or source user compare
+  window sizes and detect changes. This can make the code much simpler.
+OTOH, I/O data and window changes *do* come separately and such scheme would
+require the user to cut the I/O themselves and take care of comparing window
+sizes all the time. So, for a stream of events, having separate packet types,
+as in "separate even types", makes sense. We can still have one message type
+for the JSON sink.
+
+We still need to preserve window size changes, likely. Can we put them inside
+timing, as events? What would happen with the player, if there is no window
+size at the start? How would the *partial* stream matches work?! Shall we
+simply produce messages with empty I/O and new window sizes? These would
+have timestamps. We shouldn't send such messages immediately, but only when
+told to flush, or when we run out of I/O size limit. If window change comes
+before I/O, the written message should have the window change time position,
+and timing would have a delay record coming first - this needs a tlog_io
+object change, so it starts when it's told it starts, not when first I/O comes
+in. I.e. we can say that window change happens always at message start.
+
+No, this is wrong. This means that we won't be able to merge messages across
+window changes. To satisfy both the need to merge messages and the need to
+process partial streams, window changes should be able to appear any place in
+the message (i.e. in "timing"), and each message should have a window size
+record at the start. Argh.
+
+BTW, how are we even going to merge particular stream chunks with audit
+messages for a specific session? Could Kibana plugin request audit data by
+itself? Not likely, and it wouldn't be right, anyway. We can tell users:
+search your messages and then add 'OR something that matches a bunch of
+relevant audit messages' to the query, and the playback visualisation would
+filter them out by sessionid and time ranges. That's ugly. Do we have
+alternatives? I think it is time to actually try making a visualisation.
+
+All the objects manipulated by a function are saved on the entrance to the
+stack frame with depth zero, and restored on return.
+
+We need backup/restore so we don't present intermediate state, but rather
+completely changed or completely unchanged
+
+- What do you need sub-transactions for?
+- For moving in discrete states within another transaction
+
+- Why do you need tracking which objects are saved and which are not?
+- So cyclical ownerships can be saved. So that we can start a transaction at
+  either of these levels:
+
+     => A -.           A -.
+        |  |           |  |
+        B  |    AND    B  |
+        |  |           |  |
+        C -'        => C -'
+
+Each function down the stack needs to store the objects explicitly, in case it
+is called at the root of the transaction. However, if the function doesn't
+leave any state inconsistent it doesn't need to accept the transaction
+argument.
+
+So we have object saving for root transaction, then stack increment, then
+processing, then stack decrement, then object restoration for root
+transaction.
+
+---
+
+We write pieces of input or output with time attached. We write window sizes
+with time attached
+
+We go over each byte sequence of submitted I/O and decide if it's a valid
+character or not.
+
+If it's a valid character, we encode it into text. Otherwise we encode it into
+binary.
+
+We can attach timestamp to each piece of data. Each piece of data has its
+timestamp.
+
+We can't encode data until we know it's a valid character or not.
+
+The decision to write the data happens only then, so the decision to terminate
+a meta record happens only then and the decision to insert a delay record can
+only happen after that.
+
+So how about we have forks again?
+
+Can we remove the need for transactions?
+
+We would need to be able to back out of writing a delay and subsequent records
+on flush. To be precise, we would need to be able to play these forward and
+decide if we want them to do or not. That would mean doing everything twice
+for all operations, whereas we only need to back out once in a while.
+
+What is more complicated? Transactions or backing out? Transactions are easier
+to think about. Otherwise we would need to pass our temporary copies to all
+the arbitrary function depths and care about copying/applying them properly in
+each stack frame. That's what transactions could do for us anyway.
+
+---
+
+So if we want to support multiple object roots per transaction we need to
+separate transaction beginning/ending from transaction object
+saving/restoring. Also, to be reliable we'll need to remove the need to
+specify objects to restore for transaction abortion.
+
+We can specify objects to backup/restore via initialization of an array
+variable in a macro. We can then backup these objects in transaction begin and
+restore them in transaction abort.
+
+Can we use the stack for indirect transaction store? First we need to describe
+object's transaction interface.
+
+    store_size  The size of the object's transaction store
+    pmask       Location of the object's transaction mask
+    xfr         Transaction data transfer function
+
+So each function frame would contain an array describing which objects should
+be backed up/restored, which would be built from both static, direct
+object information and dynamic, indirect object information. Or perhaps we
+should simply resort to dynamic information always. Even with dynamic
+information, first level can be allocated on the stack and lower levels can do
+heap allocation for indirect objects, if necessary.
+
+We can then remove transaction objects and functions from headers and put it
+into object files, making them tidier.
+
+---
+
+What if we allocate transaction storage within the objects themselves
+according to the maximum transaction depth? This way we won't have to mess
+with allocation/deallocation at transaction backup/restore/cleanup time!
+
+Then the transaction interface becomes:
+    xfr         Transaction data transfer function
+
+If we manage to separate them, then it becomes:
+    backup      Transaction backup function
+    restore     Transaction restore function
+
+----
+
+iface
+    act
+        mask
+        store
+
+root header
+    trx - transaction management function
+        TRX_BEGIN
+        TRX_ABORT
+        TRX_COMMIT
+    trx_misc - miscellaneous transaction functions and macros
+    trx_state - transaction state passed between functions
+        trx_state_get_depth
+    trx_iface - object's interface definition
+    trx_basic - macros for basic interface implementation
+        trx_basic_iface - define interface
+            trx_basic_act - define acting function
+        trx_basic_store - basic store definition macros
+            trx_basic_store_sig
+        trx_basic_members - define fields for object structure
+            trx_iface - interface
+            trx_mask - mask
+            trx_store - store list
+
+----
+
+        1                                   3
+input >-------------+-------------------------> input
+                    |
+         3          |                        1
+output <----------- | ------+-----------------< output
+                    |       |
+                    |       |
+                  2 |     2 |
+                   \|/     \|/
+
+when to log I/O
+
+* after receiving, before sending
+    single timestamp
+    more likely to get out
+
+* after sending
+    timestamps may need to be set to the time after sending
+    less likely to get out
+
+Should the timestamp be the time we received data, or the time we delivered
+the data?
+
+Neither is guaranteed to be exact - network latency can happen on either side,
+so no advantage here.
+
+So, after receiving and before sending then.
+
+Shall we allow interruption of log writing by signal handlers?
+What shall we do when that happens?
+
+    SIGTERM/INT/HUP
+        we don't need to log anymore, since data will not be delivered anyway
+        don't write data
+    SIGALRM
+        flush log - that can be done as well after writing, since we're
+        already trying to deliver the log as hard as we can.
+    SIGWINCH
+        that can as well be handled after we finish log writing, if a few
+        resizes are missed, it's not a big deal - delivering the last resize
+        before passing any data is what's important.
+
+So if we do partial log writing it is only to handle aborting log writing and
+not writing extra. This can be useful with large buffers, slow logging
+backend and overly chatty user application.
+
+Shall we mix logging and writing? I.e. deliver what we logged if logging is
+interrupted and then try to deliver logs again?
+
+Shall we actually deliver what we read so far before acting on
+SIGTERM/INT/HUP? Or shall we simply exit ASAP? It's likely the sysadmins would
+appreciate the latter more. As well as not finishing logging of undelivered
+data.
+
+With that in mind, there's no use to proceed to writing partially logged data.
+Because otherwise, SIGWINCH... Wait.
+
+What happens when we delay the data in transit and the window gets resized?
+The data that we've read already was expecting the old window size, we can't
+push it back so it needs to be delivered anyway. We'll read next portion only
+after we've delivered the resize. So it's fine.
+
+So, going back, we don't need to do anything with SIGWINCH until we're ready
+to read some more and that's after we've logged the data. Wait. What shall we
+write first: the SIGWINCH, or the input we've read already? SIGWINCH would be
+better, as otherwise delivering input first can make the application fill the
+buffers with response formatted for the old window size. Once again, it
+doesn't matter what we'll deliver first: the output we read already or the
+SIGWINCH we received.
+
+So it seems it is better to have I/O log writing interrupted to log and
+deliver window resizes before resuming logging and delivery of I/O.
+
+Thus our TTY source needs to drop support for reading window sizes as they
+need to have higher priority. Since we need to record timing of our window
+resize deliveries outside the source, we better remove timestamping from the
+source. Thus we'll have timing neither in source nor in sink. However, sink
+can have window writing.
+
+OTOH, input sent before resize was done with the expectation of the old size.
+E.g. a command to go to the bottom of the window in vim (L) would need to move
+the cursor to the old window bottom, not to the new one. So, for the sake of
+simplicity and, it seems, for the sake of consistency it is better to send the
+input received before SIGWINCH before sending the new window size. Thus we can
+preserve the ordering and keep window size retrieval in the source.
+
+As to writing as soon as the (interrupted) data logging is complete (i.e.
+logging/writing interleaving), it might improve interactivity and make the
+program easier/faster to kill.
+
+---
+
+Configuration parameters
+
+    Log latency (seconds)
+    Maximum message payload size (bytes)
+    Shell to start (path)
+    Log target (file / syslog / journald?)
+    Log target options:
+        file:
+            path
+        syslog:
+            facility
+            level
+    Recording warning to output on startup
+
+Command line-specific parameters:
+    argv[0] starting with '-' - login shell - passed the same way to the shell
+    '-c' - command to execute - passed the same way to the shell
+    -?tlog-rec-(.*) - shell, perhaps
+
+Mandatory environment parameters:
+    shell
+
+It would be good to have all configuration options available via all sources:
+    configuration file
+    command line
+    environment
+
+We can parse a particular environment variable value as an option string.
+
+We can map command-line options to JSON configuration structure, or the other
+way around.
+
+We can make a mechanism to parse all of these into a common format (JSON?) and
+merging them according to the priority.
+
+E.g. (last overrides first): configuration, environment, command-line.
+
+We'll also need some sort of schema verification for configuration.
+
+Then we can make a module taking that merged configuration and running the
+program.
+
+What should be the common format?
+
+Choices:
+
+    Custom structure, generic perhaps
+        Hmm, not really, no.
+    JSON
+        merging:
+            Generic repeated walking and merging according to priority.
+        validation:
+            Random access with accumulated state.
+        conversion:
+            from ARGV list:
+                Split into levels on dashes within option names, perhaps?
+                Hmm, options often have very short names, which will have to
+                be normalized. Some sort of mapping, then? How to tell the
+                user about that mapping? Build-time documentation generation?
+                M4, ha-ha?
+            environment:
+                if command-line options, convert to ARGV list - need to handle
+                shell quoting
+                otherwise JSON
+    ARGV list
+        merging:
+            Just concatenate lists from various sources according to priority.
+        validation:
+            Regular getopt loop with parsing and accumulated state
+        conversion:
+            from JSON:
+                Walk and convert automatically, say by concatenating with
+                dashes between levels. Still needs schema to provide
+                JSON-oriented error messages (i.e. line number, field
+                reference).
+            from environment:
+                Split into ARGV list - need to handle shell quoting
+
+Values of specific parameters and permitted parameter set have to be validated
+upon parsing the source format. The overall configuration, required parameter
+set should be validated only after merging. The (missing or invalid)
+parameters should be referred by a name common to the configuration sources.
+
+So, we can have an m4 file describing containers and parameters, then generate
+documentation from that, then generate JSON validation, option reading,
+environment variable reading from that.
+
+-----
+
+program name - argv[0]
+    This is not configuration, i.e. not something that the user would like to
+    specify, that's why we don't want it in our options or config file. OTOH,
+    a system administrator or a distro package maintainer might like to change
+    it. Still he's not a user and this is done outside the normal
+    configuration path.
+
+    Shall we perhaps transfer it out-of-band? But it's sooo convenient to
+    transfer it via JSON.
+
+shell - cfg, env, argv[0], -s/--shell option
+
+login flag - argv[0], -l/--login option
+
+positional arguments argv[x..]
+
+
+If we take away the program name, then we can split those into three origins:
+
+    name    - login flag, shell
+    opts    - login flag, shell
+    args    - arguments only
+
+Then the login flag and shell would be documented properly and overridable by
+the command-line options.
+
+-----
+
+We need to signal the sink to terminate cached characters. That needs to be
+done with a timestamp.
+
+Since in tlog-rec we don't operate on timestamps anymore, getting them with
+packets from the source, it would be good to have these terminating packets
+from the source too. The most logical way would be to send these packets when
+the corresponding streams in the source are ending.
+
+There's the problem of the TTY source stream end - it usually happens when
+either the child or the terminal go away, which are reported as errors, and
+the source reports all errors to the caller. To return the void packet the
+source would have to interpret the errors, which might be different between
+TTYs, PTYs, pipes and files, and interpreting them incorrectly might hide a
+problem. Let's see what we can get:
+
+    EBADF   - can also be returned if the FD was closed, thus interpreting it
+              as EOF can hide a programming mistake
+    EIO     - can also occur on low level I/O error, thus hiding a serious
+              hardware issue
+
+We have the void packet signifying the end of the whole source stream now. And
+it can't have a timestamp as of now.
+
+Let's consider the following options:
+    Add a timestamp to the void packet
+        We have to have a completely meaningless packet type to denote an
+        empty, meaningless packet
+        - No
+    Add another type of packet signifying the end of the whole source stream
+        When the source would send such a packet? It can send it only when
+        both input and output are closed. Can we put the function of keeping
+        track of the stream status on the source? Seems alright since it
+        manages and encapsulates them.
+    Add another type of packet allowing specifying the end of input/output
+    stream separately
+        Now what about the potential window size stream? Shall we add that
+        too? Wouldn't it make the whole thing too complicated?
+    Add a new meaning to the I/O packet type which signifies the end of stream
+    (e.g. zero length data)
+
+Now, what kind of timestamp would other types of sources specify? E.g.
+ElasticSearch? It doesn't have anywhere to pull the EOF timestamp from!
+
+We shall rethink this. There shouldn't be a timestamp for EOF and it can
+still be signified by a void packet.
+
+We have to accept the fact that sometimes we need to write data that was
+received before the latest data written to the chunk, and that there can't
+always be a timestamp associated with that event. E.g. when converting from
+one storage format to another (e.g. sudo session recording to JSON log and
+having incomplete characters at the end). To properly handle that we would
+need to only allow encoding the packet stream as a whole and that's not what
+we can do.
+
+Which timestamp should we have for such data, then? Well, there's nothing left
+but to use the latest timestamp written to the timing (metadata).
+
+Now, how do we signal the cut-off? Shall we keep the function, since we don't
+need the timestamp anymore, or shall we move to using the void packet?
+
+Void packet
+    Symmetrical to EOF from source.
+    Somewhat obscure code.
+    All the non-UTF-8 sinks would need to explicitly ignore the void packet.
+    More code to write, a little code to remove.
+Function
+    Separate function which complicates the interface and is only needed by
+    one sink so far.
+    Clearer code.
+    All the non-UTF-8 sinks can just not define the cutting function.
+    No code to write.
+
+Let's leave it as function for now.
+Let's have the JSON chunk use the latest timestamp written to the timing for
+cutting.
+
+Wait. We can't use the latest timestamp in the chunk. Because it is possible
+that a stream will be written only the incomplete character and there will be
+no timestamp reported to the chunk at all until we actually "cut" the stream.
+
+Therefore we must allow the chunk to receive timestamps in the past and assume
+the latest timestamp in these cases. The streams, though, will still be able
+to enforce the time succession.
+
+So, streams will have to report the last received data timestamp and if chunk
+sees them as too old, it will use the latest time instead.
+
+-----
+
+Do we create a PTY or a pair of pipes for the child?
+    First, effects:
+        If a child uses PTY and we are using non-TTY FDs, then:
+            Child input won't contain expected terminal control symbols
+            Child output will contain unexpected terminal control symbols
+        If a child uses pipes and we are using TTY FDs, then:
+            Child input will contain unexpected terminal control symbols
+            Child output won't contain expected terminal control symbols
+    Next, decision logic:
+        SSH allocates PTY if input is TTY, or if forced
+        What would user expect?
+        Tlog-rec is supposed to start a shell, either interactively or not.
+        When started as the login shell (the primary use case), tlog-rec will
+        either get all descriptors tied to a terminal or all to a non-terminal.
+        What's the use case for starting as a non-login shell?
+            Testing?
+                We won't be outputting to an actual terminal, but will be
+                capturing everything, so we can automate.
+                We will test whatever the user needs.
+                - Not applicable
+            Just the shell being started again, where we need to simply exec
+            the actual user shell.
+                -Not applicable.
+        So what kind of logic can we have?
+            If at least one of in/out/err is a terminal, spawn PTY?
+            If all of in/out/err are terminals, spawn PTY?
+            Which one would be easier for testing?
+                If we're running under expect as we plan, then all FDs will be
+                TTYs.
+                If we want to test non-TTY mode, then we will spawn tlog-rec
+                under pipes, perhaps from shell, Python, or Lua?
+                - Not applicable
+            Which would be more useful?
+                Considering the above the difference is marginal.
+            Which would be easier to implement?
+                If at least one (stdin?) is not a TTY, don't spawn a PTY.
+                However, considering we need to handle open/closed descriptor
+                state and propagate it to the child anyway we can as well
+                check all of the descriptors anyway.
+        The POSIX shell standard says that the shell is considered
+        interactive if both its stdin and stderr are connected to a
+        terminal. We can employ the same logic for deciding whether to spawn
+        the PTY or not.
+        I.e. spawn the PTY only if both stdin and stderr are terminals, ignore
+        stdout.
+        No, tlog-rec is not a shell and in fact any program can be ran under
+        tlog-rec. So we need to employ our own logic.
+        Leaving it at "if any FD is a TTY, spawn PTY" can work as well for
+        now.
+
+Do we create two pipes, one, or none?
+    We create two pipes to match the PTY case.
+    We send both child stdout and stderr to our stdout.
+
+What do we do when any of stdin/stdout/stderr are closed at the start?
+    We ought to pass the closed/opened state to the child.
+    If our stdout is closed, the child's stdout and stderr are closed.
+    If our stdin is closed, the child's stdin is closed.
+    The child is not affected by our stderr state.
+    We need to ensure that the closed FD is not taken over by another FD.
+    So, for example, error messages directed to the initially closed stderr
+    don't get written somewhere else.
+    How? Perhaps by opening /dev/null?
+    What do we do when only input or output is closed?
+    Perhaps switch to pipes and propagate the status?
+
+What do we do when we get an EOF on any of the FDs during operation?
+    We continue the transfer until all FDs get EOF.
+
+----
+How can we implement recording and playback to/from journal?
+
+We can add a journal sink, which, in addition to the JSON message, can log
+additional fields, duplicating the data already in JSON, letting us filter
+journal messages by them. It remains to be seen how that will perform.
+
+We can let users configure if tlog-rec should put extra fields into journal,
+or just the message. The journal source can then accept an arbitrary filter
+string, similar to what journalctl accepts to filter out the required session.
+
+One problem can be specifying the time from which we should play. The journal
+API provides sd_journal_seek_realtime_usec and sd_journal_seek_monotonic_usec,
+which we can perhaps use by taking a separate journal source option.
+---
+So, rate limiting is not letting us log more than a specified amount of I/O
+bytes per time unit. Let's say per hour.
+
+The way we calculate that could be having an averaging time window, or just
+calculate from the start of the recording.
+
+current_rate = bytes / hours
+
+How would we choose what to drop, though?
+Should we just do
+
+    if current_rate > target_rate then
+        drop
+    else
+        pass
+
+What should be the quantum of dropping, then? A packet?
+
+----------------
+Leaky bucket for raw data, both input and output
+Either drop or hold the packets
+Consider providing maximum packet size configuration
+Consider doing it for encoded data later
+Add configuration parameter/option for bytes per second
+
+----------------
+The pass decision is for a packet.
+We can simply say every piece of it is written when dropping.
+We can simply wait on the first piece when delaying.
+----------------
+
+We need to either assume that packet timestamps are in local time,
+or take our own time samples. Because we cannot advance abstract packet
+recording time, if it is not local time. For that matter, to make the rate
+limit sink more universal we need to ignore packet timestamps and take our own
+timestamps.
+
+---------------
+
+So, we don't need to know local time if we are just dropping packets, we only
+need packet timestamps.
+
+We can drop packets based on their timestamps, or based on times when they're
+written. We can only delay packets based on writing timestamps.
+
+Having limit based on packet timestamps would be useful for testing.
+
+We would need rate limit set on the log sink, right? Right.
+
+What if we give the rate limit sink some time source function instead of
+letting it get its own time?
+
+What timestamps should delayed packets have? Original ones, or delayed? Should
+the recording reflect timestamps the packets were output by the recorded
+program and input by the user, or the timestamps they were delivered at?
+If we follow the idea of "recording what users saw on the screen", then it
+should be delivery time.
+
+Ha! Should we actually rate-limit the source instead? Then we can adjust
+packet timestamps and take time samples freely! For the start we can just give
+the rate-limit source a clock ID, but in the future we can pass it a function
+which would generate timestamps, and let us do testing at any actual speed
+required. We would also have no problem with packet fragments, as sources
+don't have any.
+
+The rate limit sink will have to assume that the time source for packets is
+the same time source it was given. We can later introduce a notion of
+"abstract time", which would have timestamp retrieval and time-advancing
+(sleeping) functions. We can have one specific time for
+clock_gettime/nanosleep, and one for testing time.
+
+Right. We can't rate-limit source, because we will be dropping data sent to
+the user terminal and entered by the user. We have to rate-limit the log sink.
+
+Would it be right to change the timestamp of packets sent to the log?
+No it likely wouldn't.
+
+Should we have delay at the TTY source, but dropping at the log sink?
+Even if we had delay at the TTY source, would it be right to change packet
+timestamp? For that matter, what the packet timestamp should be? Time of
+arrival, or time of departure? And should input and output rather be both
+measured at the tlog<->program interface, and not input at tty<->tlog and
+output at tlog<->program interfaces? Or both at tty<->tlog interface, as the
+user saw it? From the point of correlating with other logs, the right way
+would be to record time at the tlog<->program interface, as that would be
+closer to other events in the system. The tty<->tlog interface is just a
+display, after all. What about window resizes? That should be the same as
+input.
+
+For that matter, if we did throttling (delaying) at the source, then only
+input and window timestamps should be updated, and we wouldn't really be able
+to use packet timestamps for rate control. However, since we don't let any
+packets pass until we log them, and we can't really control logging latency,
+we can only log source timestamps.
+
+But should we log only before passing the I/O? If not, then when should we log
+it? Should we log it after passing a single packet? Why a single packet then?
+Why not two? What if it's a single *big* packet? No, we should log *before*
+passing the packet, or rather we log any data, before passing it on.
+
+To avoid the mess of timestamps, we can just assume that timestamp is opaque
+packet data, and deal only with rate related to the provided clock. Then we
+can implement rate-limit sink, simply, covering all the features.
+
+What if we're asked to write only a part of a packet, and it doesn't pass,
+but a later part passes? Do we write a fragment only? Apparently yes.
+So dropping/delaying quanta becomes a packet fragment.
+
+Should we allow a part of packet fragment through, if only a part fits?
+
+We should let whatever fits through immediately, and drop/delay the rest.
+
+We need to do the pkt_pos math properly. Support adding and subtracting. Both
+should round to the closest possible value, just like floating point does.
+Should they cap at maximum?
+
+ppos + free, cap at end
+if more than zero, write
+if less than end, delay until what's left can fit
+
+First purpose of pkt_pos: track progress of writing packets.
+I.e. we need to mark where we were and where we've gone until all of the
+packet is written
+Second purpose of pkt_pos: calculating payload size and converting payload
+size to position to write from and until
+
+No, we're not going to be rate-limiting at the packet level. First of all,
+encoded size can be wildly different, then it will be hard to tell if anything
+was dropped or not. We need to rate-limit at the JSON writer sink.
+
+------------
+
+So, tests, even unit tests are essentially an outside entity.
+Or, perhaps, not entirely. If we ship a library, and we hide some of the
+internal interfaces, we might need to access them for testing purposes.
+Thus unit tests will be a privileged entity, with access to internal
+interfaces. Still, we can build a separate library, with those interfaces
+exposed, so that the unit tests can reach them.
+
+Regardless, unit tests and integration tests are not a part of the
+release distribution, they're outside of it, working on the product of it.
+Ideally, they need to be in a separate directory, beside tlog.
+
+Yet, having two directories side-by-side in the root of a git repo is
+generally unheard of, and we shouldn't really have a separate repo for the
+tests, as it will make it difficult to keep them in sync with the code.
+
+Shall we make subdirs under top directories instead? E.g.
+
+    include
+        tlog
+        tltest
+    lib
+        tlog
+        tltest
+    src
+        tlog
+        tltest
+    m4
+        autotools
+        tlog
+    man
+        tlog
+    doc
+        tlog
+
+Let's try.

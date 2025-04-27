@@ -1,0 +1,148 @@
+Get a Demo
+
+By completing this form, you agree to ourPrivacy PolicyandTerms of Use.
+
+Network Monitoring Protocols: 6 Essential Network Technologies
+
+Network monitoring tools are indispensable for helping network administrators keep track of the health and performance of modern, complex networks. These tools use several network monitoring protocols that provide standards and procedures for observing, managing, and analyzing network environments.
+
+Understanding how network monitoring protocols work is necessary to help you foresee potential issues, fortify the company’s security posture, andoptimize network performance.
+
+This article will introduce you to key network monitoring protocols, includingSimple Network Management Protocol (SNMP),Internet Control Message Protocol (ICMP),Cisco Discovery Protocol (CDP),NetFlow,streaming telemetry, andSyslog, and you’ll learn how these protocols help ensure your network operates at its optimal capacity. Whether you’re a seasoned professional or new to network administration, you’ll find valuable insights for optimizing your network’s health and performance.
+
+Why Are Network Monitoring Protocols Important?
+
+Network monitoring protocols are standardized specifications that govern the communication and data exchange between devices in a network that dictates how monitoring tools gather, transmit, and process data within a network. They are the backbone of network monitoring tools and are used to define interactions with network devices and determine what data can be accessed and used. Key functions of network monitoring protocols include data collection and transmission, network analysis and management, and device configuration and maintenance.
+
+Network monitoringcan help maintain your network environment’s health, security, and efficiency in various situations. For instance, before they escalate, network monitoring protocols help detect signs of network stress, such as abnormal traffic flows, overloaded servers, or failing hardware components. This continuous monitoring allows network admins to identify issues early and take proactive steps to reallocate resources, upgrade systems, or perform hardware repairs before disruptions occur.
+
+As cyberthreats become more sophisticated, detecting suspicious network activity as early as possible is key to avoiding security breaches. Network monitoring protocols are your primary defense in detecting anomalies in normal network traffic patterns.
+
+Network monitoring protocols also evaluate performance metrics, such as bandwidth usage, latency, packet loss, and error rates, across various components. Using this data, network administrators can pinpoint inefficiencies and bottlenecks within the network infrastructure and make informed decisions about network configurations, capacity planning, and resource allocation to optimize overall performance.
+
+How Do Network Monitoring Protocols Help with Effective Network Management?
+
+Network monitoring protocols offer a variety of functions to meet diverse network monitoring requirements. In the following sections, you’ll learn about six standard protocols in network monitoring: SNMP, ICMP, Syslog, CDP, NetFlow, and streaming telemetry.
+
+SNMP
+
+Established in 1988, SNMP has become the industry standard for monitoring and managing network devices. It operates overUser Datagram Protocol (UDP), which allows network management tools to identify devices, monitor network performance, and track real-time changes via SNMP messages. SNMP shares system status and configuration information from the device’smanagement information base (MIB), which network management applications can query for configuration and status data.
+
+Most network devices come equipped with SNMP agents, which are activated and configured upon deployment. Its wide acceptance can be attributed to its simplicity and broad support from most major network device vendors, includingCisco Systems,Juniper Networks, andTP-Link.
+
+SNMP is used for both active monitoring (injecting test packets into the network) and passive monitoring (periodic polling of devices). It can collect performance data on CPU usage, memory utilization, and bandwidth, enabling real-time performance assessments. Through threshold-based alerts, network administrators can proactively manage and resolve issues before they degrade network performance.
+
+Additionally, SNMP monitors hardware health parameters, such as CPU load, RAM usage, and disk space, to help network admins detect and monitor changes on network devices. These key insights enable administrators to optimize operational stability across multivendor environments.
+
+SNMP excels in complex, multivendor network settings where continuous monitoring and management across diverse components and platforms are needed. Its widespread support and ability to provide detailed, actionable insights via proactive alerts and performance benchmarks make it a versatile tool for improving network efficiency and stability.
+
+ICMP
+
+Unlike data exchange protocols like SNMP, ICMP is an auxiliary protocol for IPv4 that specializes in sending error messages and operational information in IP networks. It communicates the success or failure of data communications to network devices. It also sends informational messages concerning network health and connectivity issues, such as network congestion, unreachable hosts, or routing problems, back to the source. ICMP enables network admins to diagnose and rectify issues that prevent data packets from reaching their intended destinations as soon as possible.
+
+Pingandtracerouteare network troubleshooting tools that use ICMP to identify connectivity and network path issues. Ping tests the reachability of a device on the network by sending ICMP echo request messages and then waiting for echo reply messages from the target host. It then measures the round-trip time (RTT) of these messages to evaluate network connectivity and packet loss.
+
+Traceroute traces the path that packets take to reach a destination by sending packets with incrementally increasing time-to-live (TTL) values. It then records the ICMP time exceeded messages sent back by the intermediatehops. With this information, network engineers can quickly map the route and identify the root cause of connectivity problems.
+
+Traceroute has evolved into more advanced utilities likeMTR (My Traceroute)andParis traceroute. MTR combines the functionality of traceroute and ping, providing real-time updates on network performance and path changes. This allows it to continuously measure the route to a target, offering a more dynamic and comprehensive view of network conditions over time. Paris traceroute is an important development evolution of the traceroute tool that solves the problem offlow-based(as opposed to packet-based) load-balanced network paths. It ensures a consistent path is taken by all packets in a session, providing a more accurate view of the network path. Learn more about Paris traceroute in this episode of the Telemetry Now podcast, “Using Paris Traceroute for Modern Load-Balanced Networks.”
+
+ICMP is invaluable in dynamic network environments where reliability and performance are critical. It provides swift feedback through specific error messages, such asDestination Unreachable,Time Exceeded, andSource Quench, to help admin teams diagnose and rectify connectivity issues quickly. ICMP is especially useful for quick diagnostics after network changes, problem identification during outages, or setup of new network segments to ensure additions are integrated correctly.
+
+Syslog
+
+Syslog is a standardized protocol used for message logging. It allows network devices to send event messages to a centralized logging server, known as a Syslog server or collector. Developed in the 1980s, Syslog has become a critical component in network management, providing a simple and scalable method for collecting and analyzing log data from various network devices.
+
+Syslog operates by sending event messages from network devices to a Syslog server. These messages can include information about system events, security alerts, configuration changes, and other operational data. Syslog messages are typically sent over User Datagram Protocol (UDP) or Transmission Control Protocol (TCP), and they can be generated by a wide range of devices, including routers, switches, firewalls, and servers.
+
+Syslog is essential for network monitoring because it provides real-time visibility into network operations and security. By centralizing log data, network administrators can efficiently monitor and analyze events across the entire network, identify potential issues, and respond to security threats.
+
+A typical Syslog setup consists of three main components:
+
+These components work together to ensure comprehensive logging and monitoring capabilities, providing insights into network performance, security, and configuration changes.
+
+A Syslog message typically contains the following components:
+
+The priority field combines facility and severity levels, allowing administrators to quickly identify and filter messages based on their importance.
+
+Syslog offers several key benefits for network monitoring and management:
+
+Common use cases for Syslog include:
+
+While both SNMP traps and Syslog messages are used for monitoring network events, they serve different purposes and operate in distinct ways. SNMP traps are asynchronous notifications sent by devices to an SNMP manager, typically used for alerting on specific events such as threshold breaches or failures. In contrast, Syslog provides a more comprehensive logging solution, capturing a wide range of events and storing them for analysis.
+
+Sign up for the very best Kentik has to offer, from articles to analysis and more.
+
+CDP
+
+The CDP is a proprietary device discovery protocol developed by Cisco Systems and is used to manage networks that primarily comprise Cisco-manufactured devices.
+
+CDP messages are broadcast to neighboring devices within the network, allowing them to discover and learn about each other without host configuration. These messages contain useful data, such as device IDs, IP addresses, and connected interfaces. Network admins can compile these messages into an overview of how Cisco devices are interconnected for a comprehensive view of the network’s topology and a better understanding of each device’s role.
+
+CDP eliminates the need for manual documentation of device details and connections, which is beneficial in large-scale or complex network environments that primarily contain Cisco devices. It’s best used in environments where the network predominantly comprises Cisco devices and where quick visualization and understanding of the network infrastructure are required.
+
+CDP’s automated discovery and reporting process lowers the potential for errors and gives network administrators the ability to adapt more quickly to network changes. It also offers invaluable insights into the devices and their interfaces, making it easier to learn about and map networks that use Cisco devices.
+
+NetFlow
+
+NetFlowis a network protocol developed by Cisco Systems that collects metadata on IP traffic flows traversing a network device, such as a router, switch, or host. This protocol is instrumental in enabling network traffic analytics and management by recording metadata about the IP traffic flows and sending flow data to a flow collector for storage and analysis.
+
+NetFlow works by generating flow records at the interface level of a NetFlow-enabled device. These records are then exported to a flow collector where they are stored and processed for network traffic analysis. This data provides valuable insights into network throughput, packet loss, and traffic congestion at specific interface levels.
+
+NetFlow data supports various network monitoring use cases, includingDDoS detectionandBGP peering. By analyzing NetFlow data, network operators can visualize traffic patterns, identify network bottlenecks, and troubleshoot network issues efficiently.
+
+A typical NetFlow monitoring solution comprises three main components:
+
+These components work together to provide comprehensive network visibility and performance analytics.
+
+A NetFlow-enabled device identifies a flow as a unidirectional stream of packets sharing common attributes such as IP addresses, port numbers, and protocol types. These attributes form the core metadata of a NetFlow record. Flow records are exported to a NetFlow collector when a flow becomes inactive, long-lived, or terminated by TCP flags.
+
+The flow records include data points such as:
+
+Once collected, this data is analyzed to provide insights into network performance, security, and traffic patterns.
+
+NetFlow offers several key benefits for network monitoring:
+
+Common use cases for NetFlow includenetwork monitoring,capacity planning,cost management,network security, andtroubleshooting.
+
+Streaming Telemetry
+
+Streaming telemetry marks a significant shift in network monitoring, moving away from traditional interval-based polling systems like SNMP to a dynamic, real-time data streaming model. This modern approach enables continuous monitoring, analysis, and data collection to improve the responsiveness and accuracy of network management.
+
+Unlike traditional polling methods, streaming telemetry uses a publish/subscribe model where network devices push data continuously based on set intervals or specific events. Data is transmitted automatically by structured formats likeJSONorXMLvia transport protocols likegRPC. This provides a granular view of network metrics, giving administrators near-real-time performance insights.
+
+However, streaming telemetry isn’t as universally supported as traditional protocols. It requires modern infrastructure designed to handle continuous data streams, which not all current systems or devices support. However, leading manufacturers, including Cisco andJuniper, are integrating streaming telemetry products, such asCisco IOS XEandJuniper Apstra, signaling a shift toward broader usage in complex network environments.
+
+A notable subset of streaming telemetry isOpenTelemetry, an open-source observability framework for cloud-native software. OpenTelemetry provides a set of APIs, libraries, agents, and instrumentation to enable the collection of metrics, traces, and logs. It is designed to support various data sources and telemetry data, facilitating the integration of diverse systems and improving interoperability between different monitoring tools. This makes OpenTelemetry particularly valuable in complex, heterogeneous environments where data from multiple sources needs to be aggregated and analyzed.
+
+Streaming telemetry is best used in high-performance environments that need to adjust to network changes and anomalies quickly, maintain network integrity and security, or require timely data for decision-making. It’s particularly suited for data centers or large enterprise networks where real-time analytics and rapid issue resolution are critical. The detailed and frequent data provided supports advanced analytics and automation, improving overall network responsiveness and efficiency.
+
+Learn more about streaming telemetry in the Kentik blog (see posts in thestreaming telemetry category) such as, “The Benefits and Drawbacks of SNMP and Streaming Telemetry.”
+
+Conclusion
+
+In this article, you learned about several key network monitoring protocols—SNMP, ICMP, the Cisco-specific CDP, NetFlow, streaming telemetry, and Syslog—and how each uniquely benefits varied use cases within modern networks.
+
+With its broad support, SNMP serves as the universal backbone for network monitoring, while ICMP is indispensable for diagnostics and swift issue resolution. CDP provides detailed insights into network topology for Cisco-centric environments. NetFlow enables a wide variety of network monitoring and management use cases, streaming telemetry delivers real-time data for unprecedented insight and agility, and Syslog offers comprehensive logging and alerting capabilities.
+
+Combining protocols might be necessary to achieve comprehensive monitoring. Combining SNMP and ICMP provides both extensive monitoring and effective problem-solving diagnostics. For larger, more complex networks, pairing SNMP with streaming telemetry for broad monitoring and real-time insights can be effective.
+
+As networks continue to evolve, so too will protocols, and staying informed and adaptable ensures that you are always prepared to meet the challenges of today’s and tomorrow’s networks.
+
+Network Monitoring with Kentik
+
+Kentik offers a suite of advanced network monitoring solutions designed for today’s complex, multicloud network environments. TheKentik Network Observability Platformempowers network pros to monitor, run and troubleshoot all of their networks, from on-premises to the cloud. Kentik’s network monitoring solution addresses all three pillars of modern network monitoring, deliveringvisibility into network flow, powerfulsynthetic testing capabilities, and Kentik NMS, thenext-generation network monitoring system.
+
+To see how Kentik can bring the benefits of network observability to your organization,request a demoor sign up for afree trialtoday.
+
+Platform
+
+Solutions
+
+Technology
+
+New and Notable
+
+Learn
+
+Company
+

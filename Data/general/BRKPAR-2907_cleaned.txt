@@ -1,0 +1,104 @@
+Jonathan Dunbar Leviton BRKPAR -2907Smart Building Planning, Network Design and Best Practices 1
+Enter your personal notes hereQuestions? Use Cisco Webex App to chat with the speaker after the session Find this session in the Cisco Live Mobile App Click “Join the Discussion” Install the Webex App or go directly to the Webex space Enter messages/questions in the Webex spaceHow Webex spaces will be moderated until February 24, 2023.1 2 3 4 © 2023 Cisco and/or its affiliates. All rights reserved. Cisco PublicCisco Webex App 2 BRKPAR -2907
+Network Solutions Smart Building Planning Network Design and Best Practices
+© Copyright Leviton Manufacturing Co., Inc. 4 $80.6 BillionSmart Building Market Growth 20222029 22.2% CAGR$328.6 Billion
+© Copyright Leviton Manufacturing Co., Inc. 5Competition for Tenants 
+- Increased home working means fewer occupants in commercial officesDrivers of Smart Building Growth Operational cost reduction and improved sustainability 
+- Reduced energy consumption and carbon footprintFocus on Human Centric Design and Operation 
+- Health, safety and wellbeing of occupants 
+© Copyright Leviton Manufacturing Co., Inc. 6Building Systems are Transforming Traditional building systems were siloed and would not talk to each other Smart buildings: require these systems to work together and share dataConstruction contracts normally solicited proposals from separate MEP, AEC, Security and IT firmsEach OT system often had proprietary or special purpose “networks” 
+© Copyright Leviton Manufacturing Co., Inc. 7 Where Do I Start?How do I coordinate so many independent systems?How do I know which smart devices will yield the best results? How do I measure ROI for smart buildings?What questions should I ask at the outset?What best practices should I follow?Who should I be asking?
+© Copyright Leviton Manufacturing Co., Inc. 8 2 3 4 5 1Best Practices for Smart Building Planning Establish stakeholdersDefine goals and objectivesBenchmark set targetsIdentify technologies to achieve the goalsAssemble the right advisers and technology partners 
+© Copyright Leviton Manufacturing Co., Inc. 9 Facilities Mgmt. 
+- Utility management 
+- Building maintenance 
+- Health & Safety 
+- Building securityIT Staff 
+- Network operations 
+- Business systems support 
+- Network securityTenant 
+- Worker productivity 
+- Safe, healthy environment 
+- Common area mgmt. 
+- Comfort and amenitiesBuilding Owner 
+- Operational efficiency 
+- Risk mitigation and resilience 
+- Environmental sustainability 
+- Asset protection and enhancementStakeholders can help define the goals and objectives for a smart building projectEstablish Stakeholders 
+© Copyright Leviton Manufacturing Co., Inc. 10What problems are we trying to solve? What value will this deliver to our business?Define Goals and Objectives 
+- Reducing and optimizing operating costs 
+- Occupant satisfaction, safety, and wellbeing 
+- Enhancing public perception
+- Achieving sustainability goals 
+- Optimize facility utilization 
+- Reducing maintenance costs 
+- Attracting and retaining tenants 
+- Efficiently managing and servicing the building
+- Improved occupant productivity 
+- Managing risk of catastrophic events and building downtime 
+- Preparing buildings for addition of new technologies over time 
+- Reducing operational risks 
+© Copyright Leviton Manufacturing Co., Inc. 11 But can we accomplish more?How does my building compare to other buildings in my area? How do I know if I have left anything on the table?How do I choose the most effective objectives?
+12
+- There are many approaches to quantifying building performance 
+- Each assessment program addresses a specific area: Energy, Sustainability, Safety, Connectivity, Cybersecurity, Health & Wellbeing 
+- Improve your score and optimize outcomesBenchmarking / Setting Building Targets 
+13 Identifying the Enabling Technologies 
+- Traditional Building Automation Systems (BAS) are just a start 
+- Purpose -built software integration platforms with AI continually improve system optimization 
+- Keys to functionality: Data access, cross -platform compatibility, and system integration 
+- Systems are moving from proprietary, stand -alone networks to IP -enabled platforms based on Ethernet connectivity 
+© Copyright Leviton Manufacturing Co., Inc. 14Choose technology partners that have the devices and systems that support your project goals Intelligent building expertise is important 
+- Smart Building Design Professional 
+- Control Platform Software Vendor 
+- Master Systems Integrator 
+- Building Automation Systems Providers 
+- Network Cabling Solution ProviderAssembling the right partners 
+© Copyright Leviton Manufacturing Co., Inc.© Copyright Leviton Manufacturing Co., Inc. 15 How do I bring it all together?How do I configure the network to cope with this complexity?How do I maintain network security across so many connections? How can I enable ongoing management of this complex system?What best practices should I follow?
+© Copyright Leviton Manufacturing Co., Inc. 16
+- Essential part of every intelligent building system and function 
+- Connects all kinds of devices, both wired and wireless 
+- Often carries power to the devices 
+- Now considered as critical as water, electricity, gasData Connectivity is the 4thutility WAT E R E L E C T R I C I T Y G A S D ATA C O N N E C T I V I T Y 
+© Copyright Leviton Manufacturing Co., Inc. © Copyright Leviton Manufacturing Co., Inc. 17 LAN Ethernet enabled, converged systems add complexity, open security risks, and can disrupt core LAN performance .IP Convergence: “Start of Smart” Each building system is installed, controlled and managed separately.COMMUNICATIONSSECURITY HEALTH & WELLNESS CONSUMER APPLICATIONS BUILDING AUTOMATION LANBefore buildings were smart
+© Copyright Leviton Manufacturing Co., Inc. 18 Cabling Standards for Intelligent Buildings BICSI 007 ICT Design and Implementation Practices for Intelligent Buildings and PremisesEN 50173 -6 Information Technology – Generic Cabling Systems – Part 6: Distributed Building Services ISO/IEC 11801 -6 Information Technology – Generic Cabling Systems – Part 6: Distributed Building ServicesANSI/TIA -862-B Standard for Structured Cabling Infrastructure for Intelligent Building Systems
+© Copyright Leviton Manufacturing Co., Inc. 19The Utility LAN Architecture -uLAN™ HEALTH & WELLNESS COMMUNICATIONS SECURITY CORE LANBUILDING AUTOMATION CONSUMER APPLICATIONS THERMAL IMAGING AIR QUALITY PEOPLE COUNTINGUV DISINFECTION CUSTOMER KIOSK DIGITAL SIGNAGEPOINT OF SALE LOCATION SERVICES WIRELESS ADVANCED DESKTOPADVANCED VOIPPARKING GATES SECURITY CAMERASBADGE READERS ACCESS CONTROLSHOOTER DETECTION uLAN™ FIREWALL OCCUPANCY SENSORSWINDOW SHADES HVAC ENERGY MANAGEMENTELEVATORSSMART LIGHTING IN-BUILDING WIRELESS NURSE CALLPAGING SYSTEMA/VSOUND MASKING 
+© Copyright Leviton Manufacturing Co., Inc. 20
+- New Building Internet of Things (BIoT) devices 
+- Smart building connections are often located in walls or ceiling 
+- Referred to as Service Outlets 
+- Higher density that traditional LANCabling Design for the uLAN ™ Telecommunications Outlets Service Outlets 
+© Copyright Leviton Manufacturing Co., Inc. 21LAN 20% / uLAN 80% TR with uLAN serving 201-800equipment outlets Smart Building Infrastructure LAN 80% / uLAN™20% Traditional TR serving 101-200equipment outlets 
+© Copyright Leviton Manufacturing Co., Inc. 22Physical infrastructure should 
+- Consider communication and power 
+- Support all current and future devices 
+- Be capable of adapting to new technologies 
+- Be designed for long term reliability, ensure building resiliency and reducing risk 
+- Support all critical modes of communication and data transfer, wireless and wiredConnectivity needs Careful Planning 
+© Copyright Leviton Manufacturing Co., Inc. 23CENELEC EN 50173 -6 Standard for Generic cabling systems -Distributed building, specifies Class EA (Cat 6A) as the minimum cabling category for distributed building services Beyond Bandwidth also consider and plan for: 
+- Contribution to sustainability goals 
+- Coverage -location of device connections 
+- Power needs -especially higher PoE levels 
+- Expansion capability -now or later 
+- Support for new technologies Choosing the Right Cabling System 
+© Copyright Leviton Manufacturing Co., Inc. 24End to end copper channels with bandwidth and power capability to support a very broad range of applications Field -terminated options simplify cable routing and organization while supporting fast installation Specialized products specifically engineered for uLAN applications: 
+- Zone enclosures 
+- In-ceiling termination solutions 
+- Couplers and coupler assembliesKey Elements of uLAN™Copper Applications 
+© Copyright Leviton Manufacturing Co., Inc. 25New SPE standards 
+- IEEE 802.3cg 10Mb/s over single pair cable –10BASE -T1S, 10BASE -T1L 
+- IEEE 802.3bu Power over Data Lines (PoDL) for SPE PoE 
+- TIA 568.5 Single Balanced Twisted -Pair Telecommunications cabling and Components Standard 
+- SP1-400 (400m) and SP1-1000 (1000m) cable and channel specifications supporting 10BASE -T1L 
+- Copper LC new Connector type The Future of Smart Building Cabling Single -Pair Ethernet (SPE) will be part of the answer IEC 63171 -1 Single pair connector, Copper LCIEC 61156 -13 Single pair horizontal cable, 20 MHz Shielded and unshielded cable Conductor sizes from 18 to 26 AWG 
+© Copyright Leviton Manufacturing Co., Inc. Smart Building Best Practices Network Solutions 2 3 4 5 1 
+- Utilize a uLAN architecture to optimize your smart utilities and protect your core LAN 
+- Select a high -quality structured cabling system to future proof and assure critical building system functions 
+- For more information visit LEVITON @ World of Solutions Booth B08Smart Building Recommendations 
+- Invest in upfront planning Establish stakeholdersDefine goals and objectivesBenchmark set targetsIdentify technologies to achieve the goalsAssemble the right technology partners
+© 2023 Cisco and/or its affiliates. All rights reserved. Cisco PublicComplete your Session Survey 
+- Please complete your session survey after each session. Your feedback is important. 
+- Complete a minimum of 4 session surveys and the Overall Conference survey (open from Thursday) to receive your Cisco Live t -shirt. 
+- All surveys can be taken in the Cisco Events Mobile App or by logging in to the Session Catalog and clicking the "Attendee Dashboard” at https://www.ciscolive.com/emea/learn/sessions/session -catalog.html 27 BRKPAR -2907
+© 2023 Cisco and/or its affiliates. All rights reserved. Cisco PublicAgenda 28 BRKPAR -2907 Visit the On -Demand Library for more sessions at ciscolive.com/on -demand .Attend any of the related sessions at the DevNet, Capture the Flag, and Walk -in Labs zones.Visit the Cisco Showcase for related demos. Book your one -on-one Meet the Engineer meeting.Continue Your Education
+Thank you

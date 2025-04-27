@@ -1,0 +1,463 @@
+Bitcoin Core P2P/net -- PRs and issue discussions
+
+-----
+
+https://github.com/bitcoin/bitcoin/pull/8282
+net: Feeler connections to increase online addrs in the tried table.
+EthanHeilman
+
+https://github.com/bitcoin/bitcoin/pull/8594
+Do not add random inbound peers to addrman. #8594
+gmaxwell
+
+https://github.com/bitcoin/bitcoin/pull/9037
+net: Add test-before-evict discipline to addrman
+EthanHeilman
+
+-----
+
+6 Jan 2021
+
+suhas:
+
+I'm proposing the addition of a new, optional p2p message to allow peers to
+communicate that they do not want to send or receive (loose) transactions
+for the lifetime of a connection.
+
+The goal of this message is to help facilitate connections on the network
+over which only block-related data (blocks/headers/compact blocks/etc) are
+relayed, to create low-resource connections that help protect against
+partition attacks on the network.  In particular, by adding a network
+message that communicates that transactions will not be relayed for the
+life of the connection, we ease the implementation of software that could
+have increased inbound connection limits for such peers, which in turn will
+make it easier to add additional persistent block-relay-only connections on
+the network -- strengthening network security for little additional
+bandwidth.
+
+Software has been deployed for over a year now which makes such
+connections, using the BIP37/BIP60 "fRelay" field in the version message to
+signal that transactions should not be sent initially.  However, BIP37
+allows for transaction relay to be enabled later in the connection's
+lifetime, complicating software that would try to distinguish inbound peers
+that will never relay transactions from those that might.
+
+This proposal would add a single new p2p message, "disabletx", which (if
+used at all) must be sent between version and verack.  I propose that this
+message is valid for peers advertising protocol version 70017 or higher.
+Software is free to implement this BIP or ignore this message and remain
+compatible with software that does implement it.
+
+-----
+
+27 Nov 2020
+
+sdaftuar dhruvm: i saw your question about my comment here:
+https://github.com/bitcoin/bitcoin/pull/19858/files#r483713328. the point i was
+trying to make is that it's healthy for the whole network if any honest node is
+engaging in the proposed behavior because even an eclipsed (listening) node will
+eventually get an inbound connection from the honest nodes who are syncing tips
+with everyone in their addrman, and at the point that happens they'll have a
+chance to learn of a block from the incoming connection. at any rate this ties
+right into the comment that amiti made, that by creating new edges in the
+network graph all the time, we are hardening the network against partition
+attacks (ie raising the cost to an attacker of being able to successfully
+partition the network for a given amount of time). please feel free to ping me
+here if you have more questions.
+
+<dhruvm> sdaftuar: Thank you. That's what I originally thought this was about --
+helping nodes that are listening, eclipsed and addrman 100% poisoned(especially
+because listening nodes are easier to poison iiuc). To my rookie eye, that'd
+argue that this PR is not merely an incremental change. There are no other
+mechanisms today that I know of where the network can help an eclipsed node
+where the owner does not know it is eclipsed. Would you agree? When addrman is
+100% poisoned, the node does not have memory of any peer outside the dishonest
+network, but the honest network still has memory of this trapped, honest node.
+
+<sdaftuar> dhruvm: i don't understand the "addrman 100% poisoned" reference -- a
+peer can be eclipsed regardless of how "poisoned" its addrman is, it's just a
+question of likelihood/cost. an adversary with 10 (diverse) ip addresses can
+(with very low probability) eclipse new nodes coming online, today, because
+aside from the stale-tip-detection logic, we don't make any attempt to rotate
+our outbound peers and it's possible to bypass that logic by feeding blocks
+(slowly) to the target peer, which opens up certain kinds of attacks (either by
+mining a bogus/less work chain, or even just keeping a peer lagged behind the
+network for the purposes of attacks on eg layer 2 systems like
+lightning). anyway i do agree with the statement that this PR is not just an
+incremental change to our peering/network topology -- it would be a step-up in
+costs to an attacker to sustain a partitioning attack against a node, because
+after this pr we should always eventually find the honest chain, as long as we
+have at least 1 honest peer in our addrman. (of course, if our addrman is taken
+over, then things are pretty hopeless). but your point is right that if we're a
+listening node and our addrman is taken over, then theoretically honest peers
+could still connect in to us and keep us connected to the honest network. that
+seems an unlikely situation however, as if we're taking connections from honest
+peers, we should also have a not-completely-overrun addrman
+
+<dhruvm> Thank you, that helps me understand. If an incoming block-relay
+connection reveals we are behind by more than 1 block, and is a listening peer,
+are there downsides to evicting an outbound peer to open a slot for the more
+up-to-date peer?
+
+<sdaftuar> i think it's hard to say...eviction of an existing peer can be a
+dangerous thing, because an adversary can use such behavior to (at some cost)
+cause you to disconnect honest peers. but if you design it right, i think it
+could be a fine and beneficial behavior even to seek out new outbound peers if
+you get indications that none of your current peers are themselves connected to
+the honest, most-work network. the existing outbound peer rotation/eviction
+system takes some care to only consider 4 of our 8 peers for eviction, and then
+chooses the one that has least recently provided us a block, i think. so that
+even if an adversary were trying to game our rules, or if there was some network
+condition we failed to foresee that caused an unexpected behavior, at least 4 of
+our 8 peers would be unaffected by the eviction logic.
+
+-----
+
+25 Dec 2019
+
+<gleb> Is there a way to trick functional tests to think that nodes are not
+connected locally? Like, so that addr is not 127.0.0.1
+
+<gwillen> gleb: I don't know if they're checking for 127.0.0.1 specifically, but
+you can use anything in 127.* and it will work as localhost. if that doesn't
+work, you can also use your own external IP, and see if it is able to catch that
+
+<gleb> No, it's like *I need* the node to think that a connection between 2
+regtest nodes is not local. So that they see each other as something from the
+internet
+
+<gwillen> right, that's what I'm saying -- try giving it 127.0.0.2 to connect
+to, and see if it believes that's not local, or if your LAN IP is 192.168.1.99,
+try giving it that. it will still connect locally but the IP will be different
+(but if it's connecting to itself automatically and you don't supply the IP,
+then I'm not sure)
+
+<gleb> gwillen: Thanks. I gave up and tested manually. If you have a bit more
+time, perhaps looking at the last comment in 16702 would let you know what I
+want to achieve better, cuz it's hard to explain without context. If not, no
+worries, at this point I feel like there is no good answer anyway =\
+
+<gwillen> gleb: I do see what you mean (and it turns out that none of my
+suggestions would work anyway, since all of the addresses I suggested will
+identify as "local"), or rather as !routable
+
+<pinheadmz> gleb: is there any sense in "allowing" local connections in regtest
+mode only? you'd still have to shim in a ASN number for 127.0.0.1 ...
+
+<gwillen> pinheadmz: it seems like you'd have to shim multiple ones, to test
+meaningfully, but I guess you could do that with a fake asmap data file. in the
+code you would just need to disable the check for local addresses for testing,
+and it does make _some_ sense to just remove all the nonroutable checks in
+regtest, potentially
+
+-----
+
+2019-05-17 Slow getrawmempool
+
+<gmaxwell> getrawmempool verbose is astonishingly slow, a PR just went in to
+make it faster but it is still astonishingly slow. I am reasonably confident
+that it was not anywhere near this slow last time the mempools were big.
+
+<gmaxwell> This change in Aug 2017 made all the UNIVALUE additions quadratic:
+https://github.com/bitcoin-core/univalue/commit/ceb1194137421afba01e8c1042bf75f3a2cdddc3
+(which probably makes a number of our other RPCs slow too), but the changes
+works around it.
+
+-----
+
+2019-05-11 GETDATA issues
+
+<gmaxwell> gleb: sdaftuar: uh, is random fetch ordering putting more stress on
+orphan handling?  The INVs we get from peers are usually in dependency
+order. That makes us fetch in dependency order, and thus the results we get back
+end up being mostly in dependency order.
+
+<gmaxwell> With the random ordering I think we're breaking that.
+
+<sdaftuar> gmaxwell: i asked you that question! :P .. but yeah i wonder the same
+
+<gmaxwell> oh. you did? damn. sorry, fishbrain here.
+
+<gmaxwell> I noticed more use of the orphanmap in my logs which is what caused
+me to ask the question, so I believe the answer is yes :/ ... this is annoying
+
+<sdaftuar> i think it at least seems we gave this insufficient thought before
+merging #14897, so if you have reason to believe it's making things worse, i
+certainly believe it
+
+  https://github.com/bitcoin/bitcoin/pull/14897 "randomize GETDATA(tx) request
+  order and introduce bias toward outbound by naumenkogs" · Pull Request #14897
+
+<gmaxwell> It's not so much a problem but the orphan map is limited in size and
+its expiration process is random, so you really don't want to be using it "by
+default". One answer to this would be to just improve the orphan map behavior.
+
+<sdaftuar> gmaxwell: regarding the orphan transaction issue and the GETDATA
+randomization behavior, it looks to me like:
+
+  (a) we do not put any delay on GETDATA requests for outbound peers
+      announcing a tx for the first time, and
+
+  (b) we have a fixed delay for inbound peers announcing a tx for the first time
+
+<sdaftuar> gmaxwell: so i think in the case of a peer announcing a set of
+transactions that are new to us, we'll request those transactions in dependency
+order from that peer, except if an inbound peer's announcement is partially
+supserseded by a later announcement from an outbound peer for a subset of the
+transactions
+
+<sdaftuar> gmaxwell: so that seems like it should be a relatively small effect
+(and is an effect we have to some degree already).
+
+----
+
+Dandelion: Suhas notes in
+https://bitcoin.stackexchange.com/questions/81503/what-is-the-tradeoff-between-privacy-and-implementation-complexity-of-dandelion
+that the tradeoff of increased complexity for limited additional privacy may not
+be worth it.
+
+-----
+
+Banning
+
+<ossifrage> Should bitcoind be more aggressive in banning nodes that send
+high-hash or bad-diffbits?
+
+<luke-jr> ossifrage: no, we're already too aggressive.
+
+<sipa> i don't see a good reason not to disconnect on invalid PoW,
+actually. that's unambiguously invalid, for as long as the protocol existed.
+
+<luke-jr> disconnect != ban. though having difficulty coming up with a scenario
+where banning would be bad. oh, thought of one: a hardfork to reclaim
+always-zero bits in the header. we'd of course reject the HF blocks, but we
+still want to share our best chain with such nodes. disconnection might be a
+problem there, too.
+
+<sipa> i think banning is desired behavior between nodes on different sides of a
+HF, to partition as quickly as possible, and not waste connection slots on
+either side with peers they disagree with.
+
+<luke-jr> partitioning is bad and should not happen with a HF.
+
+<sipa> ?!
+
+<luke-jr> furthermore, it is at best a false sense of "security" since anyone
+can start a bridge later.
+
+<sipa> there is nothing to bridge.
+
+<luke-jr> I'm talking about real HFs, not scamcoins calling themselves HFs. also
+HFs that *only* make invalid blocks valid, in this example, so the HF'd nodes
+would always prefer the pre-HF chain, so long as they see it, and it's more work
+ofc.
+
+<sipa> as long as no such HF is defined, there is no need to accomodate
+it. right now, seeing a peer give you a block with invalid PoW is a sign that
+peer is, from your perspective, completely broken.
+
+<luke-jr> I'm not suggesting accomodation, just not going out of the way to
+disconnect it. outgoing connections, sure, since those are providing services to
+us primarily, but inbound connections are primarily for the sake of the other
+node.
+
+<sipa> that's reasonable.
+
+-----
+
+PR 19219 Replace automatic bans with discouragement filter by sipa
+https://github.com/bitcoin/bitcoin/pull/19219
+
+This patch improves performance and resource usage around IP addresses that are
+banned for misbehavior. They're already not actually banned since #14929, as
+connections from them are still allowed, but they are preferred for eviction if
+the inbound connection slots are full.
+
+Stop treating these like manually banned IP ranges, and instead just keep them
+in a rolling Bloom filter of misbehaving nodes, which isn't persisted to disk or
+exposed through the ban framework. The effect remains the same: preferred for
+eviction, avoided for outgoing connections, and not relayed to other peers.
+
+Also change the name of this mechanism to "discouraged" to better reflect
+reality.
+
+
+jonatack
+
+Concept ACK on improving the performance/resource usage of IsBanned.
+
+Light code review ACK 4c4df6b. I have not benchmarked the performance deltas of
+IsBanned (presumably improved for discouraged addrs) and IsBannedLevel
+(presumably marginally worse for non-banned addrs) and how meaningful they are
+with this change or the shape of the BanReason distribution and how manipulable
+it is. Benchmarking these and test coverage would be good.
+
+A comment on the choice of nElements and nFPRate may be good here. These are the
+same as for filterInventoryKnown.
+
+
+
+luke:
+I think we need to skip over BanReasonNodeMisbehaving entries when loading
+existing ban data?
+
+sipa:
+They (by default) have a 24 hour limit only, and during that time, they will
+just be treated as a real ban instead of a discouragement.
+
+
+
+jasonbcox
+Looks like ClearBanned() should call m_discouraged.reset() otherwise the
+clearbanned RPC no longer does what users expect.
+
+sipa:
+I considered that, but I think it would be counterintuitive. Discouragement
+isn't exposed as bans (it's not visible or accessible in RPCs or UI) as it's a
+completely automatic process, so I think that exposing a way to clear it would
+violate that abstraction.
+
+jasonbcox:
+I see. The current implementation may introduce subtle bugs then, especially
+considering that IsBanned() is now unintuitively named. setban "someIP" "add"
+may return Error: IP/Subnet already banned for instance.
+
+sipa:
+Nice catch. I've addressed it by adding a separate IsBannedOrDiscouraged that's
+distinct from IsBanned.
+
+
+
+jnewbery:
+
+This seems like an improvement, but it leaves the BanMan with a
+slightly odd and inconsistent interface:
+
+- Ban() has an enum as its second parameter, but that parameter is only ever set
+to BanReasonManuallyAdded.
+
+- If IsBanned() is called with an address, it returns whether an address is
+discouraged or banned. If it's called with a subnet, it returns if it's banned,
+but not discouraged.
+
+- Unban() won't remove a discouraged address from banman, but it's not possible
+to add an outbound connection to that address with addnode onetry.
+
+- ClearBanned() (which is called by the clearban RPC ("Clear all banned IPs"))
+doesn't clear discouraged addresses.
+
+- The listbanned RPC returns a ban_reason, which can only ever be "manually
+added". (banReasonToString() is basically dead code now).
+
+- It'd be nice to rationalize this so BanMan just had a setter SetBanLevel()
+function and a getter GetBanLevel() function.
+
+sipa:
+
+Most of those things are no longer true, apart from the BanReason being
+superfluous now (there is a separate IsBannedOrDiscouraged). I think a follow-up
+can remove BanReason altogether, but I think it's preferable to not have a
+SetBanLevel - discouragement and banning are very different concepts (and it
+wouldn't be unreasonable to move discouragement elsewhere entirely).
+
+
+
+cculianu:
+You really should add a benchmark for this. What happens if someone floods the
+filter with a big block of 1 million IPv6 addresses?
+
+sipa:
+Rolling Bloom filters only keep the last N elements added; 50000 in this
+case. Their performance is not affected by how many elements are kept. So worst
+case, being flooded with IPs would reduce the effectiveness of the filter in
+keeping broken peers out.
+
+cculianu:
+Right, so you can flood the filter with even something like 150k inserts,
+saturate it to always return false positive, and then all peers are "equally
+discouraged" (meaning you have no ban policy anymore)....
+
+sipa:
+No, the false positive rate never goes above the specified one (0.000001 in this
+case). The rolling aspect discards old entries.
+
+jnewbery:
+I suggest you take a look at the CRollingBloomFilter implementation. The rolling
+bloom filter is actually multiple generations of bloom filters, so you can't
+saturate it by adding many entries. It'll just discard the oldest generation
+when it reaches (max entries * 3/2).
+
+cculianu:
+Ok, so basically:
+- this is as if you had a typical hash table implementation clamped to 75k most
+  recent entries
+- but it has no ability to unban
+- it only eats about 67k memory
+- small tiny chance of false positives.
+- slightly slower insertions and lookups than a hash table, but not monstrously
+  so.
+Got it. Thanks.
+
+sipa:
+Indeed. Your numbers are a bit off: it only guarantees 50000 entries (it keeps
+up to 75000, but the last 25000 are removed whenever that number is
+exceeded). It also uses around 528 KiB (at an fprate of 1/1000000).
+
+cculianu:
+Oh right.. it's 67k uint64's -> 528KiB. My bad.
+Hmm. For ~800KiB you could have just implemented a regular hash table
+(std::unordered_map, etc) or a std::unordered_set, clamped it to 50k items, and
+then had the ability to query it, iterate over it, show it in the UI, and/or
+remove individual items.
+
+sipa:
+Yeah, we do have a limitedmap data structure that implements effectively
+that. Its memory usage is significantly worse though (because every entry in the
+map needs several pointers, plus dynamic allocation overhead). If I recall the
+number correctly it would be 4 MiB at least for 50000 entries.
+
+cculianu:
+
+I'm aware of that data structure but it's not a hash table, it's a red-black
+tree based map, which also stores a reverse-map as well. It's not very efficient
+for this situation...
+
+You can probably get away with just a straight hash table (unordered_map) with
+some wrapper that periodically sweeps it to clamp it to some max size --
+probably just remove the oldest entries by creation time. While not ideal, it
+has some advantages -- namely being able to remove from the set... and blazing
+fast lookups.
+
+I guess it's your call -- you either pay the memory and upkeep costs and
+preserve the facility of a traditional ban list and save a few cycles on lookups
+-- or you toss that aside and maintain a bloom set and redefine the semantics of
+banning (which is already happening anyway)...
+
+sipa:
+
+Hash table or red-black tree doesn't matter much. It's (table size + 2 pointers
++ alloc overhead per entry) or (3 pointers + 1 int + alloc overhead per entry),
+and in both cases you need a way to iterate efficiently in order of insertion
+(either through a separate map like limitedmap does, or by doubly-linking the
+elements together like is supported by boost::multi_index). Even if you don't do
+that and just occasionally sweep, you need to keep track of insertion time per
+item, and the allocation overheads don't go away.
+
+In either case, the overhead is much larger than a rolling bloom filter, and as
+you say - changes to the semantics of auto banned items are happening anyway.
+
+
+sipa:
+
+I've made a few changes suggested by @jnewbery. The PR is now split into two
+commits:
+
+- The first is a minimal change that implements the new behavior (smaller than
+  the previous PR), plus release notes and RPC documentation changes.
+
+- The second makes the distinction between discouraging and banning much cleaner
+  in the interface, removing BanReason altogether.
+
+I'm happy to split off the second commit. It could also be ignored in backports.
+
+-----

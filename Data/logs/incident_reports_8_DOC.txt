@@ -1,0 +1,114 @@
+DIRT API Documentation
+
+All API endpoints (other than those required for authentication)
+will require authentication to be accessed.
+
+To ensure the privacy and safety of our users, no incident
+reports will be publicly viewable.
+
+-----------------------------------------------------------------
+
+Schemata
+
+<< Incident >>
+{
+    "id"                int
+    "severity"          int {0, 1, 2, 3}
+    "status"            int {0, 1, 2}
+    "description"       string
+    "location"          string
+    "created_at"        string (ISO 8601)
+    "updated_at"        string (ISO 8601)
+    "incident_time"     string (ISO 8601)
+    "photo_link",       string
+    "user"              << User >>
+}
+
+<< User >>
+{
+    "id"                int
+    "first_name"        string
+    "last_name"         string
+    "email_address"     string
+    "phone_number"      string
+}
+
+-----------------------------------------------------------------
+
+GET  /incidents
+
+Query arguments
+- "user_id"             int     (defaults to ALL users)
+
+Response
+[
+    << Incident >>,
+    << Incident >>,
+    ...
+    << Incident >>,
+]
+
+-----------------------------------------------------------------
+
+POST /incidents/new
+
+Params
+{
+    "severity"          int {0, 1, 2, 3}
+    "description"       string
+    "location"          string
+    "file"              file
+}
+
+Response
+<< Incident >>
+
+-----------------------------------------------------------------
+
+GET  /incidents/:id
+
+Query args
+- None
+
+Response
+<< Incident >>
+
+-----------------------------------------------------------------
+
+POST /incidents/:id
+
+Params
+{
+    "severity"          int {0, 1, 2, 3}
+    "status"            int {0, 1, 2}
+    "description"       string
+    "location"          string
+}
+
+Response
+<< Incident >>
+
+-----------------------------------------------------------------
+
+GET  /users/:id
+
+Query args
+- None
+
+Response
+<< User >>
+
+-----------------------------------------------------------------
+
+POST /users/new
+
+Params
+{
+    "first_name"        string
+    "last_name"         string
+}
+
+Response
+<< User >>
+
+-----------------------------------------------------------------

@@ -1,0 +1,656 @@
+January 10th 2023:
+  Why is it important to communicate effectively?:
+
+     Communication empowers people and can facilitate a cohesive, effective team. 
+
+     The benefits of collaboration is highly controlled by how well a team communicates effectively.
+
+  Technical Communication:
+    communcates technical information in any medium (Technical writing is more objective and research based)
+
+  technical writing:
+    - Makes careful use of design and layout to enhance use
+
+    - is ethical, objective, and accurate
+
+    - upholds field/organization foals, cuture and values
+
+    - technical writing I have encountered (programming documentation, cookbook, motherboard manual, lego instructions, khan academy, manuals) 
+                                           (this seems quite broad)
+
+January 12th 2023:
+
+  Effective communication is ALWAYS dependant on the rhetorical situation
+
+  Rhetoricial situation:
+    Message - purpose(s) of the Message
+
+    Audience - Consumers of said message 
+
+    Author - Who's writing it
+
+    Circulating everything above is the context
+
+    Types of context:
+
+    physical location, 
+    what medium is the message, 
+    culture,
+    your field/discipline
+    current events
+
+    Author: 
+      Education, profession, personal experience, research documentation, is the writing objective/objective - for credibility
+
+    Message (purpose?): clarity, inform, direct/instruct/teach, persuade
+
+    Audience: (NEEDS - what do they know, what don't they know? - What do they need from this communication)
+              (When/where/why will this be used? - to finding the best medium to actually transmit this information)
+
+              (Attitudes - preferences, likes dislikes torwards topic, attitudes torwards the author (you), your organization)
+
+              (Values: core principles/beliefs)
+
+      Audience profile:
+        Different levels of audience: primary .... secondary
+
+  Practicing with diffrrent audience types:
+
+January 17th 2023:
+
+  Some common types of technical reports:
+
+    Primary research reports:
+      - Lab reports
+      - Field reports
+      - Progress reports
+      - incident or accident reports
+      - Compliance reports
+      - Structural reports
+    Secondary/mixed research reports 
+      - Literature reviews
+      - Technical background and specification reports
+      - Feasibility reports (Cost-benefits)
+      - Justification reports
+      - Recommendation reports
+
+      Progress reports:
+        shows work that needs to be done and work that has been done. Really is just a progress report; they show progress
+
+  short reports:
+    1+ pages - not exceeding 5 
+    No requirment for font or back matter
+    Variable headings (depending on type / rhetorical situation)
+
+  long report:
+    in-depth, often analyitical or problem solving in nature
+    Multiple audience expected (parts for different audience)
+    Expected front and back matter
+
+
+    common long reports:
+      - letter of transmital
+      - title page 
+      .....
+
+
+January 19th 2023:
+  Making an effective table:
+    Generally, introduce visuals before they appear
+
+    Assuming the table is discussed prior to table placement, table label's come first
+
+    The denser the table gets with text the size of the table matters a lot more
+
+  Notes on partial samples:
+    could leave a note and say all these below are the same medium 
+
+    they added parrallelism
+    _______________________
+
+    Most specific categorizations are used
+
+    Can use numbers instead of writing them in words
+
+    font is too small, the accessibility is affected here
+
+  Avoiding plagarism:
+    Plagarism is...
+    - Copy / paste 
+    - inappropriate 
+    - failure to cite or to cite consistently
+    - Failure to use quote marks for source
+
+    How to avoid plagarism:
+      - Give yourself time to check citations
+      - Know the rules 
+      - Ask questions
+      - Cite not only when quoting, but also summarizing or paraphrasing
+        (in engineering, we usually dont avoid quotes because you are the one thats supposed to take of that writing,
+        you are the experts - quoting is info from experts. There can be exceptions though)
+      - Use proper resources
+
+      Rules of paraphrasing and summarizing:
+        - CITED Need to have in intext citations and citations at the footer 
+        - SENTENCE STRUCTURE Cant actually have the same sentence strucure as the original source
+        - ACCURATE / OBJECTIVE 
+        - IN YOUR OWN WORDS
+
+      Paraphrasing steps:
+        Read/reread until you understand
+
+        step away from the original text 
+
+        compose what you remember in your own words 
+
+        compare the original with the paraphrase
+
+        Edit any part that break the Paraphrasing rules
+
+      Source attribution:
+        - Citing 
+        - Source tags in text 
+
+        According to a 2020 pew research center survery.....
+
+      Quotes:
+        Keep quotes accurate (verbatim)
+
+        Keep quotes short
+
+January 22 2023:
+    A signal that a quotation is coming–generally the author’s name and/or a reference to the work
+    An assertion that indicates the relationship of the quotation to your text
+
+
+January 24th:
+
+  Ethical:
+    - Right vs wrong (what we ought to do)
+
+    - Not the same as legal; not objective 
+
+    - moral principles one should apply 
+
+    - respect for people and rights
+
+
+  Theories:
+    Virtue Ethics (Aristotle)- Balance and Compromise
+
+    Rights Ethics (Locke) - Individual worth / benefit 
+
+    Utilitarian Ethics (Mill) - Greatest Benefit to Greatest # 
+
+    Self Realization Ethics (Rand) - Optimal Self is Greatest Benefit 
+
+    How do we determine good, most good, and best interest? 
+
+
+2023 January 26th:
+  We'll be looking at specific examples and language discussions
+
+  Decide a point of view:
+    1st person: I, we 
+
+    2nd person: you 
+
+    3rd person: She/he, it, them (most common point of view in technical writing)
+
+      Students, engineers, software developers often...
+
+  Word choice, sentece length, variety:
+
+    aware vs cognizant
+    confuse vs obfuscate
+    sandy vs Arenaceous
+    Total vs aggregate
+
+    - vary sentences and try to limit length to 20 words or less 
+    - avoid slang, contractions, negative consutrction, and jargon depending on audience
+
+    Parallelism: using the same structure for listed items
+
+  Cut redudandcies:
+    Words/phrases: completetly surrounded on all sides
+
+    Empty modifiers: really, very, kind of, totally 
+
+    Entire sentences or sections
+
+  Tighten....
+
+  Make sure to use an active voice, in comparison to an passive voice 
+    passive is less of a direct form of speaking and is harder to read as a result. it also adds more redudandcies
+
+  Use efficient verbs:
+    will perform an investigation -> will investigate
+    Give instruction -> instuct 
+    Take into consideration -> consider 
+    Gives a financial advantage -> saves
+
+  INTRODUCTION:
+
+  POSTION OVERVIEW: INCLUDE MOST COMMMON professional organization FOR THIS FIELD, point out documentation style (citation)
+
+
+  Table 1. Design certification application table:
+
+    TAB THE TO FROM DATE AND SUBJECT SO THEY ARE ALL ON THE SAME LINE 
+
+
+  7 LINES OF TEXT FOR BLOCK FORMATTING
+
+
+January 31st:
+  Technical Descriptions:
+
+    - Definitions / Expanded Definitions
+
+    Different contexts:
+      Part of a lrger document: proposal, incdent report, websites, etx 
+
+      A paragraph, memo, short report, specification, guides, websites, etc
+
+      Common parts:
+        Introduction with prupose and scope of the document 
+          intended Audience
+
+        Sentence defiition ofr mechinism
+
+        Function explanation
+
+        Features
+          Logical order?
+
+        Conclusion with operation note
+
+        Title and Introduction
+          State your object and its Definition....
+
+      Sentence Definition Example:
+        A cooling fan is an electromechanical device that uses eletrically-driven propeller to move air
+  
+      To describe specifications... use diagrams:
+        Color, Shape, Texture, methods of attachment, pattter/design, subparts. temperature
+
+    Mechanical Descriptions:
+      --How it looks--
+
+    Process Descriptions:
+      ---How something works---
+
+      uses indicitive mood, objective tone, and narrative form with text paragraphs
+
+
+Febuary 1st 2023:
+  Once again, two leading hypotheses:
+    Volcanism and impact event (asteroid)
+
+    The "great dying" mass extinciton at time of siverian LIP
+
+      Around 95% of marine species were eliminated
+
+      the K-pg mass extinction eliminated 75% of species
+
+      4 evidence types for impact event:
+        - iridium (Underwent planetary differentiation, asteroids have them beause they are too small to differentiate)
+        - shocked quartz (only forms at very high pressure)
+        - tektities (formed from molten rock droplets)
+
+      Where did that large asterioid impact earth 66 million years ago?
+
+      Environmental consequences:
+        1. Energy released 
+        2. Regional:
+            - Earthquakes (>10 magnitude)
+            - Tsunamis
+        3. Global:
+            Vaporize rocks - Co2 sulfric accident
+
+
+  K-pg extinction:
+    A double wammy of LIP and an asteroid event
+
+    The K-pg was the only one with strong evidence for impact
+
+    Was the permian triassic extinction also a double wammy?
+
+  We gotta think about reccurance intervals when discussing impact events:
+    big ones happen +/- 100 million years
+
+February 2 2023:
+
+  Purpose / Gap
+
+  Why are you writing this report?
+
+  What gap in solutions, information, etx, needs to be bridged?
+
+  History or background:
+    What kind of background knowledge is needed to understand this topic?
+
+  What will this report cover?
+    Overview report structure
+
+  High context:
+    have subject knowledge; reader's responsibility to understand information provided
+
+    low context:
+      little subject knowldege; writer's responsibility to clarify information
+      (it is your responsibility to understand something because that writing is prob in your field)
+
+Febuary 7th 2023:
+
+  Translation strategies:
+    Determine level of language you need to start with 
+
+    Define unframiliar terms
+
+    HC audience:
+      facts and figures require little explanation 
+      formulas and equations used
+      jardon used (including measurments) 
+      high technicality 
+      high level of precisions for measurments
+
+    LC audience:
+      used simplified word choices
+      define key concpets
+      limit the number of ideas per sentence or sections,
+      use explicit transitions, headings, and lists
+      use Descriptions
+      explain the importance or signifance for the target Audience
+      use greater degree of abstraction
+
+    looking at example:
+      how they failed:
+        using some unframiliar terms (propogation)
+
+
+      what they did good:
+        created a summary at the end
+
+
+  Definitions are used in technical writing
+    - to define new concepts, technologies, design species, ideas, words 
+
+    - Paranthetical definition example (usually in parantheases):
+      this call requires students to have tgeir own laptops (a small, portable computer)
+    
+    - Sentence defintion example:
+      A laptop is a computer with its own battery source and is portable
+
+    - Excerpt from a expanded defintion example:
+      NOOOO
+
+  Expanded definition:
+    Consider why this concept would be important to highlight/expand for your audience
+
+  Ways to expand:
+    - etymology
+    - history 
+    - negation
+    - compare/contrast
+    - required conditions
+    - analysis of parts
+    - variation/types
+    - examples
+    - visuals
+    - operating principles
+
+February 9th 2023:
+  How to format a good docuemnt:
+    - Make good use of all available space (remember that IB Bio research paper)
+    - Apply parrallelism (for example, in a table of contents)
+    - keep margins consistent 
+    - Use specific images, showing the different components of your topic
+    - introduce image beforehand
+
+  Visual benefits:
+    - Processed 60,000x faster (1/10th second)
+    - helps with long-term memory
+    - wider audience comprehension
+
+    Visuals:
+      - Offer a break from the Text 
+      - capture and gold people's attention 
+      - ....
+
+    Types of visuals:
+      TABLES or figures
+
+    FIGURES can take many forms and incude:
+      - graphs
+      - charts
+      - pictures
+      - illustrations, such as maps and diagrams
+
+    figures are labeled below, and tables are above
+
+    Bars and line graphs:
+      show change over time 
+
+      ....
+
+    Pie charts:
+      display how a whole is divided
+
+      Show a relationship between the part and the whole
+
+    Gannt chart:
+
+    Flow chart:
+    Diagrams or drawings:
+      - focus on important Features
+      - show spatial relationships
+      - call attention to details
+      - show process
+
+Lecture got cancelled on tuesday
+
+February 16th 2023:
+  procedural writing:
+    procedures-industry standard instructions
+
+  Instructions - tell how to perform a particular task
+
+  process Descriptions - describe how something works (parts and interactions)
+  
+    First consider the rhetorical situation:
+      - who? how skilled are they?
+      - what are they doing?
+      - when/where/why are they performing this task
+
+    The purpose of step by step is to create accessibility 
+
+    Include process Descriptions
+
+    Safety information:
+      Danger 
+
+      Warning
+
+      Caution
+
+    Instruction parts:
+      Clear Title (How to... How to put together...) Doesnt need to have a "how to" just be very specific 
+
+      Be very specific (not just read top dial... dead TOP left dial (in red))
+
+    Paragraph principles:
+      1. have a unified focus
+      2. show focus in an opening claim
+      3. arrange information to aid reading
+      4. eliminiate ideaa that shift focus
+      5. develop ideas sufficienty
+      
+
+      3 -> 6 -> 4 -> 2 -> 1 -> 5
+
+      Use known to new information (when writing paragraphs) --> this is a key technical writing principle 
+
+      GRAMMAR TIPS:
+        PREDICATE: The part of a sentence that indicates
+        - what the subject does 
+        - what happens to the subject 
+        - what is said about the subject 
+
+        Sentence:
+          - subject 
+          - predicate 
+          - complete idea 
+
+        Sentence fragment:
+          "BECAUSE ONE OF MY FRIENDS WON A CONTEST BY PLAYING A VARIETY OF INTSTRUMENTS" 
+            This is a dependant clause and thus a sentence fragment when by itself
+
+        Run on sentence:
+          A lot of sentences put together without proper punctuation
+
+        comma splice:
+          a random comma in between sentences
+
+        Semicolons:
+          Join together two independant clauses (place equal weight on each sentence)
+
+        Complex sentence: 
+          A sentence with a depdendant and independant clause
+
+
+        Coordinated conjuction:
+          (but, and or, for, yet, so)
+  
+        Use of colons:
+          Setting up a list:
+            - I ordered the following supplies: coffee, straws, and napkins
+
+            - setting up emphasis:
+              the jury finally reached a verdict: guilty 
+
+            - settting up an example, quote, or expanded explanation
+
+did you really fuck up tho?
+心を燃やせ！
+
+"who are you outside of school?"
+me: "ah fuck, I dont know bruh. wait... I DONT HAVE A PERSONALITY"
+
+February 2023:
+  Top Skills Sought:
+    - communication Skills
+    - solves a problem 
+    - offers something new
+  
+  - RFP (Request for Proposals)
+  - Requirements instructions
+  - deadlines 
+
+  Grants (discretionary--competitive)
+
+  Topics: Ethos and Scopes
+    - Areas of interest
+      - What topics interest you in general 
+      - What are your major-specific interests areas?
+
+    - Project or Problem
+
+    - Scope:
+      - can this problem be detailed, evaluated, solved, etc. in the scope of a 12-20 page long report?
+
+  Problem solving method:
+    - identify the problem 
+    - defines the context of the problem 
+    - explore possible strategies
+    - act on best solution 
+    - look back and learn (adapt)
+
+   Problem:
+    - how do you know this is a problem?
+    - why us there a need for this project, research, etc.
+    - why is this a problem? what are the consequences
+    - What acaused the problem? Sole or contriburory causes? 
+    - Proximate and remote causes?
+
+      - Remote cause (Indirect cause)
+
+      - Promixate cause (direct cause)
+
+    Audience:
+      Who has the power to solve the problem individual or group?
+      why hasnt the problem been solved to this point?
+      consider all the stakeholders as you brainstorm, research, and write: people who affect or are affected by the problem
+
+    Research Options:
+      - online database
+      - government reports & documents 
+      - credible websites
+      - experts in the field/scholarly sources 
+      - newspapers / trade magazines
+      - your own research...
+
+    Evaluate Project Feasibility:
+      - Cost-benefits analysis
+      - who's gonna fund it 
+      - who will implement it?
+      - where with supplies come from 
+      - is there any special expertise required?
+      - how long will it take?
+      - is any special permission required
+      - will it truly meet the needs of a majority of the people involved 
+      - will it address the problem, but create more prolbem in the process?
+
+    Evidence Solution:
+      Evidence Solution will address the problem and is the best option
+
+      - vivid accounts
+      - causual reasoning
+      - analogy
+      - precedent 
+      - primary findings
+
+      So what? Why?
+        how have you been indicted to action vs agreement?
+          - insentive/benefit
+          - avoiding consequences
+
+        why you shouldn't do it:
+          - too difficult
+          - differing value
+
+  MKLeo
+    - identifies that light is playing more patiently 
+    - the context is very dire, he's gotta reverse 3-0 
+   - he thinks of stronger combo routes and goes for aggressive ledge gaurding options
+    - acts on his improved gameplan 
+    - looks back on his mistakes from previous games and adapts to improve his existing gameplan
+
+this happened after this event, so this must be the cause of it 
+(CORRELATION DOES NOT EQUAL CAUSATION)
+
+
+Toulmine method:
+  Claims: statesment of fact, opinion, or belief that provide 
+  Qualifiers: one or more statements that limit or clarify the claim 
+  warrants: links from the claim to reasons and evidence 
+  Evidence: yup
+  rebuttle:
+    refute it...
+    concede it...
+
+  Fallacies
+    error in argument:
+      Qualifying claims (may vs always)
+      Assess (the relationship between claims)
+      Evaluate (claims, reasoning, and evidence)
+
+13 November 2023:
+  Finding a job:
+    Using online job boards:
+      - indeed 
+      - linkedin 
+      - networking 
+      - connections
+      - career fairs
+
+

@@ -1,0 +1,330 @@
+Hanna Jabbour, Leader Technical Marketing Engineer SBG @hanna_jabbourSecure Network Analytics Design, Deploy and Troubleshoot Network Detection and Response BRKSEC -2248
+Agenda © 2024 Cisco and/or its affiliates. All rights reserved. Cisco Public
+- Introduction 
+- What are the core components 
+- Legacy and new Architecture 
+- Deployment Flow and Strategies 
+- Transitions 
+- Telemetry Ingest 
+- Conclusion BRKSEC -2248 3
+© 2024 Cisco and/or its affiliates. All rights reserved. Cisco PublicWho Is your presenter 4 BRKSEC -2248Hanna Jabbour 
+- 15 years of experience in Dev/Network/Security 
+- TME for Secure Analytics covering EMEAR/APJ 
+- Lebanese based out of the Dubai 
+- Yes, my name is Hanna 
+© 2024 Cisco and/or its affiliates. All rights reserved. Cisco PublicLebanon | Dubai 5 BRKSEC -2248 5 My home town https:// www.youtube.com /watch?v =INiCIW2VpCI Frame
+Introduction
+© 2024 Cisco and/or its affiliates. All rights reserved. Cisco PublicSecure Network AnalyticsBehavioral modeling Behavioral analysis of every activity within the network to pinpoint anomaliesData collection Rich telemetry from the existing network infrastructure including enhanced telemetry for encrypted traffic analyticsCisco XDR Extended Detection and Response with Cisco XDR. Advanced analytics extends local detections with global intelligence and integrations for accelerated responseMultilayered machine learning Combination of supervised and unsupervised techniques to convict advanced threats with high fidelitySecure Network Analytics 7 BRKSEC -2248Endpoint Telemetry Device and process insight with flow telemetry from Cisco Secure Client 
+© 2024 Cisco and/or its affiliates. All rights reserved. Cisco PublicContextual network -wide visibility Agentless, using existing network and cloud infrastructure, even in encrypted traffic Predictive threat analytics Combination of behavioral modeling, machine learning and global threat intelligenceAutomated detection and response High-fidelity alerts prioritized by threat severity with ability to conduct forensic analysis 8Cisco Secure Network Analytics BRKSEC -2248 
+© 2024 Cisco and/or its affiliates. All rights reserved. Cisco Public Multi-telemetry ingest and visibility VPC, NSG flow logs Secure Network Analytics On-prem Network Telemetry Admin Data center Network UsersOn-premises network Remote WorkersCampus/ Branch Public Clouds Cisco Firewall Log Data Endpoint Data (NVM) BRKSEC -2248 9
+© 2024 Cisco and/or its affiliates. All rights reserved. Cisco PublicExtensible Telemetry Ingest 10 BRKSEC -2248 AnyConnect Secure Mobility Client Identity Services Engine AHGA/ ADC* Proxy Integration* Secure Web Appliance Other Web Proxies ETA Capable Devices Secure Firewall Flow Sensor NetFlow Enabled Devices IPAM DB Threat IntelNetwork TelemetryHTTP(S) Requests HTTP(S) Responses HTTP(S) URL Custom HTTP(S) Headers UsernameTLS Version Key Exchange Authentication Alg. MACUsername MAC Address TrustSec Groups OS TypeProcess name Process hash Process account Parent process name Parent process hash OS Version Connected interface …. Flow Action Translated Port/IP SYSLOG Connections Malware events File events Hardware eventsL7 Application HTTP Requests HTTP Responses SRT/RTT TCP Flags PayloadSRC/DST IP Address SRC/DST Port Bytes/Pkts Sent Bytes/Pkts Received… (NetFlow, IPFIX)Host GroupsVPC & NSG flow log transformation via CTB 
+© 2024 Cisco and/or its affiliates. All rights reserved. Cisco PublicBenjamin FranklinIf You Fail to Plan, You Are Planning to Fail 11 BRKSEC -2248
+Core Components Old Architecture
+© 2024 Cisco and/or its affiliates. All rights reserved. Cisco PublicSecure Network Analytics Component Icons flow data (ETA Fields)global threat alertscloud -based machine learning Flow SensorHypervisor with Flow Sensor VE VM VM Non-NetFlow enabled equipmentETA enhanced NetFlow proxy data NetFlow enabled routers, switches, firewalls10110 NetFlowUDP DirectorAdditional Traffic Analysis Software (SIEM: Splunk) Flow CollectorManager Threat Intelligence Licenseglobal threat alerts telemetry for encrypted traffic analytics (ETA) BRKSEC -2248 13End of Life 
+© 2024 Cisco and/or its affiliates. All rights reserved. Cisco Public Secure Network Analytics components Manager Flow Sensor Flow Collector SMC VE (Virtual Edition) SMC 2210 
+- SMC for Management and Configuration supports: 
+- Up to 25 Flow Collectors 
+- 10000 Network Access User sessions 
+- 15 concurrent managing users 
+- Scale up to 6 Million FPS in one deploymentFlow Collector VE FC 4210/FC5210 
+- Flow Collector is the center of Data Collection and Analytics. 
+- Up to 25 FC per deployment 
+- Up to 240 000 FPS per FC 
+- Up to 6TB of Flow Storage 
+- Up to 1Million Host Classified 
+- Up to 4000 Data Source per FC Flow Sensor VE FS1210/FS 3210/FS4210 
+- Ingest SPAN to generate telemetry and contextual data. 
+- Up to 80Gbps per FS, Copper and Fiber supported interface, 
+- 1Gb, 10Gb and 40 Gb monitor interfaces BRKSEC -2248 14
+© 2024 Cisco and/or its affiliates. All rights reserved. Cisco PublicUDP director 15 BRKSEC -2248UDP Director VE (Virtual edition) UDPD 2210 Replicates UDP traffic and generates NetFlow from SPAN traffic supporting: 
+- 1Gbps/10Gbps interfaces 
+- Up to 150,000 pps Allows NetFlow, SYSLOG and SNMP data to be sent transparently to multiple collection points Provides additional flexibility and ease of deployment Secure Network Analytics manager NetFlowTelemetry for Encrypted traffic analytics (ETA) NetFlow enabled routers, switches, firewalls10110 UDP Director Flow Collector NOT FOR SALE 
+© 2024 Cisco and/or its affiliates. All rights reserved. Cisco Public Required core components Flow rate licenseSecure Network Analytics manager 
+- A physical or virtual appliance that aggregates, organizes, and presents analysis from flow collectors 
+- Central management for all Secure Network Analytics devices 
+- User interface to Secure Network Analytics 
+- Maximum 2 per deployment Flow collector (FC) 
+- A physical or virtual appliance that aggregates, normalizes and analyze telemetry and application data collected from exporters such as routers, switches, and firewalls 
+- High performance NetFlow/ SFlow /IPFIX collector 
+- Maximum 25 per deployment Flow rate license 
+- Collection, management, and analysis of telemetry by Secure Network Analytics 
+- The flow rate license is simply determined by the number/type of switches, routers, firewalls and probes present on the network 
+- FPS estimation Tool https://apps.cisco.com/cfgon/public/app/lancope/fpsestimator.jsp#/add -itemsFlow CollectorSecure Network Analytics manager BRKSEC -2248 16
+Core Components New Architecture
+© 2024 Cisco and/or its affiliates. All rights reserved. Cisco Publicflow data (ETA Fields)global threat alertscloud -based machine learning Flow SensorHypervisor with Flow Sensor VE VM VM Non-NetFlow enabled equipmentETA enhanced NetFlow proxy data NetFlow enabled routers, switches, firewalls10110 NetFlowTelemetry Broker Additional Telemetry Destinations (SIEM: Splunk) Flow CollectorManager Threat Intelligence Licenseglobal threat alerts telemetry for encrypted traffic analytics (ETA)Data Store VPC Secure Network Analytics Data Store Component & CTB 18 BRKSEC -2248End of Life 
+© 2024 Cisco and/or its affiliates. All rights reserved. Cisco PublicSecure Network Analytics manager 
+- A physical or virtual appliance that aggregates, organizes, and presents analysis from flow collectors 
+- Central management for all Secure Network Analytics devices 
+- User interface to Secure Network Analytics 
+- Maximum 2 per deployment Flow collector (FC) 
+- A physical or virtual appliance that aggregates, normalizes and analyze telemetry and application data collected from exporters such as routers, switches, and firewalls 
+- High performance NetFlow/ SFlow /IPFIX collector 
+- Maximum 25 per deployment Data Store (DS) 
+- A physical or virtual appliance that store data in a scalable, resilient way. 
+- Maximum 12 per deployment (36 nodes) Flow rate license 
+- Collection, management, and analysis of telemetry by Secure Network Analytics 
+- The flow rate license is simply determined by the number/type of switches, routers, firewalls and probes present on the netwo rk 
+- FPS estimation Tool: https://apps.cisco.com/cfgon/public/app/lancope/fpsestimator.jsp#/add -items Data Store Required core components 19 BRKSEC -2248Flow rate license Flow CollectorSecure Network Analytics Deployment Data StoreManager 
+Deploy
+© 2024 Cisco and/or its affiliates. All rights reserved. Cisco PublicDeployment Order 21 BRKSEC -2248 Flow Collector Data Store SMC Flow Sensor
+© 2024 Cisco and/or its affiliates. All rights reserved. Cisco PublicVirtual Edition Resources 22 BRKSEC -2248 SMC FC with no Data store RESERVERD RESOURCES
+© 2024 Cisco and/or its affiliates. All rights reserved. Cisco PublicVirtual Edition Resources 23 BRKSEC -2248FC With Data Store Single Data STORE RESERVERD RESOURCES
+© 2024 Cisco and/or its affiliates. All rights reserved. Cisco PublicDeployment Requirements 24 BRKSEC -2248 
+- IP addresses for appliances to be deployed 
+- DNS Server IP(s) 
+- NTP Server IP(s) 
+- SMTP relay (if needed) 
+- Internal IP ranges in use/to be monitoredDevice Information Only for Data Store per node 
+- Non-routable IP Address from the 169.254.42.0/24From (Client) To (Server) Port Protocol Admin User PC All appliances TCP/443 HTTPS Admin User PC All appliances TCP/22 SSH All appliancesNetwork time sourceUDP/123 NTP Flow Collector SMC TCP/443 HTTPS Manager Flow Collector TCP/443 HTTPS Manager Flow Sensor TCP/443 HTTPS Manager Internet TCP/443 HTTPS Manager DNS UDP/53 DNS Flow Sensor SMC TCP/443 HTTPS Flow Sensor Flow Collector UDP/2055 NetFlow NetFlow Exporters Flow Collector UDP/2055* NetFlowCommunication Ports –NOT Full LISTNOT FULL List of Ports
+© 2024 Cisco and/or its affiliates. All rights reserved. Cisco PublicDeployment Steps 25 BRKSEC -2248 First Time Setup Appliance Setup Tool 
+- Interface SFP or BaseT Selection 
+- IP address Subnet Configuration 
+- For Data Node 2nd IP non - routable 
+- For FC Telemetry Selection and UDP Port Definition 
+- Password Change 
+- IP address Subnet Configuration Verification 
+- SNA Domain and Type Type (DS or Not) 
+- DNS and NTP 
+- Registration to Central Manager Console Http:// IPaddressReboot is common between steps Removed 7.5 Less Restart
+© 2024 Cisco and/or its affiliates. All rights reserved. Cisco PublicCenralized Management 26 BRKSEC -2248 Connect With the Manager
+- Connecting to the Manager 
+- Will also Use the AST (Appliance Setup Tool) (From FST in 7.5) 
+- After the AST Reboot 
+- Devices Connected 
+- Data Store Not Initialized Initialize the Data Store 
+- Go back to the Central Manager console 
+- Initialize the Data Store 
+© 2024 Cisco and/or its affiliates. All rights reserved. Cisco PublicSmart Licensing Deployment Options 27 BRKSEC -2248
+- Cisco product sends usage information directly over the internet. No additional components are needed.
+- Cisco products send usage information to a locally installed appliance. 
+- Periodically, exchange information with Cisco to ensure license usage is accurate. 
+- This synchronization can occur automatically in connected environments or manually in disconnected environments.
+- Use copy/paste information between product and Cisco.com to manually check in and out licenses. 
+- Functionally equivalent to older node locking, but with Smart License tracking.Direct On-PremOffline (not recommended)
+© 2024 Cisco and/or its affiliates. All rights reserved. Cisco PublicLicensing Notes 28 BRKSEC -2248
+- After 90 Evaluation period ends the system will stop processing new flows 
+- Still functional with historical data, but new flow data will not be processed 
+- This is the ONLY hard enforcement used in Smart Licensing 
+- After a system is registered and the associated licensing periods expire or are exceeded there is no hard enforcement 
+- The system will display banners informing users they are out of compliance, but the system will still process flow
+© 2024 Cisco and/or its affiliates. All rights reserved. Cisco PublicFlow estimation 
+- It is an estimated Value unless you do a PoV 
+- FPS license is based on 95thpercentile, for 95% of the time the FPS actual is AT or BELOW the stated amount For every 1000 fps per day you need 1 GB storage at the Flow Collector BRKSEC -2248 29
+The Data Store
+© 2024 Cisco and/or its affiliates. All rights reserved. Cisco PublicWhat is the Data Store 31 BRKSEC -2248
+- The Data Store is a new and improved database architecture design for SNA 
+- Each individual Data Store appliance will include a 3-Node database cluster 
+- Flow ingest by Flow Collectors is separated from data storage 
+- This distributed design enables scalable and resilient data storage, providing retention times of over a year 
+- Queries are handled by the Data Store, effectively increasing performance across all metrics by a significant magnitude 1 or more Flow CollectorsManagement Console 3 or more Data Nodes 
+© 2024 Cisco and/or its affiliates. All rights reserved. Cisco PublicWith and Without the Data Store 32 BRKSEC -2248 1M FPS/90 days storage 
+- 16 total nodes: 8 data nodes + 8 Flow Collectors (FC) 
+- Coupled Data collection & storage
+- 10 total nodes: 6 data nodes + 4 FC 
+- Independent data collection & storage 
+- Efficient and optimized data storage1M FPS/90 days storageFlow Collectors (FC4210)FC5210 Data BaseCurrent Customer Deployment New Data Store Deployment Data Nodes FC5210 Engine 
+© 2024 Cisco and/or its affiliates. All rights reserved. Cisco PublicData Resiliency 33 BRKSEC -2248In addition to extending retention time, the Data Store also introduces enterprise -class data resiliency 
+- Telemetry data is stored redundantly across nodes to allow for seamless availability during single node failures 
+- Seamless availability for a Data Store deployments 
+- In addition the Data Store supports redundant inter -connection switches, thus remaining in operation during network upgrades and unplanned outages 1 or more Flow CollectorsManagement Console 3 or more Data Nodes 1 2 3 4 5 6 5 6 1 2 3 4 
+© 2024 Cisco and/or its affiliates. All rights reserved. Cisco PublicData Store Performance 34 BRKSEC -2248
+- Large Enterprise traffic, ran for 3 days at 150,000 fps into two hardware testbeds: 
+- FC5210 (Non -Data Store) 
+- 3-Node Data Store with a FC4210 
+- After 3 days, 19.4 Billion flows were written to each testbed bed Top Reports Non-DS Data Store Applications 5hr 47min 21min Hosts 29hr 36min 19min Ports 9hr 53min 19min Protocols 6hr 50min 28min Services 6hr 2min 20min
+© 2024 Cisco and/or its affiliates. All rights reserved. Cisco PublicData Store Deployment 35 BRKSEC -2248 Single Switch Architecture Two Switch Architecture 
+- eth2 or eth3 can be used for internode communications 
+- Must be 168.254.42.x/24
+- Provides resiliency for switch failure using port channels and interconnected trunk ports 
+- Uses both eth2 and eth3 for port channel
+© 2024 Cisco and/or its affiliates. All rights reserved. Cisco PublicData Store Evolution 36 BRKSEC -22487.3.0 Data Store on HW Data Nodes is introduced7.3.1 Virtual Data Nodes were added, enabling virtual deployment7.3.2 Added new telemetry types, Firewall logs and Remote worker visibility, all NVM fields7.4.0 Virtual Manager and Flow Collector(s) and a physical Data Store Support added for ASA firewall logs7.4.1 Expand to Data Store 
+- Single Node 
+- Multi-Telemetry 
+- New Analytics 7.4.2 Transition to Data Store 
+- Existing customers can transition to Data Store Geo-Redundancy 
+- New peer site design M6 HW Support 
+- SFP Interfaces 
+© 2024 Cisco and/or its affiliates. All rights reserved. Cisco PublicThe single node Data Store 37 BRKSEC -2248Single node virtual Data Store scales to 225K FPS
+- Single node Data Stores can be either virtual or physical appliances 
+- Supports up to 4 Flow Collectors 
+- Easily expands to a full 3 node cluster, which now supports N+1 horizontal scaling 
+- Note: A Data Store must consist of homogenous data nodes, either all virtual or all physical appliancesData Store Single Data Node Virtual or physical Expand/Scale as needed with FCs Single node physical Data Store scales to 500K FPS
+Demo Data Store
+Redundancy 
+© 2024 Cisco and/or its affiliates. All rights reserved. Cisco PublicRedundancy –High Level Design –Non-Data Store 40 BRKSEC -2248VIPNetFlow /IPFIX (UDP 2055) Heartbeat SignalSent over network HTTPSPrimary (active)SMC Primary (active)Primary (active) BrokerFCSPAN Secondary (active)SMC Secondary (passive)Secondary (active) BrokerFC Secondary (active)FSPrimary (active)FS Exporters Actual Redundancy
+© 2024 Cisco and/or its affiliates. All rights reserved. Cisco PublicRedundancy –Notes –Non Data Store 41 BRKSEC -2248
+- SMC redundancy follows active –active (but no change) 
+- Flow Collector redundancy is active active and done by design 
+- Flow Collector redundancy required double licensing 
+- CTB help in achieving the flow collection redundancy 
+- Flow Sensor redundancy is active -active
+© 2024 Cisco and/or its affiliates. All rights reserved. Cisco PublicResilient central storage for multi -geo ingestion 42 BRKSEC -2248
+- Flow Collector consolidates redundant flow date into context rich bi -flow records 
+- Highly efficient compression minimizes WAN impact when backhauling telemetry data 
+- Telemetry data is stored redundantly across data nodes to help ensure data availability even during a data node failure 
+- Redundant inter-connection switches, help to ensure the Data Store stays in operation during network upgrades and unplanned outages 
+© 2024 Cisco and/or its affiliates. All rights reserved. Cisco PublicRedundancy –New Architecture 43 BRKSEC -2248 Requirement: Geographical redundancy while minimizing footprint Solution: Peer Sites 
+- Primary deployment is associated to a peer site where configurations are sync’d 
+- Both sites run and operate independently, allowing great flexibility to meet customer operational reqs 
+- Site telemetry is sent to both primary and peer sites. 
+- Primary site can be robust HW appliances where peer site is smaller virtual deployment reducing OPEX 
+- Peer sites based on Active/Standby Managers design, and is supported within peer sights for large Enterprises demanding full redundancy 
+© 2024 Cisco and/or its affiliates. All rights reserved. Cisco PublicWhat are the gotchas? 
+- Java/Swing client is not supported with Data Store 
+- BU is actively working to close reporting and data visibility gaps 
+- Peer Site sync is manual 
+- 3+ DC designs are not supported today 
+- BU: Investigating extending peer site for this purpose 
+- Multiple Data Stores are not supported by a single Manager 
+- Converged Analytics cannot support multiple domains, it runs on one domain at a time BRKSEC -2248 44
+Cisco Telemetry Broker
+© 2024 Cisco and/or its affiliates. All rights reserved. Cisco Public 46 BRKSEC -2248Storage (Archival, Audit)3rdParty Cloud Services (SIEM/Datadog/ServiceNow)3rdParty On -Prem (Home grown Data Lakes, Live Action, SevOne )Cisco Cloud Services (Secure Cloud Analytics, CDO, SecureX, SSE *)Cisco On -Prem Platforms (DNA Center, Secure Workload)CTB Distributed Nodes Broker Transform Filter Anonymize …and more …and moreApplication Sources APITelemetry Sources Telemetry Destinations Cisco Secure Network AnalyticsNetFlow / sFlow Syslog VPC Flow LogsSNMP Trap Sources = Network, Application, or Cloud provider points of telemetry egress. Endpoint (NVM) *integrations under investigation
+© 2024 Cisco and/or its affiliates. All rights reserved. Cisco PublicCisco Telemetry Broker Democratizes Telemetry Data 47 BRKSEC -2248Quickly enable PoV/onboarding of non -incumbent tools Replicate Telemetry Control Costs: Onlyindex highvalue dataBrokering Filtering Compliance: Keep low value data in low -cost storage Increased visibility of legacy sources Legacy protocol to Modern toolTransforming Modern protocol to Legacy tool Increased visibility into modern sourcesRoute TelemetryLet teams run the tools of their choice without deploying new agents/collectors Filter to Drop and SegmentThe ability to route and replicate telemetry data from multiple source locations to multiple destinations The ability to filter data being replicated to enable fine grain control over what destinations ingest and analyze The ability to transform data protocols from the source to the destinations protocol of choice 
+© 2024 Cisco and/or its affiliates. All rights reserved. Cisco PublicComponents of the Telemetry Broker 48 BRKSEC -2248
+- CTB Manager node: 
+- Only one manager is deployed and can manage multiple Broker nodes* 
+- Maintains the policy/rules for the broker nodes enabling central management from one view 
+- If the manager goes down, broker nodes continue to process telemetry 
+- Backup configurations are created for recovery 
+- CTB Broker node: 
+- Where the telemetry brokering work occurs 
+- Can be deployed closest to telemetry sourcesManager Broker Node Broker NodeBroker Node Management Network Monitoring NetworkBroker Node *A single Manager supports up to 10 Broker nodes
+© 2024 Cisco and/or its affiliates. All rights reserved. Cisco PublicMinimum requirements for a Cisco Telemetry Broker Node: 
+- CPU: 2 cores (1 Gbps) or 5 cores (10Gbps) 
+- Memory: 4 GB (1 Gbps) or 8 GB (10Gbps) 
+- Storage: 20GBMinimum requirements for a Cisco Telemetry Broker Manager: 
+- CPU: 2 cores 
+- Memory: 8 GB 
+- Storage: 50GBCisco Telemetry Broker Can also be deployed on a UCS server! Versions 6.7 or 6.5 **See notes for more detailshttps://cs.co/telemetrybroker BRKSEC -2248 49
+© 2024 Cisco and/or its affiliates. All rights reserved. Cisco PublicHardware broker node 50 BRKSEC -2248
+- Supports 300k FPS capable of uploading to Cisco XDR 
+- Dedicated 10GB Management and Monitoring interfaces 
+- 16 x 16 GB DDR4 3200 memory 
+- 6 x 600GB 10K RPM RAID6(data), 2 x 240GB Data M.2 RAID1 (OS) storage 
+- 2 x Processor AMD EPYC 7313 16C/32T @ 3.0Ghz or boost 3.7Ghz processor 
+© 2024 Cisco and/or its affiliates. All rights reserved. Cisco PublicHigh Availability 51 BRKSEC -2248
+- HA Configurations are supported for Cisco Telemetry Broker 
+- Simply scale more brokering nodes to provide for resiliency 
+- HA Broker nodes will operate in standby mode until their associated active node goes down 
+- Broker nodes can be geo -distributed with the manager centralized 
+- Broker nodes operating in standby mode will not process any telemetry and will not incur any additional licensing cost M B B B B B B 
+Transitions
+© 2024 Cisco and/or its affiliates. All rights reserved. Cisco PublicMigrating from a UDPD 53 BRKSEC -2248
+- Cisco Telemetry Broker improves upon the successful feature set of the UDP Director -CTB improves performance, simplicity, and offers new feature functionality 
+- Cisco Telemetry Broker can use an existing configuration file from UDPD to seamlessly integrate existing forwarding rules 
+- Device architectures are different -Account for the addition of Brokering Nodes i n an existing design -Account for new licensing model UDP Director Brokering Filtering TransformingBrokering only Secure Network Analytics SIEM Cisco DNA Center Secure Network AnalyticsSIEM Cisco DNA Center Secure Network AnalyticsSIEM Secure Network Analytics LogsIPFIXVPC Flow logs Cheap Storage IPFIXIPFIX
+© 2024 Cisco and/or its affiliates. All rights reserved. Cisco PublicData Store Transition No need for forklift upgrades to achieve success! 54 BRKSEC -2248 Upgrade Software to reap the benefits of a Data Store architecture 2 Hardware generations supported 4K and 5K Re-use Managers Flow Collectors Flow Sensors No other vendor in the market supports this model
+© 2024 Cisco and/or its affiliates. All rights reserved. Cisco PublicTransitioning to Data Store 55 BRKSEC -2248Today FC 
+- Data Store is added to the existing deployment 
+- Upgrade existing FC (engine) to send new telemetry to the Data Store 
+- The FC (DB) will stay in existing format 
+- Manager communicates with the Data Store to run reports and flow searches for recently ingested telemetry 
+- Manager queries FC (DB) for older reports and searches
+- After FC (DB) retention time has expired, DB portion is decommissioned 
+- SMC no longer queries FC (DB) 
+- For virtFC, and FC42xx/FC43xx FC (DB) resources are returned to system to optimize FC performance ( up to three times faster) FC End State 
+- FC 4210 DDS 
+- FC 5210 DDS 
+- FC 4200 DDS 
+- FC 5200 DDSFCTransition State Not the 5K DB Node
+© 2024 Cisco and/or its affiliates. All rights reserved. Cisco PublicTransition Steps 56 BRKSEC -2248
+- From the Manager web UI -Step 1: Create a Data Store domain -Step 2: Setup sync between non -Data Store domain to Data Store domain -Step 3: Sync the domains 
+- From the Manager CLI (SystemConfig as root) -Step 4 –Add the data node(s) to Central Manager -Step 5 –Enable SSH on the Data Store -Step 6 –Initialize the Data Store -Step 7 –Pick the flow collector and domain for transitioning -Step 8 –Acknowledge the flow collector transition 
+- From the Manager web UI -Central Manager>Inventory tab will show a transition flag (Data Store Transition) next to the flow collector -Central Manager>Data Store tab will show “Oldest Record (days ago)” for NetFlow, NVM and Firewall logs. -Once there is 30 days for each then the transition can be completed 
+- From the Manager CLI (SystemConfig as root) -Step 9 –Select Data Store then Complete Transition and then the flow collector to transition -Step 10 –Acknowledge to complete the transition (note all old data on the flow collector will be deleted)Transition Setup Initiate Transition Monitor Transition Complete Transition
+Telemetry Ingest and Analytics
+© 2024 Cisco and/or its affiliates. All rights reserved. Cisco Public Multi-telemetry ingest and visibility VPC, NSG flow logs Secure Network Analytics On-prem Network Telemetry Admin Data center Network UsersOn-premises network Remote WorkersCampus/ Branch Public Clouds Cisco Firewall Log Data Endpoint Data (NVM) BRKSEC -2248 58
+© 2024 Cisco and/or its affiliates. All rights reserved. Cisco PublicNetflow Required F ields 59 BRKSEC -2248The fields that SNA requires to ingest flow are: Field NetFlow Element ID Configuration Example Required Field? NF_F_PROTOCOL 4 match ipv4 protocol Yes, Key Field NF_F_SRC_ADDR_IPV4 8 match ipv4 source address Yes, Key Field NF_F_DST_ADDR_IPV4 12 match ipv4 destination address Yes, Key Field NF_F_L4_SRC_PORT 7 match transport source -port Yes, Key Field NF_F_L4_DST_PORT 11 match transport destination -port Yes, Key Field INPUT_SNMP 10 match interface input Yes, Key Field SRC_TOS 5 match ipv4 tos Yes, Key Field OUTPUT_SNMP 14 collect interface output Yes, Key Field NF_F_IN_BYTES 1 collect counter bytes Yes, Key Field NF_F_IN_PKTS 2 collect counter packets Yes, Key Field NF_F_LAST_SWITCHED 21 collect timestamp sys -uptime first Required; for calculating duration NF_F_FIRST_SWITCHED 22 collect timestamp sys -uptime last Required; for calculating duration NF_F_TCP_FLAGS
+© 2024 Cisco and/or its affiliates. All rights reserved. Cisco PublicNetflow Required F ields 60 BRKSEC -2248ETA Fields ETA Fields ETA Fields ETA Fields 44940 ipv4 idp This is Initial Data Packet; used for crypto audit 44941 ipv4 spltSPLT -Sequence of Packet Lengths and Times; malware detection 44944 ETA Byte Distribution; malware detection NBAR Data NBAR Data NBAR Data NBAR Data 12235 match application name NBAR application data 45003 match application name NBAR application data Additional Fields Additional Fields Additional Fields Additional Fields initiatorOctets 231 collect connection initiator This field is useful to determine the flow initiator natEvent 230Without this field we cannot get firewall events for the flow (denied, accepted, etc)
+© 2024 Cisco and/or its affiliates. All rights reserved. Cisco PublicVPC Flow Logs to IPFIX 61 BRKSEC -224810010 11011 Flow Logs Transformed to IPFIX Flow Logs Secure Network Analytics On-Prem NetworksNetFlowIPFIX 100101 101011
+- Cloud Flow Logs from AWS and Azure provide insight into the activities of hosts residing within cloud environments 
+- Meta data from Flow Logs centers around the network activity, similar to IPFIX/NetFlow -There are 25 total fields provided in Flow Logs -Fields provide insight to network metadata as well as metadata associated with the VPC/NSG 
+- CTB pulls Flow Logs from AWS S3 buckets and Azure BLOB storage via secure HTTPS connections and transforms the telemetry to IPFIX -Once the VPC flow is transformed it is then forwarded to consumers 
+© 2024 Cisco and/or its affiliates. All rights reserved. Cisco PublicComplete and continuous remote worker visibility 62 BRKSEC -2248The Cisco Secure Client (AnyConnect Secure Mobility Client) caches all network traffic telemetry records, even when users are not using a VPN 
+- On-network flows (collected when VPN connected) –real time 
+- When user connects to VPN all stored NVM flow data is sent to the Flow Collector 
+- Can be configured for burst or chunks and adjustable cache size 
+- Detections are carried out on the NVM flows (Behavioral, Customer Security Events and Converged Analytics) 
+- Note a flow search does not show NVM specific fields 
+- Off-network flows (collected when VPN not connected) –cached late arriving 
+- Can view the historical NVM flow data using the NVM endpoint traffic reports in Report Builder 
+- No detections are applied to off -network traffic nvm_to_flow_cache nvm_filter_untrusted_flows
+© 2024 Cisco and/or its affiliates. All rights reserved. Cisco PublicRecap of all NVM telemetry records retained 63 BRKSEC -2248 User Endpoints with AnyConnect Secure Mobility Client Start Time* End Time* Source IP* Source Port* Destination IP* Destination Port* Bytes Sent* Bytes Received* Packet Count* (derived) Protocol*Interface Info UID Interface Index Interface Type Interface Name Interface Details List Interface Mac Addr. UDID User User Account Type Agent Version Virtual Station Name OS Name OS Version OS Edition System Manufacturer System TypeProcess Account* Process Account Type Process ID Process Name* Process Hash* Process Path Process Args Parent Process ID Parent Process Account Process Account Parent Process Name* Parent Process Hash* Parent Process Path Parent Process Args Host Name DNS Suffix Module Name List Module Hash List Parent Process Name Parent Process Hash Flow CollectorData Store NVM Telemetry 
+- Session 
+- Interface 
+- User 
+- OS 
+- Process * NVM telemetry records available within non -Data Store deploymentsNo Endpoint VM Since 7.3 
+© 2024 Cisco and/or its affiliates. All rights reserved. Cisco PublicStore Cisco Firewall logs on premise with Data Store 64 BRKSEC -2248Make data available to FMC via APIs for supporting remote query Cross launch from FMC with context into Secure Analytics and Logging dashboard 100,000k eps (8.65 Bn/ day) support for +30 days using full data store architecture 
+© 2024 Cisco and/or its affiliates. All rights reserved. Cisco PublicFMC pivots directly to the Data Store with enhanced context 65 BRKSEC -2248 
+- Contextual pivots from Firepower Management Center to the event viewer optimizes SecOps workflows by automatically filtering on events of interest Remote Query API do not support ASA Events 
+© 2024 Cisco and/or its affiliates. All rights reserved. Cisco PublicIntelligent viewer provides access to all Firewall data 66 BRKSEC -2248 
+- Select custom timeframes going back across over any retention time 
+- Filter exclusively on Security Events and use per column filters to quickly isolate data of interest 
+- Create custom view to tailor content based on columns shown 
+- Use Summary to identify trends and outliers 
+- Export any view to CSV for archiving or to further forensic investigations
+© 2024 Cisco and/or its affiliates. All rights reserved. Cisco PublicSecure Network Analytics detection architecture 67 BRKSEC -2248 NetFlow Devices Secure Firewall Secure Client Flow CollectorData StoreFC Analytics EnginesConverged Analytics with MITRE ATT&CK mappingsSRC/DST IP Address SRC/DST Port Protocol Bytes/Packets Sent Bytes/Packets Received VPN and Split Tunnel IDS Events Malware Events LINA Events off-network NVM and FW event logs are saved to the Data Store without analysisRemote worker off -network (NVM) Connection logsCisco XDR XDR NetFlow Connection logsPromoted Events Behavioral security events…. Custom Security Events Network Context based Detections ManagerFirewall events can be sent to Cisco XDR from FMC in addition to being stored on-prem Firewall detections based on Firewall event context planned Will Change 
+© 2024 Cisco and/or its affiliates. All rights reserved. Cisco PublicSNA F irewall Logs Detections 68 BRKSEC -2248 Secure Firewall Flow CollectorData StoreIDS Events Malware Events LINA Events Connection logs Connection logsBehavioral security eventsCustom Security Events Ingest Convert Detect Firewall Logs Ingested on port 8514Connections Logs Converted To FlowApply Behavioral and Custom DetectionsFlows converged from Firewalls logs to Netflow do not count against the FPS license. SAL is licenses per GB/Day already Firewall Logs from a device should not be sent at the same time with Netflow, that will create wrong ByteCount. Now ! SNA detections with a firewall only as a telemetry source. (Connection End)
+© 2024 Cisco and/or its affiliates. All rights reserved. Cisco PublicSNA F irewall Logs Detections 69 BRKSEC -2248Flow Denied Security Event in SNA triggered on traffic from Firewall Logs Leverage Analytics to trigger Behavioral Alerts Customized Alerts with Custom Security Events
+© 2024 Cisco and/or its affiliates. All rights reserved. Cisco PublicSNA Firewall logs to Detections Configurations 70 BRKSEC -2248Configuration 
+- sal_enable = 1 
+- sal_to_flow_cache = 0 (default) Put it to 1 to enable conversion 
+- sal_port = 8514 (default) Ports should not be overlapped with other ports 2055 for Netflow and 2030 for NVM Troubleshooting 
+- /lancope /var/ sw/today/logs/ sw.log 05:00:02 S -per-t: Current sal_event, Input: 0, Decoded: 0, Output: 0, Ignored: 0 05:05:00 S -per-t: Current sal_event, Input: 3325, Decoded: 3325, Output: 3325, Ignored: 0, Dropped: 0, To_Flow: 1578 this period Dropped: 0, To_Flow: 0 this period 05:10:00 S -per-t: Current sal_event, Input: 4411, Decoded: 4411, Output: 4411, No Pivots are available to FMC Not Available for DDS
+© 2024 Cisco and/or its affiliates. All rights reserved. Cisco PublicNVM Detections 71 BRKSEC -2248 Secure Client Flow CollectorData StoreFC Analytics Engines VPN and Split Tunnel Behavioral security eventsCustom Security Events No Conversion of NVM to flows required, Flows then goes through the detection engine All Detection from behavioral analytics can be applied including data movement. Alert on Process Names and Hashes with CSEs in addition to all other dataOne More way to Deploy SNA without having to be restricted to network flow to get detections
+© 2024 Cisco and/or its affiliates. All rights reserved. Cisco PublicNVM Detections Configurations 72 BRKSEC -2248New Install nvm_enable = 1 nvm_to_flow_cache = 0 (default) nvm_port = 2030 (default) NVM flows can be seen in flow search and Report Builder when nvm_to_flow_cache is enabled NVM flows can be seen in only Report Builder when nvm_to_flow_cache is not enabled Troubleshooting /lancope /var/ sw/today/logs/ sw.log /lancope /var/logs/containers/svc -db-ingest.log
+© 2024 Cisco and/or its affiliates. All rights reserved. Cisco PublicNew Detections and Alerts in Converged Analytics 73 BRKSEC -2248 4New Alerts from Secure Cloud Analytics 
+- LDAP Connection Spike 
+- Outbound LDAP Spike 
+- Protocol Forgery 
+- Repeated Umbrella Sinkhole Communications 2New Observations from Secure Cloud Analytics 
+- ISE Session Started Observation 
+- Umbrella Sinkhole Hit Observation Converged Analytics supports redundant Managers 
+© 2024 Cisco and/or its affiliates. All rights reserved. Cisco PublicDynamically maps entities by role 74 BRKSEC -2248
+- Automatic role classification available on a new report leveraging the new converged analytics capability 
+- Roles are available out of the box with no tuning and provide details about devices on the network for investigation and input to detectionFunctional modelingType based modelingAndroid Wireless LAN controller Citrix PVS server Windows workstationMail server Medical imaging client Remote desktop server DNS serverVolP client Domain controllerApple iOS Web server …over 50+ entity roles are supported !Roles include: 
+© 2024 Cisco and/or its affiliates. All rights reserved. Cisco PublicDevice Report Traffic enhanced with automatic filters 75 BRKSEC -2248
+- Select any time on the traffic statistics graph and see results dynamically filtered in the flow table 
+- Accelerates investigation of traffic anomalies 
+- Immediately correlates chart events with actual flows attributing to the event 
+Demo NVM + Firewall Logs + Converged Analytics
+Design -Where to get Telemetry
+© 2024 Cisco and/or its affiliates. All rights reserved. Cisco PublicWhere To Enabled Telemetry ? Flow SensorHypervisor with Flow Sensor VE VM VM Non-NetFlow enabled equipmentETA enhanced NetFlow proxy data NetFlow enabled routers, switches, firewalls10110 NetFlowTelemetry Broker Additional Telemetry Destinations (SIEM: Splunk) Flow CollectorManager telemetry for encrypted traffic analytics (ETA)Data Store VPC BRKSEC -2248 78
+© 2024 Cisco and/or its affiliates. All rights reserved. Cisco PublicThe more you enabled the more you see 79 BRKSEC -2248 Visibility into traffic going through these devices to the internet or to the main data center. Firewalls could provide NAT informationEdge Devices at Campus Edge Devices at Branches Core SwitchesVisibility into traffic going through the core to the Internet or to the DC and Campuses Access and DistributionMore visibility into user traffic from one VLAN to another or even from port to port
+© 2024 Cisco and/or its affiliates. All rights reserved. Cisco PublicAdd A Flow Sensor 80 BRKSEC -2248 At the EDGE Get Application layer visibility into your internet traffic (URL and APPs) VM VM At the HypervisorVisibility into VM traffic and additional network use cases with RTT and SRT Non Flow Capable NetworksLegacy Networks visibility where flow is not available
+© 2024 Cisco and/or its affiliates. All rights reserved. Cisco PublicWhat Can A flow Sensor Do 81 BRKSEC -2248Virtual or physical appliance that produces telemetry for network infrastructure incapable of generate NetFlow natively Provides additional security context to enhance Secure Network Analytics security analytics Additional information gathered 
+- ETA enhanced NetFlow 
+- TLS Finger Printing 
+- Layer 7 application data 
+- URL information for web traffic 
+- TCP and ICMP flag details 
+- RTT (Round trip time) 
+- SRT (Server response time) 
+- Retransmissions 
+- X-Forwarded headers from web load balancersNon-NetFlow enabled equipmentSecure Network Analytics manager Flow Collector VM VM Flow SensorHypervisor with Flow Sensor VEETA Enhanced NetFlow 
+© 2024 Cisco and/or its affiliates. All rights reserved. Cisco PublicVisbility at the Endpoint Level 82 BRKSEC -2248 User Endpoints with AnyConnect Secure Mobility Client Start Time* End Time* Source IP* Source Port* Destination IP* Destination Port* Bytes Sent* Bytes Received* Packet Count* (derived) Protocol*Interface Info UID Interface Index Interface Type Interface Name Interface Details List Interface Mac Addr. UDID User User Account Type Agent Version Virtual Station Name OS Name OS Version OS Edition System Manufacturer System TypeProcess Account* Process Account Type Process ID Process Name* Process Hash* Process Path Process Args Parent Process ID Parent Process Account Process Account Parent Process Name* Parent Process Hash* Parent Process Path Parent Process Args Host Name DNS Suffix Module Name List Module Hash List Parent Process Name Parent Process Hash Flow CollectorData Store NVM Telemetry 
+- Session 
+- Interface 
+- User 
+- OS 
+- Process * NVM telemetry records available within non -Data Store deployments
+© 2024 Cisco and/or its affiliates. All rights reserved. Cisco PublicStore and Analyse Firewall Logs 83 BRKSEC -2248Min Supported Version Notes FMC 6.7Older versions are supported but Cross -launch will not be available FTD 6.4 SMC 7.3.0 SMC VE or SMC 2210 SAL On Prem 1.0.0An application needs to be installed separately from the SMC 7.3.0 install Secure Firewall Flow CollectorData StoreIDS Events Malware Events LINA Events Connection logsBehavioral security eventsCustom Security Events
+© 2024 Cisco and/or its affiliates. All rights reserved. Cisco PublicAnalyze your Cloud Data by adding CTB 84 BRKSEC -2248srcaddr dstaddr srcport dstport protocol packets bytes start End tcp-flagssourceIPv4Address or sourceIPv6Address destinationIPv4Address or destinationIPv6Address sourceTransportPort destinationTransportPort protocolIdentifier packetDeltaCount octetDeltaCount flowStartSeconds flowEndSeconds tcpControlBits Cisco Telemetry Broker TransformationVPC Flow Logs IPFIX Secure Network Analytics
+© 2024 Cisco and/or its affiliates. All rights reserved. Cisco PublicSummarize The Telemetry Design Use Cases 85 BRKSEC -2248 Visibility into traffic going through the Network east West extend it by enabled at other layersAnalyze and Store your firewall logs and NAT information Get to the endpoint process user and interface levelGet visibility into your cloud environment by leveraging CTB
+Design -Most Common Integrations
+© 2024 Cisco and/or its affiliates. All rights reserved. Cisco PublicSecure Network Analytics integrations Proxy Web APP, web URL and user infoExternal lookup Extended analytics, threat investigation DNA Center Automated setup and deploymentXDR Threat hunting and response Secure Client Process and endpoint visibilityPAN Application and user identity Identity Services Engine User identity, device identity, mitigation and responseAPI Automated and customized configuration and reportingSecure Network Analytics BRKSEC -2248 87
+© 2024 Cisco and/or its affiliates. All rights reserved. Cisco PublicSecure Network Analytics and network access integration 88 BRKSEC -2248 Network Access services and classificationSecure Network Analytics Secure Network Analytics visibilityDevice Id Domain Id Active Start active time Endpoint IP Username SGT TagTrustsec name Last update time InterfaceDevicePortId InterfaceDeviceIp Vlan MAC address Session ID Active Start active timeUsername Last update timeSecure Network Analytics also integrates with ISE-PIC using pxGrid to get endpoint contextual informationSecure Network Analytics integrates with ISE to get mitigation capabilities and apply different ANC policies to an endpoint Info from ISE Info from ISE –PIC Cisco Identity Services Engine pxGrid 
+© 2024 Cisco and/or its affiliates. All rights reserved. Cisco PublicValidate trusted ISE policy is being observed from near real time network telemetry 
+© 2024 Cisco and/or its affiliates. All rights reserved. Cisco PublicSecure Network Analytics is a comprehensive data source 90 BRKSEC -2248 Source Information Method SMTP To inbox & ticketing systems Data exporter Usually to SIEMsSYSLOG To log aggregation SOAP web services API REST APIAlarms Notifications Normalized flow data Data export from FCAPIs Configuration and reportingFlow CollectorManager 
+© 2024 Cisco and/or its affiliates. All rights reserved. Cisco PublicImproving on -prem NDR with Cisco XDR 91 BRKSEC -2248Cisco XDR Enrichment Requests from manual investigations or auto - mated from event correlationAlarms and Events sent to XDR analyticsTiles to Control CenterOptional: Send flows to XDR analytics via CTB or FC Secure Network Analytics Cross correlation of data Correlation of NDR findings with other detections mechanisms including EDR based detections, email and others Impact Analysis Understand the Impact of an incident leveraging XDR incident Manager Reduce the time to respond Reducing the time to response leveraging XDR automation and the multi responses capabilities Extend response capability Expand NDR response capabilities with multiple technologies through XDR integrations with Cisco and 3rd party technologies 
+© 2024 Cisco and/or its affiliates. All rights reserved. Cisco PublicData Enrichment From SNA to XDR 92 BRKSEC -2248 Events details are sent with relationship indicators for some alerts when availableSecurity Events Contribute into XDR investigations Security Events Investigation Configuration Limits
+© 2024 Cisco and/or its affiliates. All rights reserved. Cisco PublicSNA Alerts to XDR SNA Converged Analytics Alerts Published to XDR Through Response Management Alerts can trigger incidents and are Mapped with MITRE attack tactics and technique. It came in 7.5 Will Change 7.5.1 BRKSEC -2248
+© 2024 Cisco and/or its affiliates. All rights reserved. Cisco PublicResponse Management Alerts Email Syslog Converged Analytics Engine (Data Store only)Integration for Response Management Threat Response Webhook BRKSEC -2248 94
+© 2024 Cisco and/or its affiliates. All rights reserved. Cisco PublicRule What alarms?Action What to do with alarms?Response Manager Logic If Condition is met, then trigger Response Automatic Response Automate responses by defining rules and applying actions New Alerts option in Response Manger. Converged Analytics needs to be enabled.Webhooks supported for Alerts (Converged Analytics) and Alarms. Not customizable for either.New Actions for Converged Analytics Alerts. BRKSEC -2248 95
+© 2024 Cisco and/or its affiliates. All rights reserved. Cisco Public Rules With Flexible Conditions Define Rules with Multiple Conditions 
+- Granular control with complex rule triggering conditions Use Multiple Actions: - Select 1 or more actions to be executed once rule is matched and alert is open 
+- Select 1 or more actions to trigger when the alert is closed BRKSEC -2248 96
+Demo XDR and Response Management 
+© 2024 Cisco and/or its affiliates. All rights reserved. Cisco PublicMost Utilized Resources 98SNA R esources BRKSEC -2248Secure Analytics Videos http://cs.co/SecureAnalyticsVideos Detection: Secure Analytics Detections Demo playlist Design Guide: SNA Data Store Design Guide FPS Estimator: FPS Estimator Training Center: Secure Network Analytics Training Center -Use Cases
+Thank you Thank you

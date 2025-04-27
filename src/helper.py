@@ -1,17 +1,30 @@
-from langchain.document_loaders import PyPDFLoader, DirectoryLoader
+from langchain.document_loaders import PyPDFLoader, TextLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.embeddings import HuggingFaceEmbeddings
+from pathlib import Path
 
 
-#Extract Data From the PDF File
-def load_pdf_file(data):
-    loader= DirectoryLoader(data,
-                            glob="*.pdf",
-                            loader_cls=PyPDFLoader)
 
-    documents=loader.load()
+
+def load_files(directory):
+    documents = []
+    for file_path in directory.glob("**/*"):
+        try:
+            if file_path.suffix == ".pdf":
+                loader = PyPDFLoader(str(file_path))
+            elif file_path.suffix == ".txt":
+                loader = TextLoader(str(file_path), encoding='utf-8')
+            else:
+                continue  # Skip unknown file types
+
+            docs = loader.load()
+            documents.extend(docs)
+
+        except Exception as e:
+            print(f"[WARNING] Skipping file {file_path.name}: {e}")
 
     return documents
+
 
 
 
@@ -27,3 +40,6 @@ def text_split(extracted_data):
 def download_hugging_face_embeddings():
     embeddings=HuggingFaceEmbeddings(model_name='sentence-transformers/all-MiniLM-L6-v2')  #this model return 384 dimensions
     return embeddings
+
+
+        

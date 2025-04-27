@@ -1,0 +1,32 @@
+NCM-W, NCM-F, NCM-SMOF Network Communications Modules  DOC-02-109Intelligent/Addressable Devices General The Network Communications Module (NCM) provides NOTIFIER’s AFP-2800 Fire Alarm Control Panels with a means to connect to NOTIFIRENET™. Three types of NCM are available: NCM-W for connecting nodes with twisted-pair wire, and NCM-F for connecting nodes with multi-mode fibre optic cable and NCM-SMOF for connecting single-mode fibre-optic cable. NCM-W Features 
+- Supports twisted-pair wire medium.
+- Two programmable data thresholds
+- Transformer coupling provides electrical isolation between nodes
+- Pluggable terminal wiring with strain relief
+- Pluggable service connector (feeds signal directly through) in the event that power must be removed from a node.
+- 312.5 Kbaud transmission rate.
+- Data is regenerated at each node.
+- Two network ports to allow simultaneous connection to a fire alarm control panel and to a programming computer.
+- Enables software and database upload/download over NOTI
+- FIRE
+- NET™.
+- Repeaters are available to increase signal
+- Repeaters may be utilized to switch media type
+- Up to 1000m between nodes in a point-to-point fashion (actual distance varies with wire quality) NCM-W Interconnections: When wiring consecutive NCM-W boards, wiring may enter or exit at Port A or Port B. NCM-W port-to-port wiring is not polarity sensitive; use of Port A or Port B is arbitrary. An NCM-W may be connected to any of the following devices: MIB-W, MIB-WF and NCM-W (in another panel). NCM-F Features 
+- Supports multi-mode fibre optic cable.
+- Data is immune to all environmental noise.
+- Optical isolation prevents ground loops.
+- NOTI
+- FIRE
+- NET™ fibre-optic medium.
+- Fibre type: 62.5/125 micrometers (multimode); or 50/125 micrometers (multimode).
+- Maximum attenuation is 8 dB with 62.5/125 μm cable and 4.2dB with 50/125 μm cable.
+- Wavelength: 820 nanometers (use standard 850 nm fibre)
+- Connectors: ST® style
+- 312.5 Kbaud transmission rate.
+- Data is regenerated at each node.
+- Two network ports to allow simultaneous connection to a fire alarm control panel and to a programming computer.
+- Enables software and database upload/download over NOTI
+- FIRE
+- NET™. NCM-W NCM-F 
+ DOC-02-109 © 2009 by Honeywell International Inc. All rights reserved. Unauthorised use of this document is strictly prohibited. This document is not intended for installation purposes. We try to keep our product information up-to-date and accurate. We cannot cover all specific applications or anticipate all requirements. All specifications are subject to change without notice. For more information contact your nearest Notifier Sales Office or Distributor www.notifier.com.auNCM-F Interconnections When wiring consecutive nodes/repeaters, multi-mode fibre cable must exit one board on transmit (TX) and enter the next node/repeater on Receive (RX). The multi-mode fibre optic pair (RX, TX) from Port A of one node/repeater may be connected to either Port A or Port B of another node/repeater. An NCM-F may be connected to any of the following devices: MIB-F, MIB-W/F, another NCM-F, RPT-F, and RPT-WF. Common Specifications Temperature and humidity ranges: It is recommended that this system and all peripherals be installed in an environment with a nominal room temperature of 15˚C to 27˚C. Mixing Wire and Fibre on the same Network In some networks, it may be necessary to mix twisted-pair wire and multi-mode fibre optic cable. In these instances an RPT-WF may be used as an interface between wire and multi-mode fibre.Product Line Information NCM-W: Network Communications Module, twisted pair wire interface. NCM-F: Network Communications Module, multi-mode fibre-optic cable interface. NCM-SMOF: Network Communications Module, single-mode fibre-optic cable interface.

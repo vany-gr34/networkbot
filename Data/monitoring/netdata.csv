@@ -1,0 +1,11 @@
+Title,Link,Answered,Score
+traefik configuration for netdata on docker,https://stackoverflow.com/questions/76136772/traefik-configuration-for-netdata-on-docker,True,0
+Netdata disable module configured alarm,https://stackoverflow.com/questions/79103910/netdata-disable-module-configured-alarm,False,0
+Accessing Netdata behind Traefik reverse-proxy,https://stackoverflow.com/questions/79047465/accessing-netdata-behind-traefik-reverse-proxy,False,0
+netdata agent does not visualise the chart,https://stackoverflow.com/questions/78887834/netdata-agent-does-not-visualise-the-chart,False,0
+How to disable local dashboard netdata when deployed using helm,https://stackoverflow.com/questions/78401425/how-to-disable-local-dashboard-netdata-when-deployed-using-helm,False,0
+How to set up a MySQL collector plugin for Netdata hosted on Kubernetes?,https://stackoverflow.com/questions/76810694/how-to-set-up-a-mysql-collector-plugin-for-netdata-hosted-on-kubernetes,True,2
+Netdata - all custom collectors disappeared from the dashboard,https://stackoverflow.com/questions/76389639/netdata-all-custom-collectors-disappeared-from-the-dashboard,True,0
+yocto layers required to build imx8mp-evk with netdata,https://stackoverflow.com/questions/76230352/yocto-layers-required-to-build-imx8mp-evk-with-netdata,False,0
+netdata alarm on server login,https://stackoverflow.com/questions/75351998/netdata-alarm-on-server-login,False,1
+Docker containers running on the server are not visible in the netdata dashboard,https://stackoverflow.com/questions/75017625/docker-containers-running-on-the-server-are-not-visible-in-the-netdata-dashboard,True,1

@@ -1,0 +1,71 @@
+DN-60454: F 
+- 10/15/2021 —  HS-NCM-HF, HS-NCM-SF, HS-NCM-MFSF HS-NCM-W-2, HS-NCM-WMF-2, HS-NCM-WSF-2HS-NCM Series High-Speed Network Communication Modules General The High-Speed Network Communications Module (HS-NCM) pro - vides NOTIFIER®’s N16, NFS-320, NFS-640, NFS2-640, NFS3030, and NFS2-3030 Fire Alarm Control Panels, NCD, NCA, and NCA-2 Network Control Displays and Annunciators, and DVC DigitalVoice Command with a means to connect to High-SpeedNOTI
+- FIRE
+- NET™ (NFN). Six types of HS-NCM are available: 
+- HS-NCM-MF for connecting nodes with multi-mode fiber-optic cable 
+- HS-NCM-SF for connecting nodes with single-mode fiber-optic cable 
+- HS-NCM-MFSF for connecting multimode and single-mode fiber optic mediums on the same network. 
+- HS-NCM-W-2 for connecting nodes with twisted-pair wire 
+- HS-NCM-WMF-2 for connecting wire and multimode fiber-optic medium on the same network 
+- HS-NCM-WSF-2 for connecting wire and single-mode fiber-optic mediums on the same network Each HS-NCM can accommodate up to two node addresses. For example, one HS-NCM can provide network communication for bothan N16 and an NCD. When not connected to a fire alarm panel, the HS-NCM defaults to repeater mode and can be used to boost signal distances or to passdata transmissions between two differently configured network seg - ments when wire and fiber co-exist on a network. NOTE: Correct configuration is dependent on network design; refer to the High-Speed NFN Manual, P/N 54013.For further information and diagrams, refer to the HS-NCM Manual, P/N 54014. HS-NCM-W-2 Features 
+- Supports twisted-pair wire medium 
+- NFPA Class B operation or NFPA Class A operation
+- Transformer coupling provides electrical isolation between nodes
+- Pluggable terminal wiring with strain relief
+- Pluggable service connector (feeds signal directly through) in the event that power must be removed from a node 
+- 12 Mb transmission rate
+- Data is regenerated at each node
+- Two network ports to allow simultaneous connection to fire alarm control panel and to programming computer 
+- Enables software and database upload/download over the HighSpeed NFN 
+- Up to 3,000 feet (914.4 m) between nodes in a point-to-point fashion (actual distance varies with wire quality) HS-NCM-W-2 INTERCONNECTIONS When wiring consecutive HSNCM-W-2 boards, wiring may enter or exit at Port A or Port B. HSNCM-W-2 port-to-port wiring is polaritysensitive; use of Port A or Port B is not arbitrary. An HS-NCM-W-2may be connected to any of the following devices: 
+- HS-NCM-W-2 (in another panel) 
+- HS-NCM-WMF-2
+- HS-NCM-WSF-2HS-NCM-W-2 SWITCH FUNCTIONS The HS-NCM-W-2 provides one set of switches to simplify network setup. Enable ground fault detection by setting the “ON” switchSW4-1 (Channel A); switch SW4-2 (Channel B). HS-NCM-MF and HS-NCM-SF Features 
+- Supports fiber-optic medium 
+- NFPA Class B or Class A operation
+- Data is immune to all environmental noise
+- Optical isolation prevents ground loops
+- High-Speed NFN fiber-optic medium
+- Fiber type: 62.5/125 micrometers (multi-mode); 50/125 microme - ters (multimode), or 9/125 micrometers (single mode) 
+- Maximum attenuation: 10 dB with 62.5/125 μm cable, 6.5 dB with 50/125 μm cable, and 30 dB with 9/125 μm cable 
+- Wavelength (1): 1310 nanometers
+- Connectors: LC style
+- Baud transmission rate: 100 Mb
+- Data is regenerated at each node
+  — DN-60454: F 
+- 10/15/2021
+- Two network ports to allow simultaneous connection to fire alarm control panel and to programming computer 
+- Enables software and database upload/download over the HighSpeed NFN HS-NCM-MF/SF INTERCONNECTIONS When wiring consecutive nodes/repeaters, fiber cable must exit one board on Transmit (TX) and enter the next node/repeater onReceive (RX). The fiber-optic pair (RX, TX) from Port A of one node/repeater connects to Port B of another node/repeater. A HS-NCM-MF/SF may be connected to any of the following devices: 
+- HS-NCM-MF/SF (respectively) on another panel 
+- HS-NCM-WMF-2
+- HS-NCM-WSF-2
+- HS-NCM-MFSF HS-NCM-WMF-2, HS-NCM-WSF-2, and HS-NCM-MFSF Features 
+- Supports twisted-pair wire and fiber-optic medium 
+- NFPA Class B operation or NFPA Class A operation
+- Allows wire and fiber optic nodes to communicate as one network
+- Fiber type: 62.5/125 micrometers (multi-mode); 50/125 microme - ters (multimode), or 9/125 micrometers (single mode) 
+- Maximum attenuation is 10 dB with 62.5/125 μm cable, and 6.5 dB with 50/125 μm cable, and 30 dB with 9/125 μm cable 
+- Wavelength (1): 1310 nanometers
+- Pluggable service connector (feeds signal directly through) in the event that power must be removed from a node 
+- Data is regenerated at each node
+- Two network ports to allow simultaneous connection to fire alarm control panel and to programming computer 
+- Enables software and database upload/download over the HighSpeed NFN 
+- Up to 3,000 feet (914.4 m) between nodes in a point-to-point fashion (actual distance varies with wire quality) HS-NCM-WMF-2/WSF-2/MFSF INTERCONNECTIONS When wiring consecutive nodes/repeaters, fiber cable must exit one board on Transmit (TX) and enter the next node/repeater onReceive (RX). The fiber-optic pair (RX, TX) from Port A of one node/repeater connects to Port B of another node/repeater. An HSNCM-WMF-2/WSF-2/MFSF may be connected to any of the followingdevices: 
+- HS-NCM-WMF-2 
+- HS-NCM-WSF-2
+- HS-NCM-MFSF (on another panel)
+- HS-NCM-MF
+- HS-NCM-SFCompatibility The HS-NCM-W-2, HS-NCM-WMF-2, and HS-NCM-WSF-2 are compatible with the following which are obsolete and no longer sold(a different configuration is required): 
+- HS-NCM-W 
+- HS-NCM-WMF
+- HS-NCM-WSF Ordering Information HS-NCM-MF: High-Speed Network Communications Module, fiber - optic cable interface (multi-mode) HS-NCM-SF: High-Speed Network Communications Module, fiber - optic cable interface (single-mode)HS-NCM-MFSF: High-Speed Network Communications Module, fiber-optic cable interface (multi-mode/single-mode)HS-NCM-W-2: High-Speed Network Communications Module, twisted-pair wire interfaceHS-NCM-WMF-2: High-Speed Network Communications Module, wire and fiber-optic cable interface (wire/multi-mode)HS-NCM-WSF-2: High-Speed Network Communications Module, wire and fiber-optic cable interface (wire/single-mode) Agency Listings and Approvals The file number(s) below reference the specific listings for the mod - ules in this document. In some cases, certain modules or applica - tions may not be listed by certain approval agencies, or listing may be in process. Consult Honeywell for the latest listing status. 
+- UL Listed: S635 
+- ULC Listed: S635 
+- CSFM: 7300-0028:0257, 7165-0028:0224 
+- FM Approved 
+- FDNY Approved: COA # 2020-TMCOAP-003337-AMND COA # 2020-TMCOAP-003349-AMND
+NOTIFIER® is a registered trademark and NOTI
+- FIRE
+- NET™ is a trade - mark of Honeywell International Inc. ©2021 by Honeywell International Inc. All rights reserved. Unauthorized use of this document is strictly prohibited.This document is not intended to be used for installation purposes. We try to keep our product information up-to-date and accurate. We cannot cover all specific applications or anticipate all requirements.All specifications are subject to change without notice. Country of Origin: USA NOTIFIER 12 Clintonville Road Northford, CT 06472 203.484.7161 www.notifier.comSpecifications TEMPERATURE AND HUMIDITY RANGES This system meets NFPA requirements for operation at 0°C to 49°C (32°F to 120°F); and at a relative humidity (non-condensing) of 85%at 30°C (86°F) per NFPA, and 93% ± 2% at 32°C ± 2°C (89.6°F ±1.1°F) per ULC. However, the useful life of the system’s standby bat - teries and the electronic components may be adversely affected byextreme temperature ranges and humidity. Therefore, it is recom - mended that this system and all peripherals be installed in an envi - ronment with a nominal room temperature of 15°C to 27°C (60°F to80°F). WEIGHT 
+- HS-NCM-MFSF, HS-NCM-MF, HS-NCM-SF: 5.2 ounces (147.4 grams) 
+- HSNCM-W-2, HS-NCM-WMF-2, HS-NCM-WSF-2: 5.75 ounces (163 grams)POWER SUPPLY 24 VDC @ 400 mA MOUNTING All models of the HS-NCM can be installed in any standard chassissuch as the CHS-4L, CHS-M2, CHS-M3, CHS-4N or CPU2-640chassis (see panel sheets). Additionally, the HS-NCM-W-2 can bedoor-mounted on the ADP-4B dress panel on a single-space blankplate (BMP-1) for mounting in an CAB-4 Series cabinet, or on theDP-4A / DP-T2A dress panel on a single-space blank plate (ABP-1)for mounting in a CAB-5 Series cabinet.

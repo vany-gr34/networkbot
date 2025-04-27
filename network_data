@@ -1,0 +1,7 @@
+<script>start("c:\\Users\\win 10\\Desktop\\dataaaaaa!\\network_data\\");</script>
+<script>onHasParentDirectory();</script>
+<script>addRow("logs","logs",1,0,"0 B",1745757167,"4/27/25, 12:32:47 PM");</script>
+<script>addRow("monitoring","monitoring",1,0,"0 B",1745757721,"4/27/25, 12:42:01 PM");</script>
+<script>addRow("network_simulation","network_simulation",1,0,"0 B",1745182840,"4/20/25, 9:00:40 PM");</script>
+<script>addRow("ngeneral","ngeneral",1,0,"0 B",1745757696,"4/27/25, 12:41:36 PM");</script>
+<script>addRow("security","security",1,0,"0 B",1745184347,"4/20/25, 9:25:47 PM");</script>

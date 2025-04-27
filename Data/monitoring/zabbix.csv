@@ -1,0 +1,11 @@
+Title,Link,Answered,Score
+zabbix search for a string on trigger,https://stackoverflow.com/questions/10899713/zabbix-search-for-a-string-on-trigger,False,0
+Clarification on Event Data Discrepancy Between Zabbix UI and zabbix API,https://stackoverflow.com/questions/79568104/clarification-on-event-data-discrepancy-between-zabbix-ui-and-zabbix-api,False,0
+Windows Active Directory monitoring with zabbix,https://stackoverflow.com/questions/63390096/windows-active-directory-monitoring-with-zabbix,False,0
+zabbix agent : cannot accept incoming connection for peer: frontend,https://stackoverflow.com/questions/72819302/zabbix-agent-cannot-accept-incoming-connection-for-peer-frontend,False,0
+Get zabbix graph to png via API,https://stackoverflow.com/questions/66338132/get-zabbix-graph-to-png-via-api,True,1
+Configuring the Operational Data of a Zabbix trigger,https://stackoverflow.com/questions/79540977/configuring-the-operational-data-of-a-zabbix-trigger,False,0
+How to install the Zabbix Agent with different Ports (not 10050 and 10051),https://stackoverflow.com/questions/41871430/how-to-install-the-zabbix-agent-with-different-ports-not-10050-and-10051,False,0
+zabbix server cannot connect to database,https://stackoverflow.com/questions/39463638/zabbix-server-cannot-connect-to-database,False,-1
+How to monitor windows service and process with zabbix,https://stackoverflow.com/questions/48621493/how-to-monitor-windows-service-and-process-with-zabbix,False,0
+How to Enable HTTPS for Zabbix Web in Docker-Compose with Nginx,https://stackoverflow.com/questions/78510218/how-to-enable-https-for-zabbix-web-in-docker-compose-with-nginx,False,0

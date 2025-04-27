@@ -1,0 +1,107 @@
+i206: Lecture 20: Networking Standards and Protocols Tapan Parikh Spring 2013 Some slides courtesy Marti Hearst, John Chuang and others 
+Network Bits & Bytes Binary Numbers Number Systems Gates Boolean Logic Circuits CPU Machine Instructions Assembly Instructions Program Algorithms Application Memory Data compression Compiler/ Interpreter Operating System Data Structures Analysis I/O Memory hierarchy Design Methodologies/ Tools Process Truth table Venn Diagram DeMorgan’s Law Numbers, text, audio, video, image, … Decimal, Hexadecimal, Binary AND, OR, NOT, XOR, NAND, NOR, etc. Register, Cache Main Memory, Secondary Storage Context switch Process vs. Thread Locks and deadlocks Op-code, operands Instruction set arch Lossless v. lossy Info entropy & Huffman code Adders, decoders, Memory latches, ALUs, etc. Data Representation Data Data storage Principles ALUs, Registers, Program Counter, Instruction Register Network Distributed Systems Security Cryptography Standards & Protocols Inter-process Communication Searching, sorting, Encryption, etc. Stacks, queues, maps, trees, graphs, … Big-O TCP/IP, RSA, … Confidentiality Integrity Authentication … Formal models Finite automata regex 
+Lecture Outline 
+- Different abstractions of a network 
+- Network architecture – Layered protocol architecture – Message encapsulation 
+Network as Communication Channel process pprocess qCommunication channelsendOutgoing message bufferIncoming message bufferreceivem Source: Coulouris, Dollimore and Kindberg 
+Network Cloud client server Network 
+Network: Routers & Links Hosts Links or local networks A D E B C 1 2 5 4 3 6 Routers Source: Coulouris, Dollimore and Kindberg 
+7 Local Exchange Carrier (LEC) Router ISP Backbone Provider 1 Router Client Tandem Switch Inter-exchange Carrier (IXC) LongDistance Network Corporate LAN Firewall Analog Modem Content Provider Server Router Remote ISP Point of Presence xDSL Modem Cable Modem Headend Cable ISP Local Loop DNS Local Ingress Switch Exchange Point Router Internet Service Providers Customer Premises Internet backbones Telephone Network Local Egress Switch Backbone Provider 2 router Mobile Client Wireless ISP Network: More Details 
+Network Types Range Bandwidth (Mbps) Latency (ms) LAN 1-2 kms 10-1000 1-10 WAN worldwide 0.010-600 100-500 MAN 2-50 kms 1-150 10 Wireless LAN 0.15-1.5 km 2-11 5-20 Wireless WAN worldwide 0.010-2 100-500 Internet worldwide 0.010-2 100-500 § An internet: a set of interconnected networks § The Internet: the global internetwork based upon the Internet Protocol (IP) Source: Coulouris, Dollimore and Kindberg circa 2000 
+Network Building Blocks 
+- Transmission media – Copper (coax, twisted pair), optical fiber, free space (wireless) 
+- Signals – Electrical currents, light, RF (radio-frequency), microwave 
+- Hardware devices – End hosts, network interfaces – Routers, switches, hubs, bridges, repeaters 
+- Software components – Communication protocol stack 
+Network Architecture 
+- Networking can be quite complex and requires a high degree of cooperation between the involved parties. 
+- Cooperation is achieved by forcing parties to adhere to a set of rules and conventions (protocol). 
+- The complexity of the communication task is reduced by using multiple protocol layers: 
+- Each layer is implemented independently. 
+- Each layer is responsible for a specific subtask. 
+- Layers are grouped in a hierarchy. 
+- A structured set of protocols is called a network architecture, protocol architecture, or protocol suite. 
+What each layer does 
+- Application (layer 7): specific to application need 
+- Presentation (layer 6): conversion of data representation 
+- Session (layer 5): access mgt, synchronization 
+- Transport (layer 4): end-to-end delivery, congestion and flow control 
+- Network (layer 3): addressing, routing 
+- Data Link (layer 2): framing, error detection 
+- Physical (layer 1): bits (0/1), voltages, frequencies, wires, pins, … Application layer Presentation layer Session layer Transport layer Network layer Data link layer Physical layer Layer 1 Layer 2 Layer 7 Layer 6 Layer 5 Layer 4 Layer 3 ISO/OSI Reference Model 
+Layered Protocol Architecture Application layer Transport layer Network layer Link layer TCP/IP Model Physical layer Layer 1 Layer 2 Layer 7 Layer 4 Layer 3 Software Operating System Hardware Application layer Presentation layer Session layer Transport layer Network layer Data link layer Physical layer Layer 1 Layer 2 Layer 7 Layer 6 Layer 5 Layer 4 Layer 3 ISO/OSI Reference Model Socket API 
+The “IP Hourglass” IP TCP, UDP HTTP, FTP, SSH, SMTP, Your python program, ... coax, twisted pair, fiber, wireless, pigeons, ... Ethernet, WiFi, SONET Physical Layer Data Link Layer Network Layer Transport Layer Application Layer A single protocol 
+TCP/IP Model Appl Trans port Net work Link Net work Link Net work Link Appl Trans port Net work Link Host A Host B Router 1 Router 2 end-to-end point-to-point point-to-point end-to-end 
+TCP/IP Model Appl Trans port Net work Link Net work Link Net work Link Appl Trans port Net work Link Host A Host B Router 1 Router 2 end-to-end point-to-point point-to-point end-to-end client server (ping) 
+Message Flow Appl Trans port Net work Link Net work Link Net work Link Appl Trans port Net work Link Host A Host B Router 1 Router 2 
+Encapsulation Appl Trans port Net work Link Net work Link Net work Link Appl Trans port Net work Link Host A Host B Router 1 Router 2 Data Data Data Data 
+Encapsulation Example: Sending HTTP message using TCP/IP over Ethernet HTTP message TCP header IP header Ethernet header Ethernet frame port TCP IP IP datagram/packet TCP segment HTTP message Adapted from Coulouris, Dollimore and Kindberg 
+Ensuring Reliability 
+- Layering: – Hourglass: many different applications and underlying network technologies, but Internet Protocol establishes universal addressing scheme – Envelope/Encapsulation: layer-specific functionalities; isolation between layers 
+- Reliable communication over unreliable network – IP provides “best-effort” packet delivery service – TCP supports retransmission of lost packets 
+Internetworking Standards 
+- Internetworking standards set by IETF (Internet Engineering Task Force) 
+- Documented as RFCs (Requests for Comment): – RFC 791: IP – RFC 793: TCP – RFC 2460: IPv6 – RFC 1034, 1035: DNS 
+- http://www.ietf.org/rfc.html 
+Formal Definition of the Internet 
+- Resolution passed by the Federal Networking Council October 24, 1995 
+- "Internet" refers to the global information system that -- – (i) is logically linked together by a globally unique address space based on the Internet Protocol (IP) or its subsequent extensions/follow-ons; – (ii) is able to support communications using the Transmission Control Protocol/Internet Protocol (TCP/IP) suite or its subsequent extensions/follow-ons, and/or other IP-compatible protocols; and – (iii) provides, uses or makes accessible, either publicly or privately, high level services layered on the communications and related infrastructure described herein. 
+Network Layer Appl Trans port Net work Link Net work Link Net work Link Appl Trans port Net work Link Host A Host B Router 1 Router 2 end-to-end point-to-point point-to-point end-to-end 
+Internet Protocol (IP) 
+- Two main functions of network layer: – Addressing – Packet switching (routing + packet forwarding) 
+- Allow packets to traverse multiple networks 
+- Deliver packet to specified destination host 
+- Best effort: network delivers packets as reliably and as quickly as it can (but provides no guarantee of delivery) – Routers can and often do drop packets as part of normal operations 
+IP Packet Format (v4) Total Length in bytes (16) Time to Live (8) Options (if any) Bit 0 Bit 31 Version (4) Hdr Len (4) TOS (8) Identification (16 bits) Flags (3) Fragment Offset (13) Source IP Address (32) Destination IP Address (32) Header Checksum (16) Protocol (8) Data (variable length) Header Data Field length in bits 
+IP Address 
+- Every networked host is identified by its IP address 
+- IP (version 4) addresses are 32 bits long – 232 = 4,294,967,296 unique IP addresses 
+- IPv6 addresses are 128 bits long – 2128 = 340,282,366,920,938,463,463,374,607,431,768,211,455 unique IP addresses 
+IP Address: Dotted Decimal Notation 
+- Hostname: ischool.berkeley.edu 
+- IP address: 128.32.226.87 128 32 226 87 0 16 31 8 24 1 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 1 1 1 0 0 0 1 0 0 1 0 1 0 1 1 1 Domain Name Service (DNS) performs translation 
+Packet Switching (Routing) Host A Host B 128.32.226.87 12.2.14.60 
+Two Basic Functions in Packet Switching 
+- Routing – Learn the best route to (or best next-hop for) any given destination 
+- Routers exchange local link status or destination reachability information 
+- Compute best path to destinations – Algorithms for computing shortest paths (e.g., Dijkstra’s) – Policies that reflect business agreements (use BGP) – Update the routing table 
+- Packet forwarding – For each packet received on an incoming link, forward it to an outgoing link according to the routing table 
+Network Utilities 
+- Run from Terminal in unix/mac – Ping: round trip time on an IP network from the originating host to the destination computer – Traceroute: displaying the route (path) and measuring transit delays of packets across an IP network $ ping www.ischool.berkeley.edu!PING www.ischool.berkeley.edu (128.32.78.21): 56 data bytes !64 bytes from 128.32.78.21: icmp_seq=0 ttl=61 time=0.846 ms!64 bytes from 128.32.78.21: icmp_seq=1 ttl=61 time=0.915 ms!!!
+TraceRoute !$ traceroute www.ischool.berkeley.edu!traceroute to www.ischool.berkeley.edu (128.32.78.21), 64 hops max, 52 byte packets! 1 g2-11.inr-270-doecev.berkeley.edu (128.32.226.1) 0.681 ms 0.362 ms 0.495 ms! 2 g3-3.inr-202-reccev.berkeley.edu (128.32.255.34) 0.437 ms 0.540 ms 0.476 ms! 3 t5-5.inr-211-srb.berkeley.edu (128.32.255.127) 0.626 ms 0.648 ms 1.163 ms! 4 www (128.32.78.21) 0.930 ms 1.220 ms 1.085 ms!!$ traceroute www.google.com!traceroute: Warning: www.google.com has multiple addresses; using 74.125.224.83!traceroute to www.l.google.com (74.125.224.83), 64 hops max, 52 byte packets! 1 g2-11.inr-270-doecev.berkeley.edu (128.32.226.1) 0.673 ms 0.431 ms 0.427 ms! 2 g3-3.inr-201-sut.berkeley.edu (128.32.255.32) 0.482 ms 0.505 ms 0.510 ms! 3 xe-0-1-0.inr-001-sut.berkeley.edu (128.32.0.64) 0.597 ms 0.450 ms 0.355 ms! 4 dc-svl-agg1--ucb-10ge.cenic.net (137.164.50.18) 10.662 ms 7.790 ms 6.443 ms! 5 dc-svl-core1--svl-agg1-10ge.cenic.net (137.164.47.121) 3.623 ms 3.477 ms 3.133 ms! 6 dc-svl-px1--svl-core1-10ge-2.cenic.net (137.164.46.13) 4.791 ms 3.045 ms 2.955 ms! 7 137.164.131.61 (137.164.131.61) 3.582 ms 3.415 ms 3.637 ms! 8 137.164.130.94 (137.164.130.94) 8.095 ms 58.649 ms 7.700 ms! 9 216.239.49.250 (216.239.49.250) 4.307 ms 4.829 ms 4.534 ms!10 64.233.174.19 (64.233.174.19) 4.943 ms 4.812 ms 5.091 ms!11 nuq04s07-in-f19.1e100.net (74.125.224.83) 4.528 ms 4.510 ms 4.802 ms!!!
+Control Plane Destination Address Outgoing Link Outgoing links Routing table Packet Packet Switch in Action C w.x.y.z Incoming links Data Plane Control plane of a router communicates with its counterparts at other routers using routing protocols (e.g., RIP, OSPF, BGP) 
+Transport Layer Appl Trans port Net work Link Net work Link Net work Link Appl Trans port Net work Link Host A Host B Router 1 Router 2 end-to-end point-to-point point-to-point end-to-end 
+Transmission Control Protocol (TCP) 
+- End-to-End reliable data transport 
+- Addressing (using ports) 
+TCP Segment Format Bit 0 Bit 31 Data (variable length) Header Data Source Port # (16) Destination Port # (16) Sequence Number (32 bits) Acknowledgement Number (32 bits) Hdr Len (4) Flags (6) Window Size (16) Options (if any) Padding Reserved (6) TCP Checksum (16) Urgent Pointer (16) 
+TCP Ports 
+- TCP port number designates communicating processes Source Port # (16) Destination Port # (16) Sequence Number (32 bits) Acknowledgement Number (32 bits) Hdr Len (4) Flags (6) Window Size (16) Options (if any) Padding Bit 0 Bit 31 Reserved (6) TCP Checksum (16) Urgent Pointer (16) message agreed port any port socket socket Internet address = 138.37.88.249 Internet address = 138.37.94.248 other ports client server Source: Coulouris, Dollimore and Kindberg 
+Ports 
+- The port numbers are divided into three ranges: – Well known ports (0-1023) – Registered ports (1024-49151) – Dynamic and/or private ports (49152 – 65535) 
+- Some “well known ports” – ftp (21); ssh (22); telnet (23); smtp (25); finger (79); http (80) – assigned by Internet Assigned Numbers Authority (www.iana.org/numbers.html) 
+Reliable Delivery? Process A Process B time Data Data Data Packet Loss Q: how to support reliable data transfer when underlying network is unreliable? 
+Reliable Delivery 
+- Positive acknowledgment with retransmission 
+- Sequence and acknowledgement numbers Options (if any) 0 31 16 Padding Data TCP Header Source Port Number (16) Destination Port Number (16) Sequence Number (32) Acknowledgement Number (32) Hdr Len (4) Flags (6) Window Size (16) Reserved (6) TCP Checksum (16) Urgent Pointer (16) 
+Reliable Delivery 
+- Each packet has a sequence number (SEQ) – SEQ represents byte offset with respect to initial SEQ – Duplicate packets can be detected and discarded – Out of order packets can be re-ordered 
+- Each packet carries acknowledgment of received packet – ACK = sequence number of next byte expected by the receiver 
+- Lost packet can be detected by missing ACK 
+- Lost packet can be retransmitted after a timeout period 
+ACK and Packet Retransmission Process A Process B time Data (Seq=x+1) Data (Ack=x+2) Data (Ack=x+3) Data (Seq=x+2) Timeout Data (Seq=x+2) IP loses packet TCP resends packet 
+ACK and Packet Retransmission Process A Process B time Data (Seq=x+1) Data (Ack=x+2) Data (Ack=x+3) Data (Seq=x+2) Timeout Data (Seq=x+2) IP loses ACK TCP resends packet TCP resends ACK; drops duplicate Data (Ack=x+3) 
+User Datagram Protocol 
+- Port numbers for addressing 
+- No mechanism for reliable data transfer 
+- Light-weight: – low overhead; no connection setup – used for real-time applications (don’t need retransmission) – non-standard protocols can be implemented on top of UDP 0 31 16 Data UDP Header Source Port Number (16) Destination Port Number (16) UDP Checksum (16) Message Length (16) 
+Application Layer Appl Trans port Net work Link Net work Link Net work Link Appl Trans port Net work Link Host A Host B Router 1 Router 2 end-to-end point-to-point point-to-point end-to-end 
+Hyper Text Transfer Protocol (HTTP) Request line GET /index.html HTTP/1.1<CRLF> Host: www.ischool.berkeley.edu <CRLF> <CRLF> Blank line Request header HTTP message TCP header IP header Ethernet header Ethernet frame port TCP IP IP datagram/packet TCP segment HTTP message Adapted from Coulouris, Dollimore and Kindberg 
+Real-Time Transport Protocol (RTP) 
+- Protocol for transport of real-time multi-media data – Sequence number and timestamp in RTP header – RTP messages encapsulated in UDP datagrams Source: Douglas Comer 
+Domain Name Service (DNS) 
+- Routers and end-hosts use IP addresses – e.g., 128.32.226.87 
+- Human beings remember hostnames – e.g., ischool.berkeley.edu 
+- Need translation service! 
+- Client sends DNS query message (hostname) to domain name server using UDP 
+- Name server sends DNS response message (with resolved IP address) back to client

@@ -1,0 +1,144 @@
+source,content
+wireless,"Network Types: LAN WAN MAN PAN WLAN CAN SAN VLAN NAT
+
+Network types:
+
+Network types depend upon the how large they are and how much an area they cover geographically. Most people who have a basic knowledge of networking are familiar with terms such as LAN and WAN. But in addition to those there are a few more network types that a lot of people are not familiar with. So, in the Network types we are going to start with the most popular network which is LAN.
+
+LAN:
+
+LAN stands for local area network a local area network is group of computers, servers, switches and printers which are located in the same building such as an office or in a home. LAN is the most common type of network and this is the reason while studying the network types we are first introduced to the LAN. It covers a small area. In other word close proximity to each other. The most common type of the LAN is Ethernet where the two or more computers to Ethernet cables using a switch. In LAN one computer can become a server and the remaining computer is called clients. The clients will take and give data to the server.
+
+
+
+
+
+The work stations is basically computers either client or server.
+
+In file server if we place files at the remote location like if we place data in the computer from where we can access the data. We will request data from that computer and it will provide us the data.
+
+The gate way provides communication to the particular computer.
+
+Network interfacing unit can be a hardware or software. It can provide us to how enter to the network and go out from the network. There will be particular network interfacing card in the LAN which will decides which PC are of the particular LAN and which computer are not of that LAN will not be allowed.
+
+The HUB hold the central capacity, hub is the particular location where the particular computer meet with each other.
+
+The LANS are connected through the coaxial cable with the computers. This is communication channel which will provide us communication.
+
+
+
+PAN:
+
+PAN stands for personal area network now this is type of network which is used in on personal level. It is a small level that is used for connecting the devices such as smartphones, tablets and laptop. They connect to each other by using wirelessly technologies such as Bluetooth, Infrared andnear field communication. But they can also connect by used a wired connection such as a USB cable. Small files like photos, music can be transfer through the private area network. For example sharing of the data through Bluetooth between mobile phones is an example of personal area network.
+
+
+
+The range of the PAN is up to 10 meters. PAN may include wireless mouse and keyboard, TV remotes, wireless printers and Bluetooth enabled head phones.
+
+WLAN:
+
+WLAN stands for wireless local area network is a local area network that uses wireless communication instead of wired communication. A wireless LAN is defined as having at least two devices that use wireless communication to form a local area network. It is collection of the local area network or LAN. Wireless LAN will typically have a Wi-Fi router or a wireless access point for wireless devices such as laptops, tablets, wireless desktops, and smartphones to communicate. So in simple terms a wireless LAN is a LAN but without using cables.
+
+CAN:
+
+A CAN stands for the campus area network that joins two or more LANs together within a limited area. So for example a CAN could be a university that has multiple building in the same general area that are connected to each other to form a larger network. So these building could be different departments on a university property with each building have their own LAN in their department and then the building is connecting to form a campus area network.
+
+
+
+MAN:
+
+MAN stands for a metropolitan area network now this is a larger network than CAN. It is a network that spans over the several building in a city or towns. MAN is typically connected using high speed connection such as fiber optic cable. It is high speed network that gives the ability for sharing and resources within a city. Characteristics of MAN:
+
+MAN used the fiber optics so the speed of data can easily reach up to 1000 Mbps. Files and data bases can be transferred fast.
+
+SAN:
+
+SAN stands for the storage area network which is a special high speed network that stores and provides access to the large amount of the data. It is dedicated network that is used for data storage. This network consists of multiple disk arrays, switches, and servers. One of the main reason for using the a SAN is because SAN are not affected by network traffic such as bottlenecks that can happen in local area network. SAN is not particularly a part of the local area network it is partitioned off and it is a network all by itself.
+
+
+
+WAN:
+
+WAN stands for wide area network which is the largest type of the network. A WAN includes LANs, CANs and MANs. It is a network that spans over a large geographical area such as country continent or even the entire globe. A good example of a wide area network is the internet.
+
+WANS are owned by third party service providers a company wanting to connects it geographically dispersed LAN must subscribe to WAN service provider such as telephone company to use or lease the carrier services. A company uses the data links provides by these service providers to connect the remote locations to each other or to access the internet liker Ethernet LANs traditional WAN protocols operates at the physical and data link layers.
+
+Each one technology such as the point to point protocol or PPP or frame relay using a different layer to frame format and provides different option for reliability and error recovery.
+
+
+
+
+
+VLAN:
+
+VLAN stands for virtual area network in a VLAN network thecomputers, servers and other network devices are logically connected regardless of their physical location. So even if these devices are scattered in different places it would not matter because VLAN can logically group them in to separate virtual network. The purpose of the VLAN is for:
+
+Let us consider an example in which we have three story office building and this building we have computers that belongs to certain departments that are mixed in with computers that belong to other departments on the same floor. Now suppose the red computer represent accounting department, the blue computer represents the shipping departments, and the green computer represents the support department.
+
+
+
+Now we can see that all these computers from these different departments are all connected to a switch. Local area network will combine in the one segment. So all the broadcast traffic is mixed in with other department and the departments are all seeing each other traffic. Now suppose a as a network administrator we want to separate the network broad cast traffic from these department from each other. So that the accounting department does not see any traffic from support, support does not see any traffic from the shipping and so on. Now one way to solve this is to physically move the computers that belongs to the same department and put them together such as putting them on the same floor and deploying the extra network hardware and cabling. But that could be a hassle and unnecessary work. But there is an easier way to accomplish this and that by creating VLAN. By using the VLAN on a VLAN capable switch we logically created several virtual networks to separate network broadcast traffic. In this case we are going to create three VLAN for three different departments. We are going to create a VLAN for the accounting department and then we will create another VLAN for the support department and then we will create VLAN for the shipping department. As the VLAN are implemented the traffic between the three departments are isolated so they would not see any traffic created from the other department. They will see only their own network traffic even though all the computers are from different departments sharing the same cable and switch. In this example the VLAN is created on the switch and this is done by designing the specific ports on switch and assigning those ports to a specific VLAN. So on the switch we will create a VLAN for the support department. So we will plug all the computer that belongs to the support department in those ports. Then we will designate another set of ports on the switch and create another VLAN for the accounting department. Finally we will designate another set of ports on the switch for another VLAN for the shipping department.
+
+
+
+We can see that the network traffic is different between the departments. There are different reasons for creating VLAN. When more network devices are added the local area will grows the frequency of the broadcasts will also increase and the network will grows heavily congested with data. But by creating VLANs which divide up the network in to smaller broadcast domains it will help to evaluate the broadcast traffic.
+
+
+
+NAT:
+
+NAT stands for network address translation and this is a service which is used in routers and its purpose is to translate a set of IP addresses to another set of IP addresses and the reason for having the NAT service is to help preserve the limited amount of the IP version 4 public IP addresses that we have available around the world. When the IP version 4 addresses was created engineers did not realize how big the internet will become because even though there were over 4 billion IP version 4 addresses available. The engineer thought it would be enough but obviously they were wrong so in order to prevent a shortage of public IP version 4 addresses. Engineer develops private IP addresses and network address translation.
+
+
+
+Now there are two different types of the IP version addresses which are public and private. Public addresses are publicly registered on the internet. We have to public IP address if we want to go on the internet and there are approximately billion public IP addresses available so they are limited. Now private IP addresses are different private IP addresses are not publicly registered. So we cannot directly access the internet with a private IP. Private IP addresses can be used internally such as inside a business or home. They are not used out on public internet and the router what assign to the internal devices a private IP. So for example most homes and business are not going to have just one device that needs internet access chances are that they are going to have multiple devices that need access to the internet. So those devices need a public IP address. If they want to access the internet and we could contact to our internet service provider and ask them for these additional public IP addresses for all our devices. But it will be more expensive unnecessary and more importantly it would also be a waste of public IP addresses and if every device in the world have had their own public IP address. We would have run out of the public IP address already. So instead we can have our router assigned the devices inside our home or business. Private IP addresses and when our device needs to access the internet. Their private IP address will be translated by the NAT in the router to the one public IP address that we have been given. So again what the NAT does it translates a set of IP addresses to another set of IP addresses. So not only does it translate private to public but also translate public to private. Because if a computer out on the internet wants to communicate with a computer on this private network then the public IP addresses need to be translated by NAT to the private address for that computer. In the future we would not need NAT or private IP addresses and this is because of the new generation of an IP addresses called IP version. Every single device in the world will have its own public IP address so there is no need for IP address translation and this is because IP version 6 is able to produce over 340 undecillion IP addresses. With this my article on the Network types comes to an end.
+
+Tagsapplication of lanCANLANlan advantageslan wan manland componentsMANNATNetwork TypesPANSANVLANWANWLAN
+
+Engr. Shahzada Fahad
+
+Related Articles
+
+Application of water quality monitoring in aquaculture
+
+Tracking Health-Focused Advances in Wearable Technology Through Eyewear
+
+Single Board Computer Youyeetoo X1 SBC Review and Testing
+
+Microbit Robot Trapped in Circle
+
+Leave a ReplyCancel reply
+
+Your email address will not be published.Required fields are marked*
+
+Comment*
+
+Name*
+
+Email*
+
+Website
+
+Save my name, email, and website in this browser for the next time I comment.
+
+
+
+
+
+Δ
+
+pH meter Arduino, pH Meter Calibration, DIYMORE pH Sensor Arduino Code
+
+Arduino Libraries Download and Projects they are used in “Project codes”
+
+Decoder, 3 to 8 Decoder Block Diagram, Truth Table, and Logic Diagram
+
+We are using cookies to give you the best experience on our website.
+
+You can find out more about which cookies we are using or switch them off insettings.
+
+This website uses cookies so that we can provide you with the best user experience possible. Cookie information is stored in your browser and performs functions such as recognising you when you return to our website and helping our team to understand which sections of the website you find most interesting and useful.
+
+Strictly Necessary Cookie should be enabled at all times so that we can save your preferences for cookie settings.
+
+If you disable this cookie, we will not be able to save your preferences. This means that every time you visit this website you will need to enable or disable cookies again."

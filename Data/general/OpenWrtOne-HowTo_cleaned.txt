@@ -1,0 +1,17 @@
+OpenWrt One - Howto I just received my OpenWrt One Before powering up the device make sure that the boot select switch on the back is set to "NAND". The device can be powered via the USB-C "Power" port or using PoE via the WAN port. The front panel has a USB 2.0 Type A host port and a USB-C serial console port. The usb2serial converter is integrated and does not require any additional drivers to be installed. When connected, the serial port will appear on the USB bus as "OpenWrt One". The device is ready to be configured. A good place to start is openwrt.org/docs/guide-quick-start/ start I have opened up the case OpenWrt One has some features that require the case to be opened. How does the RTC work There is an on board Real Time Clock (RTC). For this to work across power cycles a battery needs to be inserted into the holder. The battery type used is CR1220. How does the SSD slot work The m.2 slot is Key-M and can hold a 2240 or 2232 length SSD. Simply insert the SSD and tighten the screw. The SSD will be detected automatically when the device boots up the next time. How does the JTAG port work The JTAG pins are exposed via a 2x5 pin 0.05 inch pitch connector. github.com/mtk-openwrt/openocd-scripts How does the mikroBUS connector work Currently all the busses and GPIOs on the sockets are exposed via /dev, /sys, … Work is in progress for bringing the subsystem upstream. I want to build my own image from source The wiki has a good article on how to build images. openwrt.org/docs/guide-developer/toolchain/beginners-build-guide 1
+You can either build the image from the main git repositiry. If you would like to repduce the images shipped on the devices then checkout the following link one.openwrt.org/sources/ Where can I get the schematics and datasheets These files can be found under the following link one.openwrt.org/hardware/ I want to upgrade the firmware The easiest way to do is is via USB. 
+- prepare an USB drive that contains the file ◦openwrt-mediatek-filogic-openwrt_one-squashfs-sysupgrade.itb 
+- make sure NAND boot is selected 
+- press and hold the button on the back side 
+- power up the device 
+- wait for the LED to go green The bootloader will reflash the kernel and rootf filesystem I want to boot into recovery mode 
+- make sure NAND boot is selected 
+- press and hold the button on the front 
+- power up the device 
+- the device will now boot a recovery initramfs image The unit does not boot anymore / full recovery There is a failsafe recovery method that can be used even if the ATF or bootloader are broken. 
+- prepare an USB drive that contains the files - ◦openwrt-mediatek-filogic-openwrt_one-snand-preloader.bin ◦openwrt-mediatek-filogic-openwrt_one-factory.ubi 2
+
+- make sure NOR boot is selected 
+- press and hold the button on the front side 
+- power up the device 
+- wait for the LED to go green The NOR recovery system will then factory reflash the entire NAND flash. 3

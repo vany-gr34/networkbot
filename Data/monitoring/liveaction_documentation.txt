@@ -1,0 +1,62 @@
+July 12, 2021
+
+Types of Network Management Protocols
+
+Corporate networks as a system are made up of numerous components, and it is not uncommon that some components due to the intricacies of their functionality, which might not be immediately observed, are subjected to neglect. Prolonged neglect of such components can, in some cases, lead to disastrous network performance problems. Network monitoring protocols arenetwork management solutionsthat exist because we, as humans, cannot observe every activity that is ongoing within a network in real-time.
+
+A thousand and one reasons can be given for why the network should be monitored, but what seems to be the most vital reason is the understanding that without a network, IT infrastructure will degrade and businesses that are rooted in IT – even slightly – might cease operations. For ease of network monitoring and management, the collection of network statistics is ever so important; network monitoring protocols help ensure that all necessary statistics are collected – giving an insight into a variety of network activities.
+
+Network monitoring protocolsare protocols designed to facilitate the tracking and provision of reports on data and traffic flowing to and from network links – between a host and client device. Collected data is processed and graphically displayed via GUI, so that network operators can use the information provided in managing the network’s activity.
+
+Standard Network Monitoring Protocols
+
+There are numerous network monitoring protocols as developed and distributed by different vendors, some of which incorporate the unique functionality of various protocols into one. In all, the basic functions of all protocols can be summarized in five actions: discovery, mapping, monitoring, notification, and report.
+
+We will take a look at some of those standard network monitoring protocols that form the basis for others.
+
+Simple Network Management Protocol (SNMP)
+
+SNMP is the foremost standard protocol, which queries relevant objects in a bid to extract data from devices such as switches, WLAN controllers, servers, printers, routers, modems, etc., which have been attached to a network. Data collected is used to develop information used in monitoring the performance of the network based on interface status, CPU utilization, bandwidth utilization, network latency, etc.
+
+The simplicity of SNMP makes it easy for vendors to develop SNMP agents for application in various network-based products/applications. SNMP is most suitable for facilitating the exchange of management information within a network management system (NMS), between the management applications and agents within a network.
+
+A key component in the functionality of SNMP is the Management Information Base (MIB), which is a catalog of objects, which SNMP queries to determine the status of a device. MIB maintains and stores each object with a unique identifier, which IT managers can use to locate the objects that need to be monitored or to extract information provided by the object in the future. The data stored in the MIB is supplied by management agents incorporated in a managed device to collect and store information which gives an insight into the device’s operations and status.
+
+SNMP accesses and processes the stored information which it relays to the network management application (the manager). Subsequently, the manager utilizes a GUI to display the information on the management system, informing the IT admins on relevant information. Network Management Application software is crucial for alerting IT of incidents and assists in protecting the network from failures.
+
+Internet Control Message Point (ICMP)
+
+ICMP is a network monitoring protocol specially designed for error reporting. Network devices such as routers make use of ICMP to send error messages at situations where for example a host/client can’t be reached or requested information is not available. Unlike SNMP, ICMP does not get involved in the exchange of data within or between systems. Its function is quite straight to the point: “Oh, there is an error in IP operations. Report it!”
+
+It is a component of TCP/IP protocol stack, acting as a support to internet protocol, as IPs don’t have an inbuilt component or process for sending control and error messages. IPv4 and IPv6 are accompanied by ICMPv4 and ICMPv6, respectively. As a network monitoring protocol, it is essential, in the sense that the messages provided by ICMP form a base for a quick understanding of the source and cause of errors while carrying out most of the common utilities used in completing a day-to-day task on the internet.
+
+Messages from ICMP are relayed as datagrams, and they contain an IP header which bears the ICMP data being transmitted, as well as the IP header from the original message for which an error response is being generated. The latter ensures that the request source receiving the error message is informed of the particular packet that failed. Information provided by ICMP is mostly used by network admins while troubleshooting internet connections using diagnostic utilities such as ping.
+
+Some of the common error messages ICMP reports include but not limited to:
+
+Cisco Discovery Protocol (CDP)
+
+
+
+CDP (Cisco Discovery Protocol) is a Data Link Layer network monitoring protocol specially designed by Cisco systems for sharing information between connected Cisco devices that have a direct link to each other. Basically, it gives round-up information on Cisco-enabled devices such as routers, switches, servers, etc., on a network. It is enabled by default on all supported Cisco devices, but can be disabled on a particular interface, or disabled globally through Cisco systems for some device models.
+
+As a hello-based protocol, CDP-enabledCisco Discovery Protocoldevices will occasionally send out signals advertising their attributes to their neighbors using a multicast address. The advertised frame bears a TTL indicating how long obtained information should be retained before being discarded. The data obtained by the recipient Cisco device through a Cisco Discovery Protocol frame is cached and made available to SNMP which transmits it to the NMS. In other words, CDP through an independent protocol can be regarded as a management agent in the SNMP setup.
+
+While operating CDP as a network monitoring tool, caution should be applied NOT TO:
+
+LiveAction partners with Cisco, pooling LiveNX and various Cisco applications to form a blend of technology that oversimplifies voice, video and critical application troubleshooting, facilitated by topnotch network monitoring strategy that puts organizations in total control of their network environment. Optimizing your organization’s NMS for best delivery is just one step away. LiveAction utilizes a variety of network monitoring protocols and via visual analytics makes it easy to proactively identify and quickly resolve network issues. Typical network monitoring protocols used by LiveAction include:
+
+IPFIX, IP Flow Information Export, which collects flow information from routers, switches, and other network devices and is used for monitoring of these devices. It is an IETF standard and not specific to any network equipment manufacturer or vendor. Vendors supporting IPFIX include Cisco, Juniper, and Citrix Systems, to name a few.
+
+SNMP (Simple Network Management Protocol)is a standard way for different network vendors (e.g., Juniper, Cisco, etc.) devices to share information with one another. Like IPFIX, SNMP is not a proprietary network protocol.
+
+sFlow, a.k.a., Sample Flow, is a means for exporting packet-level data from the data link level for purposes of network monitoring. Like IPFIX and SNMP, sFlow is also an industry standard.
+
+NetFlow is a Cisco network monitoring protocol initially developed for managing and monitoring flow related to Quality of Service (QoS). Unlike IPFIX and SNMP, it is designed specifically for Cisco network devices.JFlow is a Juniper network monitoring protocolused to sample IP traffic flow on Juniper routers and switches. Similar to Cisco Netflow, this is Juniper’s proprietary protocol for collecting and monitoring IP flows.
+
+Unlike most networking monitoring platforms, LiveNX, support both flow, packet, WiFi, and virtually any other data source on a single platform. LiveAction supports both industry-standard network protocols and vendor-specific protocols across all major network equipment vendors.
+
+Experience what better network management looks like.
+
+Related Assets
+

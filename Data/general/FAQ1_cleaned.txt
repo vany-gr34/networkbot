@@ -1,0 +1,64 @@
+General Maintenance – FAQ 1. What is maintenance? Maintenance refers to all the activities performed to keep equipment, systems, or infrastructure in good working condition, prevent failures, and extend their lifespan. 2. What are the main types of maintenance? 
+- Corrective Maintenance: Fixing things after they break. 
+- Preventive Maintenance: Regular, scheduled maintenance to avoid breakdowns. 
+- Predictiv e Maintenance: Using data and analytics to predict and prevent failures. 
+- Condition -Based Maintenance (CBM): Performed based on the actual condition of the asset. 
+- Planned Maintenance: Maintenance activities scheduled in advance. 
+- Emergency Maintenance: Immed iate repair after unexpected failure. 3. Why is maintenance important? 
+- Prevents costly breakdowns 
+- Improves safety 
+- Increases asset longevity 
+- Maintains productivity and performance 
+- Ensures compliance with regulations 4. What is a maintenance schedule? A maintenance schedule is a predefined plan detailing when and how maintenance tasks should be carried out (daily, weekly, monthly, annually, etc.) for different systems or components. 5. What is a CMMS? A Computerized Maintenance Management System (CMMS) is software used to plan, track, and manage maintenance activities, assets, work orders, inventory, and reports. 6. What are common tools used in maintenance? 
+- Diagnostic tools (multimeters, thermal cameras) 
+
+- Hand tools (wrenches, screwdrivers, pliers) 
+- Lubrication equipment 
+- Testing and calibration tools 
+- CMMS or maintenance software 7. What are maintenance logs and why are they important? Maintenance logs record what maintenance was done, when, by whom, and what parts were used. They help in tracking asset performance and making data -driven decisions. 8. What are some common maintenance tasks? 
+- Cleaning and lubrication 
+- Inspections 
+- Replacing worn -out parts 
+- Software updates (for IT systems) 
+- Safety checks 9. Who performs maintenance? Maintenance can be performed by: 
+- In-house maintenance technicians or engineers 
+- Third -party contractors 
+- Automated systems (in IT or advanced manufacturing) 10. How is maintenance measured or evaluated? 
+- MTBF (Mean Time Between Failures) 
+- MTTR (Mean Time to Repair) 
+- Availability and uptime percentages 
+- Maintenance cost per unit/hour 
+- Work order completion rate Sure! Here's a Frequently Asked Questions (FAQ) section about Predictive Maintenance (PdM) that you can use in your chatbot. It’s written i n a clear and informative tone, suitable for both technical and non -technical users. 
+🛠️ Predictive Maintenance (PdM) – FAQ 1. What is predictive maintenance? Predictive maintenance is a proactive approach that uses data analysis, machine learning, and condition -monitoring tools to predict when equipment is likely to fail, so maintenance can be performed just in time to avoid breakdowns. 2. How is predictive maintenance different from preventive maintenance? 
+- Preventive Maintenance: Scheduled at regular intervals, regardless of equipment condition. 
+- Predictive Maintenance: Based on actual equipment data and only done when needed, saving time and cost. 3. What technologies are used in predictive maintenance? Common technologies include: 
+- Sensors (vibration, temperature, humidity, etc.) 
+- Internet of Things (IoT) 
+- Machine Learning/AI algorithms 
+- Cloud computing and Edge devices 
+- Digital Twins 
+- SCADA systems 4. What kind of data is needed for predictive maintenance? 
+- Historical failure data 
+- Real-time sensor data 
+- Operational logs 
+- Maintenance records 
+- Usage patterns 5. What industries benefit from predictive maintenance? 
+- Manufacturing 
+- Energy and Utilities 
+- Transportation and Logistics 
+- Oil and Gas 
+
+- Telecommunications 
+- IT & Network Infrastructure 6. W hat are the benefits of predictive maintenance? 
+- Reduced unplanned downtime 
+- Lower maintenance costs 
+- Increased equipment lifespan 
+- Better safety 
+- Improved resource planning 7. What are common challenges in implementing PdM? 
+- High initial investment 
+- Data collection complexity 
+- Integration with existing systems 
+- Need for skilled personnel in data science and analytics 8. How does AI help in predictive maintenance? AI models analyze large volumes of sensor and operational data to detect anomalies, predict failures, and recommend maintenance actions with high accuracy. 9. Can predictive maintenance be used in IT and network systems? Yes! In IT and network systems, PdM can monitor performance metrics, detect early signs of failures (like overheating routers or failing hard drives), and optimize system uptime. 10. What tools or platforms are commonly used for predictive maintenance? 
+- IBM Maximo 
+- Azure IoT 
+- AWS Predict

@@ -1,0 +1,247 @@
+@petermorin123 @PeterMorin123 NIST Cybersecurity Framework Assessing the Maturity of your Cybersecurity Program April 21, 20120
+@petermorin123 @PeterMorin123 Peter Morin ,CISSP Director, Cybersecurity & Privacy Consulting 
+- Based out of Halifax, Nova Scotia, Canada 
+- Over 20 years of experience cyber security 
+- Part of PwC’s Cyber Utilities Practice 
+- Specialize in security of critical infrastructure, incident response, threat hunting, etc. 
+- Worked in the past for the various military and government agencies 
+- Spoken at events run by BlackHat, FBI, DHS, ISACA, US DoD as well as lectured a numerous colleges and universities. 
+- CISSP, CISA, CRISC, CGEIT, GCFA 
+@PeterMorin123 Coming to you from the other coast!! 
+@petermorin123 @PeterMorin123 Agenda 
+- NIST CSF Framework: Assessing the Maturity of your Cybersecurity Program –Background on the NIST CSF and its comparison with other maturity frameworks –Understanding the value proposition related to assessing the maturity of your cybersecurity program –Framework implementation guidance using a simplified process –Assessing the maturity of your cybersecurity program –Setting a target maturity goal –Developing a cybersecurity remediation roadmap –Tools to assist in the assessment and visualization of your cybersecurity maturity –Reporting maturity to executives and boards
+@petermorin123 @PeterMorin123 Assumptions 
+- Every enterprise is increasingly aware of cyber risk, and is seeking to ‘manage it’ through: –Policies, procedures and other administrative controls –Technology -based controls –Insurance (aka, ‘risk transfer’) –Risk acceptance 
+- Cyber is an enterprise -wide risk management issue –It is much broader than the certification or compliance such as PCI DSS or HIPAA –It is a business issue, not only a technology issue 
+- Attendees may be looking for: –A place to start their cybersecurity programs, or –A way to communicate with stakeholders and set priorities & budgets –A way to measure progress –A way to get risk under (sufficient) control 
+@petermorin123 @PeterMorin123 “If you can't measure it, you can't manage it.” Peter Drucker
+@petermorin123 @PeterMorin123 Why Measure Maturity? 
+- Identifying successes and highlighting opportunities for improvement 
+- Jump -starting improvement initiatives 
+- Energizing change initiatives 
+- Energizing the workforce 
+- Assessing performance against both the NIST CSF and benchmarking against your peers 
+- Better alignment of resources with organization objectives 
+- Could serve to provide validation of you cybersecurity posture to your clients, board, shareholders, etc. 
+@PeterMorin123 Various Ways to Measure Maturity Some can be self -delivered, some may require a third party
+@petermorin123 @PeterMorin123 NIST CSF 
+- National Institute for Standards and Technology (NIST) published version 1.0 of their Cybersecurity Framework (CSF) in February 2014 
+- In response to Executive Order 13636 as an effort to improve cybersecurity of critical infrastructure 
+- NIST released its most current version 1.1 of the Framework CSF in April 2018 Source: https://obamawhitehouse.archives.gov/the -press -office/2013/02/12/executive -order -improving -critical -infrastructure -cybersecurity
+@petermorin123 @PeterMorin123 NIST CSF 
+- Common language for addressing and understanding cybersecurity risk management 
+- Especially helpful for communicating risks to stakeholders 
+- Establishing clear lines of communication to upper - management is an essential first step for incorporating cybersecurity into an organization’s overall mission 
+@petermorin123 @PeterMorin123 Why NIST CSF? 
+- Intent –Voluntary –Adaptable and flexible 
+- Leverages standards, methodologies, and processes –Not a compliance checklist or control 
+- It’s a framework –Not a law or regulatory mandate 
+- Risk-based approach –Focused on top -down high impact risks –Connects executive, business, and security operations Source: https://www.nist.gov/sites/default/files/documents////draft -cybersecurity -framework -v1.11.pdf
+@PeterMorin123 Critical Infrastructure 
+@petermorin123 @PeterMorin123 Most Common Applications of CSF 
+- Evaluate a enterprise -wide cybersecurity posture and maturity by conducting an assessment against the CSF model –Determine the desired cybersecurity posture and plan and prioritize resources and efforts to achieve the target maturity. 
+- Evaluation of current and proposed products and services to meet security objectives aligned to CSF –Identify capability gaps and opportunities to reduce overlap/duplicative capabilities for efficiency. 
+- A reference for restructuring their security teams, processes, and training.
+@petermorin123 @PeterMorin123 NIST CSF vs. ISO 27001 
+- Both involve establishing cybersecurity controls 
+- ISO 27001 comes with a recognized certification and can be used to prove its abilities to its clients, partners, shareholders –but requires a third party to certify 
+- NIST Cybersecurity Framework is not certifiable and auditable –set of voluntary cyber security standards 
+- ISO 27001 focuses on protecting all types of information, not just information processed in IT systems (i.e. paper -based information) 
+@petermorin123 @PeterMorin123 NIST CSF vs. ISO 27001 
+- ISO 27001 defines which documents and records are needed, and what is the minimum that must be implemented 
+- CSF is better structured when it comes to planning and implementation 
+- CSF enables both the top management but also engineers and other IT staff to understand easily what is to be implemented, and where the vulnerabilities are.
+@PeterMorin123 NIST CSF Components NIST CSF ComponentsFramework CoreFramework Profile Framework Implementation Tiers Tiers describe the degree to which an organization’s cybersecurity risk management practices exhibit the characteristics defined in the Framework.The Core is a set of desired cybersecurity activities and outcomes organized into Categories and aligned to Informative References.Profiles are an organization's unique alignment of their organizational requirements and objectives, risk appetite, and resources against the desired outcomes of the Framework Core.
+@petermorin123 @PeterMorin123 Framework Implementation Tiers 
+- Allow entities to identify their priorities 
+- Based on the assumption that different entities face different cybersecurity risks. 
+- Enterprises can read through the tier qualifications (i.e. level of budget, size of company) and identify which tier, and subsequent guidelines, best fit their businesses. 
+@PeterMorin123 Framework Implementation Tiers The functionality and repeatability of cybersecurity risk management The extent to which cybersecurity is considered in broader risk management decisions The degree to which the organization benefits by sharing or receiving information from outside parties 
+@petermorin123 @PeterMorin123 Framework Profiles 
+- Profiles guide entities through a self -assessment 
+- Optimizing the CSF to best serve the organization 
+- Assists in identifying: –How to best allocate resources –Priority threat vectors –How to design a unique plan for strengthening their organization’s cybersecurity infrastructure. –These requirements and objectives can be compared against the current operating state of the organization to gain an understanding of the gaps between the two
+@petermorin123 @PeterMorin123 Framework Profiles 
+- Ways to think about a Profile: –A customization of the Core for a given sector, subsector, or organization. –A fusion of business/mission logic and cybersecurity outcomes. –An alignment of cybersecurity requirements with operational methodologies. –A basis for assessment and expressing target state. –A decision support tool for cybersecurity risk management.
+@PeterMorin123 Framework Core Recover: Maintaining plans for resilience, restore capabilities or services Respond: Action regarding a detected cybersecurity event Detect: Identify the occurrence of a cybersecurity eventProtect: Safeguards to ensure delivery of critical infrastructure servicesIdentify: Understanding to manage cybersecurity risk to systems, assets, data, and capabilities 
+@petermorin123 @PeterMorin123 Framework Core 
+- NIST CSF Core –Functional areas (i.e. Identify) –Categories (i.e. Asset Management) –Sub-categories (i.e. Physical devices and systems within the organization are inventoried) 
+@PeterMorin123 Framework Core PROTECT (PR)Access Control (PR.AC): Access to assets and associated facilities is limited to authorized users, processes, or devices, and to authorized activities and transactions.PR.AC -1: Identities and credentials are managed for authorized devices andusers·CCS CSC 16 ·COBIT 5 DSS05.04, DSS06.03 ·ISA 62443 -2-1:2009 4.3.3.5.1 ·ISA62443 -3-3:2013 SR1.1, SR1.2,SR1.3,SR1.4,SR1.5,SR1.7, SR1.8, SR1.9 ·ISO/IEC 27001:2013 A.9.2.1, A.9.2.2, A.9.2.4, A.9.3.1, A.9.4.2, A.9.4.3 ·NIST SP 800-53 Rev. 4 AC-2, IA Family PR.AC -4: Access permissions are managed, incorporating the principles of least privilege and separation of duties·CCS CSC 12,15 ·ISA 62443 -2-1:2009 4.3.3.7.3 ·ISA 62443 -3-3:2013 SR2.1 ·ISO/IEC 27001:2013 A.6.1.2, A.9.1.2, A.9.2.3, A.9.4.1, A.9.4.4 ·NIST SP 800-53 Rev. 4AC-2, AC -3, AC -5, AC -6, AC -16Sub-Category Category FunctionIndustry standards and alignment
+@petermorin123 @PeterMorin123 NIST CSF v1.0 vs. 1.1 (Core) 
+- 1 New Category (in the Identify Function area) 
+- 10 New Subcategories (in the Identify/Protect/Respond Function areas) 
+- 26 Subcategories Reworded from v1.0 —changes including: –Improved grammar –Added details –Removed extraneous words –Greater use of cyber security vs. information security 
+- v1.0 is still compatible with v1.1 (all items in v1.0 are in v1.1)
+@PeterMorin123 5-Step Assessment Process Scope and PlanAssess Current StateIdentify a Target ProfileAssess and Prioritize GapsRemediation and Roadmap Simplified from the 7 -step NIST CSF Process!
+@petermorin123 @PeterMorin123 Step 1: Scope and Plan 
+- Identify organization or mission objectives along with high -level organizational priorities 
+- Allows the organization to make strategic cybersecurity implementation decisions and determine the scope of the systems (and other assets) that will support the organization 
+- Important to identify important systems and assets so that their protection can be prioritized 
+@petermorin123 @PeterMorin123 Step 1: Scope and Plan 
+- What are you trying to assess? –Enterprise –Business Unit –Business Process –Service for a client 
+- How does the assessment target align with overall goals and priorities? 
+- You also should identify your top risks at this point –Identify your assets; –Identify the threats to those assets; –Identify your vulnerabilities to those threats. 
+@PeterMorin123 Threats, Assets, Vulnerabilities, & Risk Events A process to identify, prioritize, and manage the cybersecurity risks that may prevent the organization from achieving corporate objectives and maintaining itsreputation. The process considers threats, assets, vulnerabilities, and risk events: Threat Asset Vulnerability Risk Event Anything that is capable, by its action or inaction, of compromising your organization. This includes users.In cybersecurity, we concern ourselves with assets that are connected to a network, or assets that could be compromised by intentional or unintentional digital access.A weakness or flaw in a system that exposes itto intentional or unintentional compromise.An occurrence that exploits one or more vulnerabilities, causing an impact on an asset(s). We intentionally include the word “event”, since a risk requires that something happens. 
+@PeterMorin123 Cyber Threats and Adversaries (example) Nation state InsidersOrganized crime Hacktivists 
+- Act of aggression as a political statement
+- Immediate financial gain 
+- Collect information forfuture financial gains (i.e. CCs) 
+- Sell intellectual property 
+- Personal advantage, monetary gain 
+- Professional revenge 
+- Bribery or coercion
+- Influence political and /or social change 
+- Pressure Organization tochange your practices 
+- Affect services to endcustomersMotives Adversary 
+- Operational technologies 
+- Intellectual property 
+- Government assets
+- Organization customer records 
+- Employee personal and health information 
+- Financial / payment systems 
+- Financial information 
+- Sensitive business/corporate information 
+- Operational technologies 
+- Intellectual property
+- Sensitive business information 
+- Personal information (board, executives, employees) 
+- Operational assets 
+- Customer dataOrganization Targets 
+- Disruption tooperations 
+- Regulatory inquiry/penalty 
+- Brand and reputation
+- Customer and shareholder lawsuits 
+- Regulatory inquiry/penalty 
+- Financial loss 
+- Brand and reputation 
+- Regulatory inquiry/penalty 
+- Operational disruption 
+- Disruption to operations 
+- Loss of stakeholder confidence
+- Disruption of business activities 
+- Brand and reputation 
+- Loss of stakeholder confidence 
+- LawsuitsImpa ct 
+@petermorin123 @PeterMorin123 Step 1: Scope and Plan 
+- Identify your digital crown jewels –The digital assets of greatest value and that would cause a material business impact if compromised. –Due to their value, the Crown Jewels are a top target of adversarial cyber threats and organizations must prioritize their protection 
+- What are the supporting IT systems and assets? 
+- Who are the relevant business owners, team leads, etc.? 
+- What are the relevant legal, regulatory, and contractual requirements? 
+- Has a risk strategy been developed and implemented?
+@petermorin123 @PeterMorin123 Step 1: Scope and Plan Asset Classes 
+- If you assess the controls from your high - security environment with you low -security environment, you may get an unrealistic maturity rating. 
+- Compliance -based environments: PCI -DSS, NERC CIP, SOX, etc. 
+- Think about where management, networks or applications could be very different (i.e. POS environment vs. corporate systems at a retailer).IT Environment OT EnvironmentAcme PowerCo Natural Gas Distribution Nuclear GenerationAcme PowerCo NERC CIP Environment Electric Transmission
+@petermorin123 @PeterMorin123 Step 2: Assess Current State 
+- Developed by indicating which control outcomes (Category and Subcategory) of the Core are currently being achieved. 
+- Partially achieved controls should be noted so supporting baseline information regarding subsequent steps can be provided. 
+- The Current Profile should integrate every control found in the NIST CSF in order to determine which control outcomes are being achieved. 
+@PeterMorin123 PR.AT -1: All users are informed and trained
+@PeterMorin123 ISO/IEC 27001:2013 A.7.2.2, A.12.2.1 17.2 -Deliver Training to Fill the Skills Gap -Deliver training to address the skills gap identified to positively impact workforce members' security behavior. 17.3 -Implement a Security Awareness Program -Create a security awareness program for all workforce members to complete on a regular basis to ensure they understand and exhibit the necessary behaviors and skills to help ensure the security of the organization. The organization's security awareness program should be communicated in a continuous and engaging manner. 17.5 -Train Workforce on Secure Authentication -Train workforce members on the importance of enabling and utilizing secure authentication. 17.6 -Train Workforce on Identifying Social Engineering Attacks -Train the workforce on how to identify different forms of social engineering attacks, such as phishing, phone scams and impersonation calls. 17.7 -Train Workforce on Sensitive Data Handling -Train workforce on how to identify and properly store, transfer, archive and destroy sensitive information. 17.8 -Train Workforce on Causes of Unintentional Data Exposure -Train workforce members to be aware of causes for unintentional data exposures, such as losing their mobile devices or emailing the wrong person due to autocomplete in email. 17.9 -Train Workforce Members on Identifying and Reporting Incidents -Train employees to be able to identify the most common indicators of an incident and be able to report such an incidentPR.AT -1: All users are informed and trained NIST SP 800 -53 Rev. 4 AT-2, PM -13 COBIT 5 APO07.03, BAI05.07 ISA 62443 -2-1:2009 4.3.2.4.2, 4.3.2.4.3 CIS Critical Security Controls No. 17 
+@PeterMorin123 Maturity Scoring Level 0 Non-ExistentScore of 1 InitialScore of 2 RepeatableScore of 3 DefinedScore of 4 ManagedScore of 5 Optimized 
+- Processes are disorganized or even non -existent 
+- Processes are mostly reactive to the environment and are not likely to be repeatable in nature.
+- Basic security principles are established and repeated during processes, however, these processes have not been formally defined
+- Security principles are formally defined and documented in procedures. 
+- Procedures are communicated to applicable parties and enforced.
+- Security metrics are established to monitor the effectiveness of the procedures.
+- Procedures are continuously improved through continuous monitoring and automation
+- Basic security principles are non-existent – even in a reactive nature “We are not doing this at all.”“It’s ad -hoc, we only do it in cases where we have to.”“We do it, but it’s not consistent or structured.”“We do it consistently, but it’s not best practice and it could be better aligned with business.”“We do it well and I wouldn’t be could be considered best practice.” “We’re world class!”
+@petermorin123 @PeterMorin123 Step 2: Assess Current State 
+- Some things to think about… –You’ll probably look at these subcategories and think “yeah, I’m kind of doing those things,” which is good. –But how well are you doing them? –Remember, just running an ad -hoc process with governance (i.e. documentation, etc.) is not complete. –Also, don’t assume things are being done in other departments without talking to those responsible –Be honest with scoring.
+@petermorin123 @PeterMorin123 Step 2: Assess Current State 
+- Identify, Collect and Review –We gather all current documentation including policies, procedures, standards and guidelines –we review all information gathered and evaluate it based on industry best practice –Remember, this isn’t an audit, so we aren’t necessarily testing controls –so you don’t need to collect certain dataCategory Document Examples Identify / ID.GV (Governance)Cybersecurity / IT governance framework Cybersecurity / IT committee –mandate/terms of reference and minutes of recent meeting Cybersecurity / IT reports/KRI/KPI/dashboard Cybersecurity / IT strategy Protect / PR.AC (Identity Management and Access Control)Access management policies and procedures (including remote access, segregation of duties and physical access) Guidelines or policies for sharing relevant security information with outside organizations or third -party support contractors.
+@petermorin123 @PeterMorin123 Step 2: Assess Current State 
+- Workshops –We interview, discuss, and engage with relevant stakeholders to understand and document how your business and IT processes are alignedAssessment Area Workshop Attendee Examples Executives CIO, CISO, VP Operations, or similar Legal Chief Compliance Officer, VP Legal, General Counsel, or similar Human Resources Director of Human Resources, or similar Audit Internal Auditor, or similar Networking SpecialistNetwork Engineer, or similar IT Security Team Director/Manager of IT, Information Security, or similar
+@petermorin123 @PeterMorin123 Step 2: Assess Current State 
+- Start by looking at the sub -categories. 
+- For example, under Anomalies and Events (AE) in the Detect (DE) functional area, there are five subcategories: –DE.AE -1: A baseline of network operations and expected data flows for users and systems is established and managed –DE.AE -2: Detected events are analyzed to understand attack targets and methods –DE.AE -3: Event data are aggregated and correlated from multiple sources and sensors –DE.AE -4: Impact of events is determined –DE.AE -5: Incident alert thresholds are established
+@PeterMorin123 Assessment Example Functional Area Category Sub-category Score Detect (DE) Anomalies and Events (DE.AE): Anomalous activity is detected and the potential impact of events is understood.DE.AE -1: A baseline of network operations and expected data flows for users and systems is established and managed DE.AE -2: Detected events are analyzed to understand attack targets and methods DE.AE -3: Event data are collected and correlated from multiple sources and sensors DE.AE -4: Impact of events is determined DE.AE -5: Incident alert thresholds are established So what does “Impact of events is determined” mean?!
+@PeterMorin123 Assessment Example Functional Area Category Sub-category Detect (DE) Anomalies and Events (DE.AE): Anomalous activity is detected and the potential impact of events is understood.DE.AE -1: A baseline of network operations and expected data flows for users and systems is established and managed Internal control: The network management team monitors network traffic, utilizing solutions that alert the team to potentially abnormal traffic patterns
+@PeterMorin123 Assessment Example Functional Area Category Sub-category Detect (DE) Anomalies and Events (DE.AE): Anomalous activity is detected and the potential impact of events is understood.DE.AE -2: Detected events are analyzed to understand attack targets and methods Internal control: The network security team investigates alerts, escalating events, as appropriate, to the CISO, who may invoke the incident response plan
+@PeterMorin123 Assessment Example Functional Area Category Sub-category Detect (DE) Anomalies and Events (DE.AE): Anomalous activity is detected and the potential impact of events is understood.DE.AE -3: Event data are collected and correlated from multiple sources and sensors Internal control: Logs are collected in a SIEM solution, which correlates and analyzes the logs to detect suspected intrusions
+@PeterMorin123 Assessment Example Functional Area Category Sub-category Detect (DE) Anomalies and Events (DE.AE): Anomalous activity is detected and the potential impact of events is understood.DE.AE -4: Impact of events is determined Internal control: Events and incidents are investigated and triaged, based on the sensitivity of data and assets involved.
+@PeterMorin123 Assessment Example Functional Area Category Sub-category Detect (DE) Anomalies and Events (DE.AE): Anomalous activity is detected and the potential impact of events is understood.DE.AE -5: Incident alert thresholds are established Internal control: The incident response plan is maintained by the CISO and contains thresholds used by team members to conclude whether an event must be declared an incident.
+@petermorin123 @PeterMorin123 Functional Area Category Sub-category Score Detect (DE) Anomalies and Events (DE.AE): Anomalous activity is detected and the potential impact of events is understood.DE.AE -1: A baseline of network operations and expected data flows for users and systems is established and managed1 DE.AE -2: Detected events are analyzed to understand attack targets and methods2 DE.AE -3: Event data are collected and correlated from multiple sources and sensors2 DE.AE -4: Impact of events is determined 3 DE.AE -5: Incident alert thresholds are established 4 Average 2.4 (1 + 2 + 2 + 3 +4 / 5) Remember: 0 = non -existent 1 = Initial (some ad -hoc approaches) 2 = Repeatable (technology and/or procedures are in place where they may result in the same outcome when repeated. 3 = Defined (complete set of policies and procedures are documented to support the security architecture) 4 = Managed (constant monitoring and measuring of policies, procedures and technology) 5 = Optimized (security architecture is fully aligned to business -driven objectives)
+@petermorin123 @PeterMorin123 
+@petermorin123 @PeterMorin123 Step 3: Identify a Target Profile Why set a target goal? 
+- Where do you want to be? 
+- When building your “to -be,” be aware that (with the rare exception) you don’t need to be a five. 
+- Being “world class” in anything takes a lot of effort and resources. 
+- Organizations that require world class security controls generally know it and are prepared to allocate a large budget to achieve it. 
+- In most cases you should probably be shooting for a four — sometimes a bit higher, sometimes a bit lower.
+@petermorin123 @PeterMorin123 Step 3: Identify a Target Profile 
+- Create a target maturity score that focuses on the CSF Categories and Subcategories assessment and describes the desired cybersecurity outcomes. 
+- A cautious or rational approach should be taken when creating this profile. 
+- Risk appetite should be considered as well, where the organization determines which risk category or vector is appropriate to accept. 
+- Do not dig yourself a hole you cannot get out of!
+@PeterMorin123 Step 3: Identify a Target Profile Score of 1 InitialScore of 2 RepeatableScore of 3 DefinedScore of 4 ManagedScore of 5 Optimized 
+- Processes are disorganized or even non -existent 
+- Processes are mostly reactive to the environment and are not likely to be repeatable in nature.
+- Basic security principles are established and repeated during processes, however, these processes have not been formally defined
+- Security principles are formally defined and documented in procedures. 
+- Procedures are communicated to applicable parties and enforced.
+- Security metrics are established to monitor the effectiveness of the procedures.
+- Procedures are continuously improved through continuous monitoring and automation
+@petermorin123 @PeterMorin123 Step 4: Assess and Prioritize Gaps 
+- Determine, analyze and prioritize any gaps that exist, based on the Current and Target Profiles previously enumerated. 
+- A prioritized action plan should address these gaps and use costs and benefits, risks and mission -driven considerations to achieve the desired Target Profile outcomes. 
+- The resources needed to address these gaps should be determined as well (FTEs). –Insource vs. outsource vs. co -source
+@petermorin123 @PeterMorin123 2.1Protect DetectRecoverRespondIdentify
+@petermorin123 @PeterMorin123 Factoring Risk into the Equation 
+- We assess maturity with CSF and not necessarily risk 
+- However, we should factor risk into our roadmap to assist in prioritizing projects 
+- Developing an understanding of its risk environment, including how it will be impacted if a threat becomes active and the risk is realized.
+@petermorin123 @PeterMorin123 Factoring Risk into the Equation 
+- A common problem with NIST CSF assessments are that they pull a risk team’s focus down in to the weeds, then leaves them there, so to speak. 
+- Organizations really want to know “How much risk do we have?” and “Which of the NIST CSF activities reduces risk the most?” The CSF alone can’t answer those questions. 
+- Identify and quantify your top risks to help prioritize your remediation 
+- How your maturity corresponds to that risk 
+- Prioritize investments where the business needs it most –Quick wins (low investment/high risk reduction, high investment/high risk reduction, low investment/low risk reduction, high investment/low risk reduction)
+@petermorin123 @PeterMorin123 Factoring Risk into the Equation 
+- May be guided by previous risk assessment activities or the organization’s overall enterprise risk management program 
+- Analyze the organization’s operational environment to determine the likelihood of cybersecurity events and their related impact. 
+- This risk assessment should not be narrowly focused on problem areas but also include what is working well too.
+@PeterMorin123 Factoring Risk into the Equation The steps below give a high level overview of an example cybersecurity risk assessment process 1. Identify cyber risks and business impacts 4. Determine residual risk and risk targets2. Determine likelihood 3. Identify and score cyber controls via NIST CSF
+- Objective: Identify organizational cyber risks across various business segments and determine potential business impacts associated with each cyber risk 
+- Output: Identified cyber risks and total business impact scores for each risk 
+- Objective: Evaluate likelihood of cyber risks based on the frequency at which the organization observes threat scenarios 
+- Output: Likelihood scores, inherent risk scores, and inherent risk levels for each identified cyber risk 
+- Objective: Evaluate the strength of controls 
+- Output: Control strength scores for identified cyber controls, threat scenarios, and cyber risks 
+- Objective: Compute current residual risk and target residual risk for each identified cyber risk using the business impacts, threat scenario likelihoods, and cyber control strength scores from previous steps 
+- Output: Current and target residual risk scores and levels for identified cyber risks and dashboard graphics to facilitate executive conversations and decision -making
+@petermorin123 @PeterMorin123 Step 5: Remediation and Roadmap 
+- After determining which steps need to be taken to address the gaps identified, determine which actions to take and carry out to remediate. 
+- Cybersecurity practices should then be adjusted to achieve the Target Profile.
+@petermorin123 @PeterMorin123 Detection Processes (DE.DP) Short description Detection processes and procedures are maintained and tested to ensure awareness of anomalous events. SubcategoriesDE.DP -1: Roles and responsibilities for detection are well defined to ensure accountability DE.DP -2:Detection activities comply withallapplicable requirements DE.DP -3: Detection processes are tested DE.DP -4: Event detection information is communicated DE.DP -5: Detection processes are continuously improved Observations Recommendations DE.DP -1:Rolesandresponsibilitie sfor detection are defined to ensure accountability. Duty Team actsasaTier1, notify accountable process owners (developers) whoareTier2.Keep roles andresponsibilities forDuty team up -to-date. Provide security training activities which would involve coordination across all organizational elements. DE.DP -2:Duty Team noted thatthere areno formal procedures which obligate engineers/developers to configure monitoring of service with the Team before deploying service into production. Developer can bypass this process, Therefore Duty Team isnot aware of services which should bemonitored.Define, document, implement and communicate procedures describing configuring monitoring of services before deploying into production DE.DP -3: We have found no evidence weather detection processes aretested on regular basis.Implement formal procedures which would describe how the organization: 
+- Creates a process for ensuring that organizational plans for conducting security testing, monitoring activities and training associated with organizational information systems; 
+- Ensures thatdetection testing is executed inatimely manner 
+- Reviews detection testing and monitoring plans forconsistency with 
+- the organizational risk strategy. DE.DP -4: Duty Team noted that event detection information is communicated in relevant Jira workflow.
+- Ensure that event detection information iscommunicated todefined personnel; - Update listofevents which must bedetected onregular basis .Event detection information includes forexample, alerts onatypical account usage, unauthorized remote access, wireless connectivity, mobile device connection, altered configuration settings, contrasting system component inventory, useofmaintenance tools and nonlocal
+@petermorin123 @PeterMorin123 Step 5: Remediation and Roadmap 
+- Remember governance alone may not be a good indicator (if I document, I am good) 
+- Low hanging fruit is not always the way to go 
+- Low maturity does not mean you will be breached 
+@petermorin123 @PeterMorin123 
+@petermorin123 @PeterMorin123 Keeping up to date… 
+- Try to evaluate quarterly 
+- At a minimum, yearly 
+- Changes to maturity may affect changes to your roadmap 
+- Remember, adding documentation (governance) may increase scores, but doesn’t necessarily reduce risk. 
+@petermorin123 @PeterMorin123 CSF Use Cases 
+- Healthcare –U.S. Department of Health and Human Services completed a mapping of HIPAA to the NIST CSF –Under HIPAA, covered entities and business associates must comply with the HIPAA Security Rule to ensure the confidentiality, integrity and availability of protected health information –Mapping between the NIST CSF and HIPAA promotes an additional layer of security 
+- Assessments performed for certain categories of the NIST CSF may be more specific and detailed than those performed for the corresponding HIPAA requirement. 
+@petermorin123 @PeterMorin123 CSF Use Cases 
+- Financial Services –U.S. Financial Services Sector Coordinating Council (FS -SCC) developed a custom version of the NIST CSF that addresses unique aspects of the sector and regulatory requirements –Financial Services Sector Specific Cybersecurity profile, drafted collaboratively with regulatory agencies, is a means to harmonize cybersecurity -related regulatory requirements. –For example, the FS -SCC mapped the “Risk Management Strategy” category to nine different regulatory requirements and determined that the language and definitions, while different, largely addressed the same security objective 
+@petermorin123 @PeterMorin123 International Adoption 
+- Outside of the U.S., many countries have leveraged the NIST CSF for commercial and public sector use. –Italy was one of the first international adopters of the NIST CSF and developed a national cybersecurity strategy against the five Functions. –In June 2018, the UK aligned its Minimum Cyber Security Standard, mandatory for all government departments to the five Functions. –Israel and Japan localized the NIST CSF into their respective languages with Israel
+@petermorin123 @PeterMorin123 International Adoption 
+- Outside of the U.S., many countries have leveraged the NIST CSF for commercial and public sector use. –Uruguay performed a mapping of the CSF to ISO standards to strengthen connections to international frameworks. –Switzerland, Scotland, Ireland, and Bermuda are also among the list of countries that are using the NIST CSF to improve cybersecurity and resiliency across their public and commercial sector organizations.
+@petermorin123 @PeterMorin123 In Closing 
+- Form a team (e.g., a security governance process) 
+- Get the buy in from your executive 
+- Important components –Scope statement (remember asset classes) –“Crown jewels” inventory (systems, suppliers, assets) –Risk assessment (likelihood/impact of named risks) 
+- Don’t get too bogged down by scores –Documentation will improve scores, but not necessary security –If I do this, how does it affect my score? 
+@petermorin123 @PeterMorin123 Peter Morin petermorin123@gmail.com Twitter: @PeterMorin123 http://www.petermorin.com

@@ -1,0 +1,136 @@
+Cisco Systems, Inc. All contents are Copyright © 1992–2004 Cisco System s, Inc. All rights reserved. Important Notices and Privacy Statement.  WHITE PAPER DATA CENTERS: BEST PRACTICES FOR SECURITY AND PERFORMANCE EXECUTIVE SUMMARY Network service providers seeking Cisco ® Powered Network Program membership must meet rigor ous application requirements that, among other things, include netw ork performance, network security, and customer sup port. Designation also requires an annual program complia nce review that guides the Cisco Powered Network Pr ogram member toward best practices in the area of overall network design and operations. In the course of wo rking with service providers around the world on these technical revie ws, Cisco has developed a criteria and checklists t o determine program eligibility. This Data Center White Paper i s useful to those constructing or managing data cen ters with stringent performance and service requirements. Enterprise an d commercial customers seeking to purchase Web host ing, applications hosting, call and contact management, or content delivery-type services may also find thi s guide helpful in evaluating a service provider’s data centers. DATA CENTER DESIGN OBJECTIVES There are four objectives in the design of any high performance data center: Security, availability, s calability, and manageability. Today’s business and competitive environment requir es that each of these objectives be considered from a complete end-to-end perspective. Clients or users connecting to the data center meas ure performance by timely access to the desired app lication data, whether the connection is point to point or via an Internet connection. The u ser must perceive reasonable response and connectio n time. Access is no longer measured solely on an arbitrary measure of “network availabi lity” or ping times. This fact does not lesson the goal of developing networks that provide 99.999 percent availability. However, the implicati on is that the designers of the traditional network ing elements must also become “contentaware.” Security Security can no longer be treated as an afterthough t when it comes to optimum network design. Trial-an d-error networking is not an option, as a single vulnerability could compromise the corporate lifeblood, the network. In such a high-stakes envi ronment, only specialized expertise is acceptable. There are challenges in offering encryp tion, certification, directory, network, and other security components that enable what one would consider a 100 percent secure network. While industry struggles with developing the technology t o provide these protective components, the IT manager must still cope on a daily basis to reduce the network’s imminent risk. A complete network security solution includes authe ntication, authorization, data privacy, and perimet er security. Perimeter security is traditionally provided by a firewall, which inspect s packets and sessions to determine if they should be transmitted or dropped. In effect, firewalls have become a single point of network acc ess where traffic can be analyzed and controlled ac cording to parameters such as application, address, and user for both incoming tr affic from remote users, and outgoing traffic to th e Internet. In general, firewalls are intended to protect resou rces from several kinds of attacks such as passive eavesdropping/packet sniffing, IP address spoofing, port scans, denial-of-service (DoS) attac ks such as SYNchronize-ACKnowledge attack (SYN floo ding), packet injection, and application-layer attack. 
+ Cisco Systems, Inc. All contents are Copyright © 1992–2004 Cisco System s, Inc. All rights reserved. Important Notices and Privacy Statement.  See the data center best practices checklist (Appen dix A). The checklist begins with the physical secu rity of the data center and its environment (electric power, temperature, and humidity controls ). The checklist also contains recommendations conc erning network security in general terms, recognizing that threats may occur actively or passively (sometimes called opportunistically), and from people and events either outside or inside the data center itself. Connectivity path s to external networks, and each function inside th e data center (such as gateway or WAN edge, core, distribution, and access), must be designed w ith no single point of entry for unauthorized users. Availability Availability is generally ensured by the overall ne twork design and implemented in several ways. First, networks are designed with steps to minimize the occurrence of service problems and the time to recover from problems (such as backup reco very policies). Second, high availability must be considered at each layer of th e Open Systems interconnection (OSI) reference mode l, with redundancy and failover provisions made at the physical, data link (for exa mple, Ethernet), network (for example, IP), and app lication layers. The most effective solutions are those with consistent engineering con siderations tightly integrated throughout the data center, rather than those approached with a series of “point-solution” products and techniques. Scalability Scalability must be provided in every data center. Server load balancing is the norm, and techniques s uch as reverse proxy caching are often used to offload servers. Server load balancing, lik e other aspects of data center design, must also be content-aware, preferably using delayed binding, full URL and cookie inspection, and “stick y (server) connections” as part of the logic of cho osing a server for each user request. Specific content may be in high demand and consider ed “hot.” Because this content may not be known in advance (such as breaking news stories), advanced data centers should also have th e ability to automatically and immediately identify and replicate hot content to overflow or backup servers or cache to ensure the ability to su pport the increased demand without compromising per formance. Both the complications and available solutions incr ease greatly if the data center is part of a geogra phically dispersed set. The ability to provide content at multiple sites allows the served data to be “closer” to the requesting client, thus providi ng faster response but also higher availability (due to partial or complete redundancy of the data). But multidata center design must then include con siderations of management of the data content, distribution of updates, synchronization o f different sources, proper routing of requests, ha ndling of downed servers, additional security and so on. Manageability Manageability means much more than simply knowing i f a server or other network element is “up or down. ” Especially in service provider data centers supporting multiple customers, the ability to assess service levels on a per-customer basis is essential to the offering and administration of service-level agreements (SLAs). Managing IP add ress assignments, keeping track of network configur ations, and not losing site of trouble tickets and alarms often requires use of a mechaniz ed network operations center (NOC) support system. Good manageability tools and qualified personnel supporting the infrastructure translate i nto lower operations costs, since time is not waste d trying to resolve indications from conflicting management systems and higher customer satisfaction. 
+ Cisco Systems, Inc. All contents are Copyright © 1992–2004 Cisco System s, Inc. All rights reserved. Important Notices and Privacy Statement.  APPENDIX A Cisco Powered Network Program Data Center Best Prac tices Checklist Facility and Physical Requirements 
+- Multiple physically separate connections to public power grid substations 
+- Continuous power supply with backup uninterruptible power supply (UPS) systems: – Adequate UPS capacity including air conditioning an d lights – UPS systems tested at full load on monthly schedule – Fuel for UPS generators (48 hours worth) kept on pr emises and monitored for local environmental compli ance 
+- Conform to or exceed applicable local structural bu ilding codes utilizing standards such as bullet pro of glass, fire doors and reinforced walls and complying with disaster proof design: – Comply with all local zoning ordinances – Certify not located in a 100-year flood plain – Earthquake and hurricane bracing on all racks and c able trays (where appropriate) 
+- Adequate multizone air conditioning, including a ba ckup system for the multizone air conditioning: – Climate control including humidity sensors and cont rol 
+- Heat and smoke detectors that meet or exceed all lo cal fire code regulations. – Very Early Smoke Detection Alarm (VESDA) – FM200 [ETG5] fire suppression system in data center and NOC – Separate detection/FM200 zone under raised floors 
+- Preaction dry pipe system zoned to release water on ly where needed 
+- Easily removable access panels in raised flooring 
+- Flood sensors and monitoring under raised floors an d in other critical areas 
+- Separate grounding systems to prevent grounding loo ps; true ground versus green wire ground 
+- Sealed cable vault entrances to facility, remotely monitored 
+- Formalized physical facility preventive maintenance program 
+- Sub-breakers per relay rack or lineup 
+- 48 VDC power converters, 220 VAC, 20A, 30A, 40A 
+- Power filtering in UPS system Physical Security 
+- Written security policies readily accessible: – Badge sharing and piggy back entry rules – All visitors must be admitted through reception – Written statement of work upon sign-in 
+ Cisco Systems, Inc. All contents are Copyright © 1992–2004 Cisco System s, Inc. All rights reserved. Important Notices and Privacy Statement.  
+- Building access procedures: – Limited number of building entrances in compliance with local fire ordinance – Provide access to limited and managed security poli cies for all facility entrances – 24x7 onsite security guards – Visitor-logging procedure – Card-key, biometric, or similar entry locks – ID-badge system for all employees and visitors – Staff and visitors must wear badges at all times on premises – Individual cabinet locks; master in NOC; key list f rom customer 
+- Equipment locations: – Video surveillance and motion sensors for entrances, interior doors, equipment cages, and critical equ ipment locations within the building – Locked cages with ceilings; locking cabinets with c limate control for those wanting more privacy – Secure rooms available – Managed firewall services with 24x7 monitoring avai lable – Backup lighting systems for entry ways and cable va ults – Individual cabinet locks; master in NOC; key list f rom customer Network Security 
+- Written network access security policies readily ac cessible: – Password policies (such as not sharing, lengths, fo rced renewal, aging) – Acceptable use (ISP not allowed to run programs tha t are illicit or illegal; use of sniffers or cracki ng/hacking programs are not required) – Documented user responsibilities on security in com pany policies and re-enforced by education – Asset protection 
+- Network security infrastructure in place: – Perimeter protection (firewalls, filtering router) – Intrusion detection – Authentication and authorization (passwords, RADIUS /TACACS, Secure IDs) – Backup and recovery systems to restore after a prob lem, such as load balancing, failover protection – Regular assessment of network infrastructure – Assessment of network expansions or additions – Tape or media storage offsite backup – Regularly scheduled security audits – Server antivirus software protection Operations 
+- Database of all installed equipment and configurati ons 
+- Toll-free telephone support 
+ Cisco Systems, Inc. All contents are Copyright © 1992–2004 Cisco System s, Inc. All rights reserved. Important Notices and Privacy Statement.  
+- Supported monitoring: – 24x7 monitoring of dedicated servers and network eq uipment (note both frequency and method, such as PI NG, Simple Network Management Protocol [SNMP]) – 24x7 monitoring of the health of the equipment with alarms and pager alerts for network failure and fa ilovers – 24x7 monitoring firewall services available – Alternate NOC available – Second-tier support personnel located nearby 
+- Trouble ticket processes: – Created and logged for all unusual or unexpected ev ents 
+- Automated case escalation procedures in place inclu ding escalation timeframes 
+- Reporting that provides trending statistics on trou ble tickets and minutes (above) to facilitate quali ty and customer reports 
+- Performance reporting and end-user impact monitorin g 
+- Periodic and exception reports provided to customer s (including usage and problem reports) 
+- Spare equipment on site for key networking equipmen t available in case of hardware failure 
+- Business continuity plan: – Daily site backups – Tape vaults or other secure storage facilities on s ite in case of natural disaster – Onsite and offsite storage available 
+- Customer callout and escalation database 
+- Intercom system 
+- Written procedures for each customer on alarm handl ing Backbone Connectivity 
+- Multiple direct connections to Tier 1 Internet carr iers using high speed Cisco routers as gateways 
+- Border Gateway Protocol vs. 4 BGP-4 routing 
+- Class C Internet address blocks available 
+- All backbone services have Cisco Powered Network Pr ogram member designation 
+- Each carrier has a secure termination area, and loc ation supported via the NOC or the carrier providin g the termination 
+- Fiber enters the data center through diverse condui ts or routes (for example, if a backhoe cuts though conduit, the network reroutes to minimize loss of service) 
+- Aggregate bandwidth sufficient to scale the network to meet customer’s service demands 
+- Describe policy on facility utilization or over-sub scription 
+- Provider must have private facilities connecting to other data centers, and a documented process 
+- Multiple Internet access 
+- Carrier XCONN and distribution system; separate car rier point-of-presence (POP) area 
+- Formalized SLA policies 
+ Cisco Systems, Inc. All contents are Copyright © 1992–2004 Cisco System s, Inc. All rights reserved. Important Notices and Privacy Statement.  
+- Roof rights and riser conduit right of way 
+- Multiple riser conduit from cable vault to data cen ter Gateway/WAN Edge Layer 
+- High-end routers (such as Cisco 7500 or 12000 Serie s) in a redundant configuration 
+- Cisco Hot Standby Router Protocol (HSRP) implemente d 
+- BGP-4 implemented 
+- Adequate total packet-per-second capacity for peak customer load 
+- Firewalls in place 
+- Network security team in place 
+- Remote firewall management offered Core Layer 
+- High-end switches (such as Cisco Catalyst ® 8500 or 6500 Series) deployed 
+- Switching and links entirely redundant with no sing le points or paths of failure 
+- Web cache redirection implemented 
+- Content and Transmission Control Protocol (TCP) off loading implemented via reverse proxy caching 
+- HSRP implemented for fail-over protection 
+- Intrusion detection implemented (such as Cisco Intr usion Detection System) 
+- Automatic notification of intrusion attempts in pla ce Distribution Layer 
+- High to mid-range switches (such as Cisco Catalyst 6500 or 6000 Series) deployed 
+- Switching and links entirely redundant with no sing le points or paths of failure 
+- Caching systems (such as Cisco 500 Content Engine o r 7300 Series) implemented 
+- Server load balance (Cisco CSS 11000 Series) implem ented 
+- Server content routing (Cisco 4400 series) implemen ted if multiple data centers 
+- Caching (Cisco Cache Engine 500 or 7300 series) imp lemented Access Layer 
+- Mid range switches (Cisco Catalyst 6000 or 4000 Ser ies) deployed 
+- All servers dual homed 
+ Cisco Systems, Inc. All contents are Copyright © 1992–2004 Cisco System s, Inc. All rights reserved. Important Notices and Privacy Statement.  Cabling 
+- All cable runs located under raised flooring and ap propriately marked 
+- All cable runs physically protected from damage via tie-downs or where appropriate in conduit 
+- All cabling designed to Category 6 specifications ( to support 1-Gbps data rates) 
+- Communications cabling raceways separate from elect rical; no intersections 
+- Shielded cabling for T1/T3s. DSX panels for XCONN, demarcation, and test points 
+- All cabling on raceways, tied down 
+ Cisco Systems, Inc. All contents are Copyright © 1992–2004 Cisco System s, Inc. All rights reserved. Important Notices and Privacy Statement.  Corporate Headquarters Cisco Systems, Inc. 170 West Tasman Drive San Jose, CA 95134-1706 USA www.cisco.com Tel: 408 526-4000 800 553-NETS (6387) Fax: 408 526-4100 European Headquarters Cisco Systems International BV Haarlerbergpark Haarlerbergweg 13-19 1101 CH Amsterdam The Netherlands www-europe.cisco.com Tel: 31 0 20 357 1000 Fax: 31 0 20 357 1100 Americas Headquarters Cisco Systems, Inc. 170 West Tasman Drive San Jose, CA 95134-1706 USA www.cisco.com Tel: 408 526-7660 Fax: 408 527-0883 Asia Pacific Headquarters Cisco Systems, Inc. 168 Robinson Road #28-01 Capital Tower Singapore 068912 www.cisco.com Tel: +65 6317 7777 Fax: +65 6317 7799 Cisco Systems has more than 200 offices in the foll owing countries and regions. Addresses, phone numbe rs, and fax numbers are listed on the Cisco Website at www.cisco.com/go/offices. Argentina 
+- Australia 
+- Austria 
+- Belgium 
+- Brazil 
+- Bulgaria 
+- Canada 
+- Chile 
+- China PRC 
+- Colombia 
+- Costa Rica Croatia 
+- Cyprus 
+- Czech Republic 
+- Denmark 
+- Dubai, UAE 
+- Finland 
+- France 
+- Germany 
+- Greece 
+- Hong Kong SAR Hungary 
+- India 
+- Indonesia 
+- Ireland 
+- Israel 
+- It aly 
+- Japan 
+- Korea 
+- Luxembourg 
+- Malaysia 
+- Mexic o The Netherlands 
+- New Zealand 
+- Norway 
+- Peru 
+- Phi lippines 
+- Poland 
+- Portugal 
+- Puerto Rico 
+- Romani a 
+- Russia Saudi Arabia 
+- Scotland 
+- Singapore 
+- Slovakia 
+- Sl ovenia 
+- South Africa 
+- Spain 
+- Sweden 
+- Switzerlan d 
+- Taiwan Thailand 
+- Turkey 
+- Ukraine 
+- United Kingdom 
+- Unit ed States 
+- Venezuela 
+- Vietnam 
+- Zimbabwe Copyright  2004 Cisco Systems, Inc. All rights reserved. Catalyst, Cisco, Cisco Systems, and the Cisco Systems logo are regi stered trademarks or trademarks of Cisco Systems, Inc. and/or its affiliates in the United Stat es and certain other countries. All other trademarks mentioned in this document or Website a re the property of their respective owners. The use of the word partner does not imply a partnership relationship between Cisco and any other company. (0406R) SB/LW6660 07/04 Printed in the USA

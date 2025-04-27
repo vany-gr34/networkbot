@@ -1,0 +1,63 @@
+# Compulsory tags - include one of these
+Product
+Engineering
+DevOps
+Company
+
+# Optional tags to help with discoverability and internal links (Don't over do it with these, apply the one or two tags that are the best fit)
+Automation
+AWS
+Azure
+CloudFormation
+Cloud Orchestration
+Codefresh
+Community
+Containers
+Continuous Integration
+Continuous Deployment
+Continuous Delivery
+Configuration as Code
+Database Deployments
+Deployment Patterns
+Docker
+DORA Metrics
+Enterprise
+Environment Promotion
+Getting Started
+GitHub Actions
+GitHub Copilot
+GitOps
+Google Cloud Platform
+Hackathon
+Incident Reports
+Integrations
+Java
+Jira
+Jenkins
+Kubernetes
+Lambda
+Linux
+Microservices
+Multi-Tenancy
+Octopus Cloud
+Performance
+Platform Engineering
+PowerShell
+Reporting
+Rollbacks
+Runbooks
+Serverless
+Step Templates
+Terraform
+Testing
+Trust and Security
+Variables
+Workers
+
+# Tags for marketing themes
+CI Series
+Runbooks Series
+Kubernetes Training
+At The Helm
+Inside DevOps
+Featured
